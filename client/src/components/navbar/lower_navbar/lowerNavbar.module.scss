@@ -1,0 +1,55 @@
+@use 'src/global_styles/settings';
+
+
+.lower_navbar{
+    align-items: center;
+    background-color: #16165d;
+    color: settings.$whitegray;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    gap: 2rem;
+    padding: 1.5rem 0;
+
+    .lower_navbar_span{
+        position: relative;
+    }
+    span{
+        cursor: pointer;
+    }
+
+    .lower_navbar_floating_window{
+        background-color: white;
+        display: none;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 3.85rem;
+        left: 0;
+        width: 22rem;
+
+        .floating_window_nav{
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+
+            li{
+                list-style: none; 
+                padding: 1.2rem;
+
+            }
+            li > *{
+                color: settings.$textcolor;
+                text-decoration: none;
+            }
+            
+            li:hover{
+                background-color: lightgrey;
+            }
+        }
+    }
+}
+
+.active{
+    display: block !important;
+}
