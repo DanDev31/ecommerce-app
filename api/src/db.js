@@ -4,7 +4,7 @@ const product = require('./models/product')
 const category = require('./models/category')
 const order = require('./models/order')
 const review = require('./models/review')
-const test_products = require('./data')
+const { test_products, test_categories } = require('./data')
 
 require('dotenv').config()
 
@@ -57,6 +57,13 @@ const loadData = () => {
             stock:product.stock,
             num_reviews:product.num_reviews,
             rate:product.rate
+        })
+    })
+
+    test_categories.map(async(category) => {
+        
+        await categories.create({
+            category_name: category.category_name
         })
     })
 }

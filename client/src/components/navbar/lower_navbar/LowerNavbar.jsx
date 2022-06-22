@@ -9,19 +9,23 @@ export const LowerNavbar = () => {
 
   const [ active, setActive ] = useState(false)
 
-  const handleToggle = () =>{
-    setActive(!active)
+  const handleShowMenu = () =>{
+    setActive(true)
   }
 
-  console.log(active)
+  const handleHideMenu = () => {
+    setActive(false)
+  }
+
+
   return (
     <div className={ styles.lower_navbar }>
       
-        <span className={styles.lower_navbar_span} onMouseOver={handleToggle} onMouseLeave={handleToggle}>Categories
+        <span className={styles.lower_navbar_span} onMouseOver={handleShowMenu}>Categories
           
           <MdOutlineKeyboardArrowDown/>
 
-            <div className={`${styles.lower_navbar_floating_window} ${active && styles.active}`}>
+            <div className={`${styles.lower_navbar_floating_window} ${active && styles.active}`} onMouseLeave={handleHideMenu}>
               <ul className={styles.floating_window_nav}>
                 <li>
                   <Link to="">PC Gamers</Link>

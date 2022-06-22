@@ -22,7 +22,7 @@ export const LatestProducts = () => {
 
             <div className={styles.latest_products_grid_container}>
                 {
-                    latestProducts.length > 0 ?
+                    latestProducts.length > 0 || !latestProducts ?
                     latestProducts.map((product, i) =>(
                         <LatestProductCard
                             key={i}
@@ -30,7 +30,7 @@ export const LatestProducts = () => {
                         />
                     ))
                     :
-                    <p></p>
+                    <p>Loading...</p>
                 }
             </div>
         </div>

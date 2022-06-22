@@ -74,4 +74,28 @@ test_products = [
 
 ]
 
-module.exports = test_products;
+const test_categories = [
+    {
+        category_name:"PC Gamers"
+    },
+    {
+        category_name:"Ram Memory"
+    },
+    {
+        category_name:"Hard Disks & SSD"
+    },
+    {
+        category_name:"CPU"
+    },
+    {
+        category_name:"Power Supply"
+    },
+    {
+        category_name:"Accesories"
+    }
+]
+
+module.exports = {
+    test_products,
+    test_categories
+}
