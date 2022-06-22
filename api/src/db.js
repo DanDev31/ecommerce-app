@@ -43,8 +43,8 @@ categories.hasMany(products)
 products.belongsToMany(orders, {through: "product_order", timestamps:false})
 orders.belongsToMany(products, {through: "product_order", timestamps:false})
 
-products.belongsToMany(reviews, {through: "product_review", timestamps:false})
-reviews.belongsToMany(products, {through: "product_review", timestamps:false})
+products.hasMany(reviews)
+reviews.belongsTo(products)
 
 const loadData = () => {
     // test_products.map(async(product) => {
