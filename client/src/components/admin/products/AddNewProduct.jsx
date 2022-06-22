@@ -29,8 +29,6 @@ export const AddNewProduct = () => {
         ...formValues,
         category:selectCategory
       })
-      console.log(res.data)
-      console.log(formValues, selectCategory)
     } catch (error) {
       console.log(error)
     }
@@ -62,6 +60,8 @@ export const AddNewProduct = () => {
               <option value="Ram Memory">Ram Memory</option>
               <option value="Hard Disks & SSD">Hard Disks & SSD</option>
               <option value="CPU">CPU</option>
+              <option value="GPU">CPU</option>
+              <option value="Motherboards">CPU</option>
               <option value="Power Supply">Power Supply</option>
               <option value="Accesories">Accesories</option>
             </select>

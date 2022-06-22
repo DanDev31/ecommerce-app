@@ -47,18 +47,18 @@ products.belongsToMany(reviews, {through: "product_review", timestamps:false})
 reviews.belongsToMany(products, {through: "product_review", timestamps:false})
 
 const loadData = () => {
-    test_products.map(async(product) => {
+    // test_products.map(async(product) => {
         
-        await products.create({
-            product_name: product.product_name,
-            description:product.description,
-            product_image:product.product_image,
-            price:product.price,
-            stock:product.stock,
-            num_reviews:product.num_reviews,
-            rate:product.rate
-        })
-    })
+    //     await products.create({
+    //         product_name: product.product_name,
+    //         description:product.description,
+    //         product_image:product.product_image,
+    //         price:product.price,
+    //         stock:product.stock,
+    //         num_reviews:product.num_reviews,
+    //         rate:product.rate,
+    //     })
+    // })
 
     test_categories.map(async(category) => {
         

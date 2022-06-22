@@ -88,6 +88,12 @@ const test_categories = [
         category_name:"CPU"
     },
     {
+        category_name:"GPU"
+    },
+    {
+        category_name:"Motherboards"
+    },
+    {
         category_name:"Power Supply"
     },
     {

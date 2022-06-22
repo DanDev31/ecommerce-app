@@ -1,8 +1,11 @@
 import React from 'react'
 import { FilterMenu } from '../filters/filter_menu/FilterMenu'
 import { Sort } from '../filters/sort/Sort'
+import { ProductList } from './product_list/ProductList'
 
 export const Home = () => {
+
+  
   return (
     <main>
         <aside>
@@ -14,7 +17,7 @@ export const Home = () => {
             <Sort />
 
             <div>
-                
+                <ProductList />
             </div>
 
         </section>
