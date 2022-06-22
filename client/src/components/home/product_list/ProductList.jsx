@@ -12,7 +12,7 @@ export const ProductList = () => {
   if(!productsByCategory) return <p>Loading...</p>
 
   return (
-    <section className="container">
+    <section>
         <div className={ styles.latest_products_container }>
             <h2>{category}</h2>
             <h5>Total results: {productsByCategory.length}</h5>
@@ -26,7 +26,7 @@ export const ProductList = () => {
                         />
                     ))
                     :
-                    <p>Loading...</p>
+                    <p>There's no results</p>
                 }
             </div>
         </div>
