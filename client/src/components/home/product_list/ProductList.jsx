@@ -7,14 +7,13 @@ import styles from './product_list.module.scss'
 export const ProductList = () => {
   
   const { productsByCategory } = useSelector(state => state.productsByCategory)
-  const category = localStorage.getItem('category')
+  
 
   if(!productsByCategory) return <p>Loading...</p>
 
   return (
     <section>
         <div className={ styles.latest_products_container }>
-            <h2>{category}</h2>
             <h5>Total results: {productsByCategory.length}</h5>
             <div className={styles.latest_products_grid_container}>
                 {
