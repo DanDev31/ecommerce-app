@@ -44,6 +44,23 @@ routes.get('/latestproducts', async(req,res) => {
     }
 })
 
+routes.get('/detail/:id', async (req, res) => {
+    const { id } = req.params
+    if(id){
+        try {
+
+            const productDetail = await products.findByPk(id)
+            if(!productDetail) res.status(404).send("Data not found!")
+            
+            res.send(productDetail)
+        } catch (err) {
+            console.log(err)
+        }
+    }else{
+        res.status(404).send("id not valid")
+    }
+})
+
 
 
 routes.post('/newproduct', async(req, res) => {
