@@ -27,7 +27,6 @@ export const LatestProducts = () => {
                     latestProducts.length > 0 || !latestProducts ?
                     latestProducts.map((product, i) =>(
                         
-                            console.log(product),
                         <LatestProductCard
                         key={i}
                         {...product}

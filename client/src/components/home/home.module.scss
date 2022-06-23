@@ -1,0 +1,11 @@
+.home_container{
+    display: grid;
+    grid-template-columns: 30rem 1fr;
+    grid-column-gap: 5rem;
+    margin-top: 10rem;
+
+    .home_filter_sidebar{
+       
+    }
+}
+
