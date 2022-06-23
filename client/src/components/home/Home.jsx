@@ -20,7 +20,7 @@ export const Home = () => {
             <Sort />
 
             <div>
-                <ProductList />
+              <ProductList />
             </div>
 
         </section>
