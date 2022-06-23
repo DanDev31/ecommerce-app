@@ -3,6 +3,9 @@ import { GoSearch } from 'react-icons/go'
 import styles from './search_bar.module.scss'
 
 export const SearchBar = () => {
+
+  
+
   return (
     <div className={ styles.search_bar_container }>
         <form className={ styles.search_bar_form }>
