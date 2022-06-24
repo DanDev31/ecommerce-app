@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import  {
-  fetchProductDetail,
-} from "../../../../redux/products/productDetail";
+import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
-
+import styles from "./productDetail.module.scss";
 export const ProductDetail = () => {
   const { productDetail } = useSelector((state) => state.productDetail);
   const { productsByCategory } = useSelector(
@@ -24,25 +22,34 @@ export const ProductDetail = () => {
   return (
     <>
       {productDetail && (
-        <div>
-          <img
-            alt={productDetail.product_name}
-            src={productDetail.product_image}
-          />
-          <h1>{productDetail.product_name}</h1>
+        <>
+          <div className={styles.latest_product_card_container}>
+            <div className={styles.latest_product_card_image_container}>
+              <img
+                alt={productDetail.product_name}
+                src={productDetail.product_image}
+              />
+            </div>
+            <div>
+              <h3>{productDetail.product_name}</h3>
+              <p>Stock: {productDetail.stock}</p>
+              <p>Price: ${productDetail.price}</p>
+              <p>Rate: {productDetail.rate}</p>
+              <p>Reviews: {productDetail.num_reviews}</p>
+            </div>
+          </div>
+          <h4>Descriptions</h4>
           <p>{productDetail.description}</p>
-          <p>Stock: {productDetail.stock}</p>
-          <p>Price: ${productDetail.price}</p>
-          <p>Rate: {productDetail.rate}</p>
-          <p>Reviews: {productDetail.num_reviews}</p>
-        </div>
+        </>
       )}
-      ,<h4>Related Products</h4>
-      {relationsProduct.length > 0 ? (
-        relationsProduct.map((product, i) => <Product key={i} {...product} />)
-      ) : (
-        <p>There's no results</p>
-      )}
+      <h4>Related Products</h4>
+      <div className={styles.latest_products_grid_container}>
+        {relationsProduct.length > 0 ? (
+          relationsProduct.map((product, i) => <Product key={i} {...product} />)
+        ) : (
+          <p>There's no results</p>
+        )}
+      </div>
     </>
   );
 };
