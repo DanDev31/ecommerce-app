@@ -6,7 +6,6 @@ routes.get('/', async(req, res) => {
     try {
         const { category, search } = req.query
         if(category) {
-            
             const foundedCategories = await categories.findAll({
                 where:{
                     category_name: category
@@ -50,6 +49,8 @@ routes.get('/', async(req, res) => {
     
 })
 
+
+
 routes.get('/latestproducts', async(req,res) => {
     try {
         let latestProducts = await products.findAll({})
@@ -60,6 +61,7 @@ routes.get('/latestproducts', async(req,res) => {
         console.log("Fail searching data!")
     }
 })
+
 
 routes.get('/detail/:id', async (req, res) => {
     const { id } = req.params
