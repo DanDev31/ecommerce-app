@@ -1,13 +1,11 @@
 const routes = require('express').Router()
-const { Router } = require('express')
+const { Op } = require("sequelize");
 const { products, categories } = require('../db')
 
 routes.get('/', async(req, res) => {
     try {
-
-        const { category } = req.query
+        const { category, search } = req.query
         if(category) {
-            
             const foundedCategories = await categories.findAll({
                 where:{
                     category_name: category
@@ -15,8 +13,6 @@ routes.get('/', async(req, res) => {
             })
             
             const category_id = foundedCategories[0].id
-
-           
 
             const productsByCategory = await products.findAll({
                 where:{
@@ -26,12 +22,34 @@ routes.get('/', async(req, res) => {
                 res.send(productsByCategory)
             }
 
+            if(search){
+                const searchResults = await products.findAll({
+                    where:{
+                        product_name: {
+                            [Op.iLike]: `%${search}%`
+                        }
+                    }
+                })
+
+                if(searchResults.length > 0){   
+                    res.send(searchResults)
+                }else{
+                    res.status(404).send("No results for this search")
+                }
+
+            }else{
+                const allProducts = await products.findAll({})
+                res.send(allProducts)
+            }
+
         
     } catch (error) {
-        console.log("Fail searching data by category!")
+        console.log("Fail searching data")
     }
     
 })
+
+
 
 routes.get('/latestproducts', async(req,res) => {
     try {
@@ -43,6 +61,7 @@ routes.get('/latestproducts', async(req,res) => {
         console.log("Fail searching data!")
     }
 })
+
 
 routes.get('/detail/:id', async (req, res) => {
     const { id } = req.params

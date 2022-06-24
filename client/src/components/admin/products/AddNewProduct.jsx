@@ -25,7 +25,7 @@ export const AddNewProduct = () => {
 
   const createNewProduct = async() => {
     try {
-      const res = await axios.post('http://localhost:3001/products/newproduct', {
+      await axios.post('http://localhost:3001/products/newproduct', {
         ...formValues,
         category:selectCategory
       })
