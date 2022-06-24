@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./product.module.scss";
 
-export const Product = ({ product_name, product_image, price }) => {
+export const Product = ({ product_name, product_image, price ,id}) => {
   return (
     <div className={styles.latest_product_card_container}>
-      <Link to="">
+      <Link to={`/shop/${id}`}>
         <div className={styles.latest_product_card_image_container}>
           <img src={product_image} alt="" />
         </div>
