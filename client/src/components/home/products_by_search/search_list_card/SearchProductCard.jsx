@@ -5,10 +5,10 @@ import styles from './searchProductCard.modules.scss'
 export const SearchProductCard = ({
     product_name,
     product_image,
-    price
+    price,id
 }) => {
   return (
-    <Link to="">
+    <Link to={`/shop/${id}`}>
         <div className={styles.latest_product_card_container}>
             <div className={styles.latest_product_card_image_container}>
                 <img src={ product_image } alt="" />
