@@ -9,12 +9,24 @@ export const ProductDetail = () => {
   const { productsByCategory } = useSelector(
     (state) => state.productsByCategory
   );
-
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProductDetail(id));
   }, [dispatch, id]);
+  let [count, setCount] = useState(0);
+
+  function increase() {
+    setCount(count + 1);
+  }
+  function decrease() {
+    setCount(count - 1);
+  }
+  function onCountEdit(event) {
+    let countContent = Number(event.target.textContent);
+    if (Number.isNaN(countContent)) setCount(Math.floor(Math.random() * 10));
+    else setCount(countContent);
+  }
 
   let relationsProduct = productsByCategory.filter(
     (e) => e.id !== parseInt(id)
@@ -22,8 +34,8 @@ export const ProductDetail = () => {
   return (
     <>
       {productDetail && (
-        <>
-          <div className={styles.latest_product_card_container}>
+        <div className={styles.cardContainer}>
+          <div className={styles.latest_products_grid_container}>
             <div className={styles.latest_product_card_image_container}>
               <img
                 alt={productDetail.product_name}
@@ -31,24 +43,45 @@ export const ProductDetail = () => {
               />
             </div>
             <div>
+              <div>
               <h3>{productDetail.product_name}</h3>
-              <p>Stock: {productDetail.stock}</p>
-              <p>Price: ${productDetail.price}</p>
+              </div>
+              <div>
+              <h3>${productDetail.price}</h3>
+                </div>
               <p>Rate: {productDetail.rate}</p>
               <p>Reviews: {productDetail.num_reviews}</p>
+              <span>Stock: {productDetail.stock}</span>
+              <div className="count-wrapper">
+                <button onClick={decrease} disabled={count===0}>
+                  -
+                </button>
+                <span className="count" onBlur={onCountEdit}>
+                  {count}
+                </span>
+                <button
+                  onClick={increase}
+                  disabled={count === productDetail.stock}
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
-          <h4>Descriptions</h4>
+          <h4>Description</h4>
           <p>{productDetail.description}</p>
-        </>
+        </div>
       )}
+      <div className={styles.relatedProduct}>
       <h4>Related Products</h4>
+
       <div className={styles.latest_products_grid_container}>
         {relationsProduct.length > 0 ? (
           relationsProduct.map((product, i) => <Product key={i} {...product} />)
-        ) : (
+          ) : (
           <p>There's no results</p>
         )}
+      </div>
       </div>
     </>
   );
