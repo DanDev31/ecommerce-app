@@ -5,32 +5,37 @@ import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
 import styles from "./productDetail.module.scss";
 export const ProductDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
   const { productDetail } = useSelector((state) => state.productDetail);
   const { productsByCategory } = useSelector(
     (state) => state.productsByCategory
   );
-  const { id } = useParams();
-  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchProductDetail(id));
   }, [dispatch, id]);
-  let [count, setCount] = useState(0);
 
+  let [count, setCount] = useState(0);
   function increase() {
     setCount(count + 1);
   }
+
   function decrease() {
     setCount(count - 1);
   }
+
   function onCountEdit(event) {
     let countContent = Number(event.target.textContent);
-    if (Number.isNaN(countContent)) setCount(Math.floor(Math.random() * 10));
+    if (Number.isNaN(countContent)) setCount(countContent);
     else setCount(countContent);
   }
 
   let relationsProduct = productsByCategory.filter(
     (e) => e.id !== parseInt(id)
   );
+
   return (
     <>
       {productDetail && (
@@ -44,19 +49,28 @@ export const ProductDetail = () => {
             </div>
             <div>
               <div>
-              <h3>{productDetail.product_name}</h3>
+                <h3>{productDetail.product_name}</h3>
               </div>
               <div>
-              <h3>${productDetail.price}</h3>
-                </div>
+                <h3>${productDetail.price}</h3>
+              </div>
               <p>Rate: {productDetail.rate}</p>
-              <p>Reviews: {productDetail.num_reviews}</p>
-              <span>Stock: {productDetail.stock}</span>
-              <div className="count-wrapper">
-                <button onClick={decrease} disabled={count===0}>
+              <div className={styles.stocks}>
+                {productDetail.stock > 3 ? (
+                  <span className={styles.stock}>
+                    {productDetail.stock} Available
+                  </span>
+                ) : (
+                  <span className={styles.stock1}>
+                    {productDetail.stock} Available
+                  </span>
+                )}
+              </div>
+              <div className={styles.count_wrapper}>
+                <button onClick={decrease} disabled={count === 0}>
                   -
                 </button>
-                <span className="count" onBlur={onCountEdit}>
+                <span className={styles.count} onBlur={onCountEdit}>
                   {count}
                 </span>
                 <button
@@ -66,22 +80,34 @@ export const ProductDetail = () => {
                   +
                 </button>
               </div>
+              <input
+                type="submit"
+                className={styles.buttonCart}
+                value="Add to Cart"
+                disabled={count === 0}
+              ></input>
             </div>
           </div>
           <h4>Description</h4>
           <p>{productDetail.description}</p>
+          <p>Reviews: {productDetail.num_reviews}</p>
         </div>
       )}
-      <div className={styles.relatedProduct}>
-      <h4>Related Products</h4>
+  
+  
 
-      <div className={styles.latest_products_grid_container}>
-        {relationsProduct.length > 0 ? (
-          relationsProduct.map((product, i) => <Product key={i} {...product} />)
+      <div className={styles.relatedProduct}>
+   
+      <h4>Related Products</h4>
+  
+          {relationsProduct.length > 0 ? (
+            relationsProduct.map((product, i) => (
+              <Product key={i} {...product} />
+            ))
           ) : (
-          <p>There's no results</p>
-        )}
-      </div>
+            <p>There's no results</p>
+          )}
+        
       </div>
     </>
   );

@@ -1,12 +1,22 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "./product.module.scss";
+// import { fetchCategories } from "../../../../redux/categories/categories";
+export const Product = ({
+  product_name,
+  product_image,
+  price,
+  id,
+  categoryId,
+}) => {
+  const { categories } = useSelector((state) => state.categories);
 
-export const Product = ({ product_name, product_image, price,id ,categoryId}) => {
-  console.log()
+  const category = categories.find((e) => e.id === categoryId);
+
   return (
     <div className={styles.latest_product_card_container}>
-      <Link to={`/shop/${categoryId}/${id}`}>
+      <Link to={`/shop/${category.category_name}/${id}`}>
         <div className={styles.latest_product_card_image_container}>
           <img src={product_image} alt={product_name} />
         </div>

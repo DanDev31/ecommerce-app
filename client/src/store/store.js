@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import categoriesSlice from "../redux/categories/categories";
 import latestProductsSlice from "../redux/products/latestProductsSlice";
 import productDetailSlice from "../redux/products/productDetail";
 import productsByCategorySlice from "../redux/products/productsByCategorySlice";
@@ -11,5 +12,6 @@ export const store = configureStore({
         productsByCategory:productsByCategorySlice,
         productDetail:productDetailSlice,
         searchBar:searchBarSlice,
+        categories:categoriesSlice,
     }
 })
