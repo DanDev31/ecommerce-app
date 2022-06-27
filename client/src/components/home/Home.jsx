@@ -7,7 +7,7 @@ import styles from './home.module.scss'
 
 export const Home = () => {
 
-  const category = localStorage.getItem('category')
+ 
   
   return (
     <main className={styles.home_container}>
@@ -16,8 +16,6 @@ export const Home = () => {
         </aside>
 
         <section className={styles.home_products_section}>
-            <h2>{category}</h2>
-            <Sort />
 
             <div>
               <ProductList />
