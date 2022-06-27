@@ -25,7 +25,7 @@ export const ProductsBySearch = () => {
         </aside>
 
         <section className={styles.home_products_section}>
-            <h2>Results for:</h2>
+            <h2>Results for: {searchedStorageValue}</h2>
             <Sort />
 
             <div>
