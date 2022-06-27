@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchLatestProducts } from '../../../redux/products/latestProductsSlice'
 import { LatestProductCard } from './LatestProductCard'
 
@@ -21,17 +22,21 @@ export const LatestProducts = () => {
             <h2>Latest Products</h2>
 
             <div className={styles.latest_products_grid_container}>
+               
                 {
                     latestProducts.length > 0 || !latestProducts ?
                     latestProducts.map((product, i) =>(
+                        
                         <LatestProductCard
-                            key={i}
-                            {...product}
+                        key={i}
+                        {...product}
+                        
                         />
                     ))
                     :
                     <p>Loading...</p>
                 }
+                
             </div>
         </div>
     </section>

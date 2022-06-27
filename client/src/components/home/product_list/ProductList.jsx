@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux'
 import { Sort } from '../../filters/sort/Sort'
 import { Product } from '../product/Product'
 
-import styles from './product_list.module.scss'
+import styles from "./product_list.module.scss";
 
 export const ProductList = () => {
   
   const { productsByCategory } = useSelector(state => state.productsByCategory)
   const category = localStorage.getItem('category')
 
-  if(!productsByCategory) return <p>Loading...</p>
+  if (!productsByCategory) return <p>Loading...</p>;
 
   return (
     <section>
@@ -33,5 +33,5 @@ export const ProductList = () => {
             </div>
         </div>
     </section>
-  )
-}
+  );
+};
