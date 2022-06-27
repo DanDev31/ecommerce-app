@@ -1,0 +1,38 @@
+.filter_menu_container{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+
+    .filter_menu_item{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 100;
+
+        .filter_menu_item_title{
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.7rem;
+
+        }
+
+        .filter_dropdown_menu{
+            display: flex;
+            flex-direction: column;
+            height: 0;
+            overflow: hidden;
+            transition: .2s linear ease-in-out;
+        }
+    }
+
+}
+
+.active{
+    height: 100% !important;
+}
+
+.rotate{
+    transform: rotate(90deg);
+}

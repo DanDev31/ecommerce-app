@@ -1,25 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Product } from '../product/Product'
+import { SearchProductCard } from '../search_list_card/SearchProductCard'
 
-import styles from './product_list.module.scss'
+import styles from './searchList.module.scss'
 
-export const ProductList = () => {
-  
-  const { productsByCategory } = useSelector(state => state.productsByCategory)
-  
+export const SearchList = () => {
 
-  if(!productsByCategory) return <p>Loading...</p>
-
+    const { searchedProducts } = useSelector(state => state.searchBar)
+    
   return (
     <section>
         <div className={ styles.latest_products_container }>
-            <h5>Total results: {productsByCategory.length}</h5>
+            <h5>Total results: {searchedProducts.length}</h5>
             <div className={styles.latest_products_grid_container}>
                 {
-                    productsByCategory.length > 0  ?
-                    productsByCategory.map((product, i) =>(
-                        <Product
+                    searchedProducts.length > 0  ?
+                    searchedProducts.map((product, i) =>(
+                        <SearchProductCard
                             key={i}
                             {...product}
                         />
