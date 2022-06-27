@@ -95,10 +95,9 @@ export const ProductDetail = () => {
       )}
   
   
-
-      <div className={styles.relatedProduct}>
-   
+<div className={styles.related}>
       <h4>Related Products</h4>
+      <div className={styles.latest_products_grid_container}>
   
           {relationsProduct.length > 0 ? (
             relationsProduct.map((product, i) => (
@@ -108,6 +107,7 @@ export const ProductDetail = () => {
             <p>There's no results</p>
           )}
         
+      </div>
       </div>
     </>
   );

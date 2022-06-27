@@ -7,6 +7,7 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import styles from './lowerNavbar.module.scss'
 import { fetchProductsByCategory } from '../../../redux/products/productsByCategorySlice'
 import { fetchCategories } from '../../../redux/categories/categories'
+import { fetchByBrand } from '../../../redux/products/filterBrandSlice'
 
 export const LowerNavbar = () => {
 
@@ -29,8 +30,9 @@ const dispatch = useDispatch()
 
 
 useEffect(() => {
-  dispatch(fetchProductsByCategory(savedCategory))
   dispatch(fetchCategories())
+  dispatch(fetchByBrand(savedCategory))
+  dispatch(fetchProductsByCategory({savedCategory}))
 },[dispatch, savedCategory])
 
 

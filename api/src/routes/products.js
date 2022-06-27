@@ -3,9 +3,10 @@ const { Op } = require("sequelize");
 const { products, categories } = require('../db')
 
 routes.get('/', async(req, res) => {
+    const { category, search, brandValue } = req.query
+    console.log("brand:", brandValue)
     try {
-        const { category, search } = req.query
-        if(category) {
+        if(category && !brandValue) {
             const foundedCategories = await categories.findAll({
                 where:{
                     category_name: category
@@ -37,9 +38,54 @@ routes.get('/', async(req, res) => {
                     res.status(404).send("No results for this search")
                 }
 
-            }else{
-                const allProducts = await products.findAll({})
-                res.send(allProducts)
+            }
+
+            if(brandValue){
+
+                if(typeof brandValue === "string"){
+
+                    const byBrand = await products.findAll({
+                        where:{
+                            brand:{
+                                [Op.iLike]: `%${brandValue}%`
+                            }
+                        }
+                    })
+
+                    if(byBrand.length > 0){   
+                        res.send(byBrand)
+                    }else{
+                        res.status(404).send("No results for this fitler")
+                    }
+                }
+
+                if(Array.isArray(brandValue)){
+
+                    let copyProductsByBrand = []
+    
+                   for (let i = 0; i < brandValue.length; i++) {
+                    
+                    const byBrand = await products.findAll({
+                        where:{
+                            brand:{
+                                [Op.iLike]: `%${brandValue[i]}%`
+                            }
+                        }
+                    })
+    
+    
+                    copyProductsByBrand = [...copyProductsByBrand, ...byBrand]
+    
+                }
+                    if(copyProductsByBrand.length > 0){
+                        console.log(copyProductsByBrand)   
+                        res.send(copyProductsByBrand)
+                    }else{
+                        res.status(404).send("No results for this fitler")
+                    }
+                    
+                }
+
             }
 
         
@@ -101,6 +147,7 @@ routes.post('/newproduct', async(req, res) => {
          bulkProducts.forEach(async(product) => {
             const { 
                 product_name,
+                brand,
                 description,
                 product_image,
                 price,
@@ -108,7 +155,7 @@ routes.post('/newproduct', async(req, res) => {
                 category
              } = product
 
-             if(!product_name || !description || !product_image || !product_image || !price || !stock || !category) return res.json({msg: "Incomplete data"})
+             if(!product_name || !brand || !description || !product_image || !product_image || !price || !stock || !category) return res.json({msg: "Incomplete data"})
 
              const foundProduct = await products.findOne({
                 where:{
@@ -129,6 +176,7 @@ routes.post('/newproduct', async(req, res) => {
              if(!foundProduct){
                 await products.create({
                     product_name,
+                    brand,
                     description,
                     product_image,
                     price,
