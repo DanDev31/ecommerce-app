@@ -39,15 +39,15 @@ export const ProductDetail = () => {
   return (
     <>
       {productDetail && (
-        <div className={styles.cardContainer}>
-          <div className={styles.latest_products_grid_container}>
-            <div className={styles.latest_product_card_image_container}>
+        <div>
+          <div className={styles.cardContainer}>
+        <div className={styles.latest_product_card_image_container}>
               <img
                 alt={productDetail.product_name}
                 src={productDetail.product_image}
               />
             </div>
-            <div>
+            <div className={styles.text}>
               <div>
                 <h3>{productDetail.product_name}</h3>
               </div>
@@ -86,12 +86,15 @@ export const ProductDetail = () => {
                 value="Add to Cart"
                 disabled={count === 0}
               ></input>
-            </div>
-          </div>
+                    </div>
+                    <div>
           <h4>Description</h4>
           <p>{productDetail.description}</p>
           <p>Reviews: {productDetail.num_reviews}</p>
+          </div>
         </div>
+      
+          </div>
       )}
   
   

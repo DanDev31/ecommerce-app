@@ -4,11 +4,15 @@
 @use "src/global_styles/base";
 
 .cardContainer {
-    flex-wrap:wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     border: 3px solid rgb(179, 179, 179);
     border-radius: 10px;
     margin: 4rem;
     padding: auto;
+}
+.text{
+  justify-self: center;
 }
 
 .stocks{
