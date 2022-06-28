@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
 import styles from "./productDetail.module.scss";
+import { StarRating } from "./StarRating/StarRating";
 export const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -35,7 +36,11 @@ export const ProductDetail = () => {
   let relationsProduct = productsByCategory.filter(
     (e) => e.id !== parseInt(id)
   );
+  const [rating, setRating] = useState(0);
 
+  const handleChange = (value) => {
+    setRating(value);
+  }
   return (
     <>
       {productDetail && (
@@ -54,7 +59,14 @@ export const ProductDetail = () => {
               <div>
                 <h3>${productDetail.price}</h3>
               </div>
-              <p>Rate: {productDetail.rate}</p>
+              <StarRating  
+               count={5}
+               size={40}
+               value={productDetail.rate || 0}
+               activeColor ={'yellow'}
+               inactiveColor={'#ddd'}
+               onChange={handleChange}  />
+              {/* <p>Rate: {productDetail.rate}</p> */}
               <div className={styles.stocks}>
                 {productDetail.stock > 3 ? (
                   <span className={styles.stock}>
