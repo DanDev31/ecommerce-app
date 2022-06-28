@@ -1,8 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "./product.module.scss";
-// import { fetchCategories } from "../../../../redux/categories/categories";
+
+
 export const Product = ({
   product_name,
   product_image,

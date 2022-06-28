@@ -19,7 +19,6 @@ export const FilterMenu = () => {
   const brands = productsByBrand.map(product => product.brand)
 
  
-
   let filteredBrands = []
   for (let i = 0; i < brands.length; i++) {
     
@@ -66,7 +65,7 @@ export const FilterMenu = () => {
       dispatch(fetchProductsByCategory({savedCategory, queriesArray:checkBoxValues}))
       dispatch(fetchByBrand(savedCategory))
  
-  },[dispatch, checkBoxValues]) 
+  },[dispatch, savedCategory, checkBoxValues]) 
 
 
 
