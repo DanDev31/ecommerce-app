@@ -4,9 +4,30 @@ const { products, categories } = require('../db')
 
 routes.get('/', async(req, res) => {
     const { category, search, brandValue } = req.query
-    console.log("brand:", brandValue)
+    
     try {
+
+        if(search && !brandValue){
+            console.log("entro1")
+            const searchResults = await products.findAll({
+                where:{
+                    product_name: {
+                        [Op.iLike]: `%${search}%`
+                    }
+                }
+            })
+
+            if(searchResults.length > 0){   
+                res.send(searchResults)
+            }else{
+                res.status(404).send("No results for this search")
+            }
+
+        }
+
+
         if(category && !brandValue) {
+            console.log("entro2")
             const foundedCategories = await categories.findAll({
                 where:{
                     category_name: category
@@ -23,25 +44,10 @@ routes.get('/', async(req, res) => {
                 res.send(productsByCategory)
             }
 
-            if(search){
-                const searchResults = await products.findAll({
-                    where:{
-                        product_name: {
-                            [Op.iLike]: `%${search}%`
-                        }
-                    }
-                })
-
-                if(searchResults.length > 0){   
-                    res.send(searchResults)
-                }else{
-                    res.status(404).send("No results for this search")
-                }
-
-            }
+            
 
             if(brandValue){
-
+                console.log("entro3")
                 if(typeof brandValue === "string"){
 
                     const byBrand = await products.findAll({
