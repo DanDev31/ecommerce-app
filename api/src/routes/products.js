@@ -238,16 +238,6 @@ routes.post('/newproduct', async(req, res) => {
     }
 
 })
-routes.post('/review',async(req,res)=>{
-    const {id}
-})
-routes.get("/reviews", async(req,res)=>{
-   
-    const review= await reviews.findAll({
 
-    })
-
-    res.send(review)
-})
 
 module.exports = routes;
