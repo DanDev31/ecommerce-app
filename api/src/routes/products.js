@@ -27,7 +27,6 @@ routes.get('/', async(req, res) => {
 
 
         if(category && !brandValue) {
-            console.log("entro2")
             const foundedCategories = await categories.findAll({
                 where:{
                     category_name: category
