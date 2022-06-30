@@ -7,6 +7,8 @@ import { fetchSearchedProduct } from '../../../redux/products/searchBarSlice'
 
 import styles from './search_bar.module.scss'
 import { useNavigate } from 'react-router-dom'
+import { fetchSearchProductCopy } from '../../../redux/products/searchProductCopy'
+
 
 export const SearchBar = () => {
 
@@ -21,7 +23,8 @@ export const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(fetchSearchedProduct(search))
+    dispatch(fetchSearchedProduct({search}))
+    dispatch(fetchSearchProductCopy(search))
     setSearch('')
     sessionStorage.setItem('searchValue', search)
     navigate('/shop/searched_products')
