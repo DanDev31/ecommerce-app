@@ -1,10 +1,9 @@
 const routes = require('express').Router()
 const { Op } = require("sequelize");
-const { products, categories } = require('../db')
+const { products, categories,reviews } = require('../db')
 
 routes.get('/', async(req, res) => {
     const { category, search, brandValue } = req.query
-    console.log("brand:", brandValue)
     try {
         if(category && !brandValue) {
             const foundedCategories = await categories.findAll({
@@ -233,6 +232,16 @@ routes.post('/newproduct', async(req, res) => {
     }
 
 })
+routes.post('/review',async(req,res)=>{
+    const {id}
+})
+routes.get("/reviews", async(req,res)=>{
+   
+    const review= await reviews.findAll({
 
+    })
+
+    res.send(review)
+})
 
 module.exports = routes;
