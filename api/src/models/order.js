@@ -6,8 +6,8 @@ module.exports = (sequelize) => {
             type:DataTypes.FLOAT,
             allowNull:false
         },
-        track_number:{
-            type:DataTypes.INTEGER,
+        address:{
+            type:DataTypes.STRING,
             allowNull:false
         }
     },{timestamps:false})
