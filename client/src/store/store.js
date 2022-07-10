@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import cartSlice from "../redux/cart/cartSlice";
 import categoriesSlice from "../redux/categories/categories";
 import filterBrandSlice from "../redux/products/filterBrandSlice";
 import latestProductsSlice from "../redux/products/latestProductsSlice";
@@ -16,6 +17,7 @@ export const store = configureStore({
         searchBar:searchBarSlice,
         searchProductCopy: searchProductCopy,
         categories:categoriesSlice,
-        fitlerByBrand:filterBrandSlice
+        fitlerByBrand:filterBrandSlice,
+        cart:cartSlice
     }
 })

@@ -3,12 +3,10 @@ const user = require('./models/user')
 const product = require('./models/product')
 const category = require('./models/category')
 const cart = require('./models/cart')
-const cartItem = require('./models/cartItem')
 const order = require('./models/order')
-const orderItem = require('./models/orderItem')
 const review = require('./models/review')
 
-const { test_products, test_categories } = require('./data')
+const { test_categories } = require('./data')
 
 require('dotenv').config()
 
@@ -28,14 +26,12 @@ user(db)
 product(db)
 category(db)
 cart(db)
-cartItem(db)
 order(db)
-orderItem(db)
 review(db)
 
-const { users, products, carts, cartItems, categories, orders, orderItems, reviews } = db.models
+const { users, products, carts, categories, orders, reviews } = db.models
 
-////////User Associations////////
+
 users.belongsToMany(products, {through: "user_products", timestamps:false})
 products.belongsToMany(users, {through: "user_products", timestamps:false})
 
@@ -48,37 +44,18 @@ orders.belongsTo(users)
 users.hasMany(reviews)
 reviews.belongsTo(users)
 
-
-/////////Product Associations///////////
-
 products.belongsTo(categories)
 categories.hasMany(products)
 
-cartItems.hasOne(products)
-products.belongsTo(cartItems)
+products.belongsToMany(carts, {through: "cartItems", timestamps:true})
+carts.belongsToMany(products, {through: "cartItems", timestamps:true})
 
-orderItems.hasOne(products)
-products.belongsTo(orderItems)
 
 // products.belongsToMany(orders, {through: "product_order", timestamps:false})
 // orders.belongsToMany(products, {through: "product_order", timestamps:false})
 
 products.hasMany(reviews)
 reviews.belongsTo(products)
-
-
-///////Cart Associations/////////
-
-carts.hasMany(cartItems)
-cartItems.belongsTo(carts)
-
-
-/////////Order Associations///////////
-
-orders.hasMany(orderItems)
-orderItems.belongsTo(orders)
-
-
 
 
 const loadData = () => {

@@ -132,7 +132,6 @@ routes.get('/detail/:id', async (req, res) => {
 })
 
 
-
 routes.post('/newproduct', async(req, res) => {
     try {
         // const { 

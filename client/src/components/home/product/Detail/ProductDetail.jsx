@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { cartActions } from "../../../../redux/cart/cartSlice";
 import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
+
 import styles from "./productDetail.module.scss";
+
+
 export const ProductDetail = () => {
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -35,6 +40,10 @@ export const ProductDetail = () => {
   let relationsProduct = productsByCategory.filter(
     (e) => e.id !== parseInt(id)
   );
+
+  const handleAddProduct = () => {
+    dispatch(cartActions.addProduct(productDetail))
+  }
 
   return (
     <>
@@ -80,12 +89,11 @@ export const ProductDetail = () => {
                   +
                 </button>
               </div>
-              <input
-                type="submit"
+              <button
                 className={styles.buttonCart}
-                value="Add to Cart"
                 disabled={count === 0}
-              ></input>
+                onClick={() => handleAddProduct()}
+              >Add to Cart</button>
                     </div>
                     <div>
           <h4>Description</h4>
