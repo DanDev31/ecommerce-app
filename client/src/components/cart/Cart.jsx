@@ -1,23 +1,25 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import {Link} from 'react-router-dom'
 import { CartItem } from './CartItem'
 
 import styles from './cart.module.scss'
-import { useState } from 'react'
+
+
+let shippingTax = 5.00
 
 export const Cart = () => {
 
-    const [productTotal, setProductTotal] = useState(0)
-    const [totalOrder, setTotalOrder] = useState(0)
-
     const { cart } = useSelector(state => state.cart)
-    const savedCart = JSON.parse(localStorage.getItem('cart'))
+    const { subTotal } = useSelector(state => state.cart)
+    const savedCart = JSON.parse(localStorage.getItem('user_cart'))
+    
 
   return (
     <div className={styles.cart_container}>
 
         {
-            cart && cart.length > 0 ?
+            savedCart && savedCart.length > 0 ?
 
             (
                 <div className={styles.cart_products_container_}>
@@ -33,12 +35,10 @@ export const Cart = () => {
                         </div>
                         <div className={styles.products_container}>
                             {
-                                cart.map((product, i) => (
+                                savedCart.map((product, i) => (
 
                                     <CartItem 
                                         key={i}
-                                        productTotal={productTotal}
-                                        setProductTotal={setProductTotal}
                                         {...product}
                                     />
                                 ))
@@ -50,15 +50,15 @@ export const Cart = () => {
                         <hr />
                         <div>
                             <h4>Subtotal</h4>
-                            <span>2.00</span>
+                            <span>{subTotal}</span>
                         </div>
                         <div>
                             <h5>Shipping</h5>
-                            <span>1.00</span>
+                            <span>{shippingTax}</span>
                         </div>
                         <div>
                             <h4>Total</h4>
-                            <span>3.00</span>
+                            <span>{subTotal + shippingTax}</span>
                         </div>
                         <button>Checkout</button>
                     </div>
@@ -68,8 +68,13 @@ export const Cart = () => {
 
             :
 
-            (
-                <p>Your cart is empty.</p>
+            (   
+                <div>
+                    <p>Your cart is empty.</p>
+                    <Link to='/shop'>
+                        Go back to store
+                    </Link>
+                </div>
             )
         }
 

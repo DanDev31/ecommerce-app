@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../../redux/cart/cartSlice'
 import styles from './cartItem.module.scss'
 
@@ -10,22 +10,12 @@ export const CartItem = ({
     product_name,
     product_image,
     price,
-    productTotal,
-    setProductTotal 
+    quantity,
+    total
 }) => {
     
-    // const [ quantity, setQuantity ] = useState(0)
-    const dispatch = useDispatch()
-    // const handleAddQuantity = () => {
-    //     setQuantity(quantity + 1)
-    //     setProductTotal(productTotal+=price)
-    // }
+  const dispatch = useDispatch()
 
-    // const handleSubstractQuantity = () => {
-    //     setQuantity(quantity - 1)
-    //     setProductTotal(productTotal-=price)
-    // }
-    
 
 
   return (
@@ -41,15 +31,18 @@ export const CartItem = ({
             <div className={styles.quantity_container}>
                 <div className={styles.quantity_buttons_container}>
                     <button onClick={() => dispatch(cartActions.setSubstractQuantity(id))}>-</button>
-                    <span></span>
+                    <span>{quantity}</span>
                     <button onClick={() => dispatch(cartActions.setAddQuantity(id))}>+</button>
                 </div>
-                <RiDeleteBinLine />
+                <RiDeleteBinLine 
+                className={styles.delete_product}
+                onClick={() => dispatch(cartActions.deleteProduct(id))}
+                />
             </div>
         </div>
         
         <div className={styles.cart_product_total}>
-            <span>{productTotal}</span>
+            <span>{total}</span>
         </div>
     </div>
   )
