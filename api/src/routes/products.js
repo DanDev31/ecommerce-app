@@ -27,7 +27,6 @@ routes.get('/', async(req, res) => {
 
 
         if(category && !brandValue) {
-            console.log("entro2")
             const foundedCategories = await categories.findAll({
                 where:{
                     category_name: category
@@ -131,7 +130,6 @@ routes.get('/detail/:id', async (req, res) => {
         res.status(404).send("id not valid")
     }
 })
-
 
 
 routes.post('/newproduct', async(req, res) => {
