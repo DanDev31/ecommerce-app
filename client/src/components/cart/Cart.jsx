@@ -3,8 +3,12 @@ import { useSelector } from 'react-redux'
 import { CartItem } from './CartItem'
 
 import styles from './cart.module.scss'
+import { useState } from 'react'
 
 export const Cart = () => {
+
+    const [productTotal, setProductTotal] = useState(0)
+    const [totalOrder, setTotalOrder] = useState(0)
 
     const { cart } = useSelector(state => state.cart)
     const savedCart = JSON.parse(localStorage.getItem('cart'))
@@ -33,6 +37,8 @@ export const Cart = () => {
 
                                     <CartItem 
                                         key={i}
+                                        productTotal={productTotal}
+                                        setProductTotal={setProductTotal}
                                         {...product}
                                     />
                                 ))

@@ -1,5 +1,7 @@
-
 import { useState } from 'react'
+import { RiDeleteBinLine } from 'react-icons/ri'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../../redux/cart/cartSlice'
 import styles from './cartItem.module.scss'
 
 
@@ -8,31 +10,46 @@ export const CartItem = ({
     product_name,
     product_image,
     price,
-    
+    productTotal,
+    setProductTotal 
 }) => {
     
-    const [ quantity, setQuantity ] = useState(0)
+    // const [ quantity, setQuantity ] = useState(0)
+    const dispatch = useDispatch()
+    // const handleAddQuantity = () => {
+    //     setQuantity(quantity + 1)
+    //     setProductTotal(productTotal+=price)
+    // }
 
+    // const handleSubstractQuantity = () => {
+    //     setQuantity(quantity - 1)
+    //     setProductTotal(productTotal-=price)
+    // }
+    
 
 
   return (
-    <div className={styles.product}>
-        <div className={styles.product_image}>
+    <div className={styles.cart_product}>
+        <div className={styles.cart_product_image}>
             <img src={product_image} alt="" />
         </div>
-        <div className={styles.product_info}>
+        <div className={styles.cart_product_info}>
             <h3>{product_name}</h3>
+            <div>
+                <span>Price: ${price}</span>
+            </div>
+            <div className={styles.quantity_container}>
+                <div className={styles.quantity_buttons_container}>
+                    <button onClick={() => dispatch(cartActions.setSubstractQuantity(id))}>-</button>
+                    <span></span>
+                    <button onClick={() => dispatch(cartActions.setAddQuantity(id))}>+</button>
+                </div>
+                <RiDeleteBinLine />
+            </div>
         </div>
-        <div>
-            <span>{price}</span>
-        </div>
-        <div className={styles.quantity_buttons_container}>
-            <button onClick={() => setQuantity(quantity + 1)}>+</button>
-            <span>{quantity}</span>
-            <button onClick={() => setQuantity(quantity - 1)}>-</button>
-        </div>
-        <div className={styles.total}>
-            <span>2.00</span>
+        
+        <div className={styles.cart_product_total}>
+            <span>{productTotal}</span>
         </div>
     </div>
   )

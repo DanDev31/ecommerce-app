@@ -75,7 +75,7 @@ export const ProductDetail = () => {
                   </span>
                 )}
               </div>
-              <div className={styles.count_wrapper}>
+              {/* <div className={styles.count_wrapper}>
                 <button onClick={decrease} disabled={count === 0}>
                   -
                 </button>
@@ -88,10 +88,10 @@ export const ProductDetail = () => {
                 >
                   +
                 </button>
-              </div>
+              </div> */}
               <button
                 className={styles.buttonCart}
-                disabled={count === 0}
+                // disabled={count === 0}
                 onClick={() => handleAddProduct()}
               >Add to Cart</button>
                     </div>
