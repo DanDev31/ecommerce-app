@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    cart: [],
-    subTotal:0
+    cart: JSON.parse(localStorage.getItem("cartItems") || "[]")
 }
 
 const cartSlice = createSlice({
@@ -11,48 +10,49 @@ const cartSlice = createSlice({
     initialState,
     reducers:{
         addProduct(state, {payload}){
+        
+            // const cartItems = [...state.cart]
 
-            let cartItem = {
-                ...payload,
-                quantity: 1,
-                total: payload.price
+            let alreadyExists = false
+            state.cart.forEach(item => {
+                if(item.id === payload.id){
+                    alreadyExists = true
+                    item.quantity++
+                }
+                
+            });
+            if(!alreadyExists){
+                state.cart.push({...payload, quantity:1})
             }
-            state.cart = [...state.cart, cartItem]
-            const subTotal = state.cart.reduce((acum, current) => acum + current.total,0)
-            state.subTotal = subTotal
 
-            localStorage.setItem('user_cart', JSON.stringify(state.cart))
+            localStorage.setItem("cartItems", JSON.stringify(state.cart))
+
+            
         },
         setAddQuantity(state, {payload}){
-            const product = state.cart.find(item => item.id === payload)
-        
+            const cartItems = [...state.cart]
+            const product = cartItems.find(item => item.id === payload)
             if(product){
-
                 product.quantity += 1
-                product.total += product.price
-                state.subTotal += product.price
-                
+                localStorage.setItem('cartItems', JSON.stringify(cartItems))
             }
+            
 
         },
         setSubstractQuantity(state, {payload}){
-            const product = state.cart.find(item => item.id === payload)
-        
-            if(product && product.quantity > 1){
-
+            const cartItems = [...state.cart]
+            const product = cartItems.find(item => item.id === payload)
+            if(product){
                 product.quantity -= 1
-                product.total -= product.price
-                state.subTotal -= product.price
-                
+                localStorage.setItem('cartItems', JSON.stringify(cartItems))
             }
+            
 
         },
         deleteProduct(state, {payload}){
             state.cart = state.cart.filter(product => product.id !== payload)
-            localStorage.setItem('user_cart', JSON.stringify(state.cart))
-            const subTotal = state.cart.reduce((acum, current) => acum + current.total,0)
-            state.subTotal = subTotal
-
+            localStorage.setItem('cartItems', JSON.stringify(state.cart))
+        
         }
     }
 })

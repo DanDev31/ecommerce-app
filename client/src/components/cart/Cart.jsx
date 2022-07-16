@@ -10,19 +10,17 @@ let shippingTax = 5.00
 
 export const Cart = () => {
 
-    const { cart } = useSelector(state => state.cart)
-    const { subTotal } = useSelector(state => state.cart)
-    const savedCart = JSON.parse(localStorage.getItem('user_cart'))
-    
-
+    const {cart} = useSelector(state => state.cart)
+    let subTotal = cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
+ 
   return (
     <div className={styles.cart_container}>
 
         {
-            savedCart && savedCart.length > 0 ?
+            cart && cart.length > 0 ?
 
             (
-                <div className={styles.cart_products_container_}>
+                <div className={styles.cart_products_container}>
 
                     <div>
                         <h2>Your Products</h2>
@@ -35,7 +33,7 @@ export const Cart = () => {
                         </div>
                         <div className={styles.products_container}>
                             {
-                                savedCart.map((product, i) => (
+                                cart.map((product, i) => (
 
                                     <CartItem 
                                         key={i}

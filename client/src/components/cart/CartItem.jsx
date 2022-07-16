@@ -1,6 +1,6 @@
-import { useState } from 'react'
+
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import { cartActions } from '../../redux/cart/cartSlice'
 import styles from './cartItem.module.scss'
 

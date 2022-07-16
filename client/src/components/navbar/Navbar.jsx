@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { LowerNavbar } from './lower_navbar/LowerNavbar'
 import { SearchBar } from './search_bar/SearchBar'
+import { useSelector } from 'react-redux'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 import styles from './navbar.module.scss'
-import { useSelector } from 'react-redux'
 
 export const Navbar = () => {
 
-  const { cart } = useSelector(state => state.cart)
-  let cartLength = cart.length
+  const { cartLength } = useSelector(state => state.cart)
 
   return (
     <nav className={ styles.navbar }>
@@ -31,7 +30,16 @@ export const Navbar = () => {
               <Link to="/shop/cart">
                 <div className={styles.cart_icon_container}>
                   <AiOutlineShoppingCart className={styles.cart_icon}/>
-                  <span>{cartLength}</span>
+                  {
+                    cartLength === 0 && !cartLength ?
+                    (
+                      null
+                    )
+                    :
+                    (
+                      <span>{cartLength}</span>
+                    )
+                  }
                 </div>
               </Link>
           </div>

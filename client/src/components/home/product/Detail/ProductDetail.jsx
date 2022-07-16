@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { cartActions } from "../../../../redux/cart/cartSlice";
@@ -22,29 +22,12 @@ export const ProductDetail = () => {
     dispatch(fetchProductDetail(id));
   }, [dispatch, id]);
 
-  let [count, setCount] = useState(0);
-  function increase() {
-    setCount(count + 1);
-  }
-
-  function decrease() {
-    setCount(count - 1);
-  }
-
-  function onCountEdit(event) {
-    let countContent = Number(event.target.textContent);
-    if (Number.isNaN(countContent)) setCount(countContent);
-    else setCount(countContent);
-  }
 
   let relationsProduct = productsByCategory.filter(
     (e) => e.id !== parseInt(id)
   );
 
-  const handleAddProduct = () => {
-    dispatch(cartActions.addProduct(productDetail))
-  }
-
+  
   return (
     <>
       {productDetail && (
@@ -92,7 +75,7 @@ export const ProductDetail = () => {
               <button
                 className={styles.buttonCart}
                 // disabled={count === 0}
-                onClick={() => handleAddProduct()}
+                onClick={() => dispatch(cartActions.addProduct(productDetail))}
               >Add to Cart</button>
                     </div>
                     <div>

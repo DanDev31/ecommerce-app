@@ -11,6 +11,7 @@ export const LatestProducts = () => {
     const {latestProducts} = useSelector(state => state.latestProducts)
     const dispatch = useDispatch()
 
+
     useEffect(()=>{
         dispatch(fetchLatestProducts())
     },[dispatch])
