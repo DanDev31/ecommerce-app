@@ -12,3 +12,5 @@ router.post('/payment', (req, res) => {
         res.status(200).json(stripeResponse)
     })
 })
+
+module.exports = router
