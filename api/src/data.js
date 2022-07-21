@@ -5,7 +5,7 @@ test_products = [
         product_image: "https://http2.mlstatic.com/D_NQ_NP_697848-MLA47874082015_102021-O.jpg",
         price: 50.00,
         stock: 5,
-        num_reviews: 0,
+        num_reviews: 3,
         rate:0
     },
     {

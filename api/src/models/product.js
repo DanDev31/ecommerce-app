@@ -7,6 +7,10 @@ module.exports = (sequelize) => {
             allowNull:false,
             unique:true
         },
+        brand:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
         description:{
             type:DataTypes.TEXT,
             allowNull:false

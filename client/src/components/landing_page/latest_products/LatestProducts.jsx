@@ -11,6 +11,7 @@ export const LatestProducts = () => {
     const {latestProducts} = useSelector(state => state.latestProducts)
     const dispatch = useDispatch()
 
+
     useEffect(()=>{
         dispatch(fetchLatestProducts())
     },[dispatch])
@@ -21,17 +22,21 @@ export const LatestProducts = () => {
             <h2>Latest Products</h2>
 
             <div className={styles.latest_products_grid_container}>
+               
                 {
                     latestProducts.length > 0 || !latestProducts ?
                     latestProducts.map((product, i) =>(
+                        
                         <LatestProductCard
-                            key={i}
-                            {...product}
+                        key={i}
+                        {...product}
+                        
                         />
                     ))
                     :
                     <p>Loading...</p>
                 }
+                
             </div>
         </div>
     </section>

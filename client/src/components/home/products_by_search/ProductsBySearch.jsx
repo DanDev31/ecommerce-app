@@ -7,6 +7,7 @@ import styles from './productsBySearch.module.scss'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchSearchedProduct } from '../../../redux/products/searchBarSlice'
+import { FilterSearchedProducts } from './filter_search/FilterSearchedProducts'
 
 export const ProductsBySearch = () => {
 
@@ -15,18 +16,17 @@ export const ProductsBySearch = () => {
   const dispatch = useDispatch()
 
   useEffect(() =>{
-    dispatch(fetchSearchedProduct(searchedStorageValue))
-  },[])
+    dispatch(fetchSearchedProduct({search:searchedStorageValue}))
+  },[dispatch])
     
   return (
     <main className={styles.home_container}>
         <aside className={styles.home_filter_sidebar}>
-            <FilterMenu />
+            <FilterSearchedProducts />
         </aside>
 
         <section className={styles.home_products_section}>
-            <h2>Results for:</h2>
-            <Sort />
+            <h2>Results for: {searchedStorageValue}</h2>
 
             <div>
               <SearchList />
