@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 
-import styles from './lowerNavbar.module.scss'
+
 import { fetchProductsByCategory } from '../../../redux/products/productsByCategorySlice'
 import { fetchCategories } from '../../../redux/categories/categories'
 import { fetchByBrand } from '../../../redux/products/filterBrandSlice'
@@ -38,14 +38,14 @@ useEffect(() => {
 
 
   return (
-    <div className={ styles.lower_navbar }>
+    <div className="">
       
-        <span className={styles.lower_navbar_span} onMouseOver={handleShowMenu}>Categories
+        <span className="" onMouseOver={handleShowMenu}>Categories
           
           <MdOutlineKeyboardArrowDown/>
 
-            <div className={`${styles.lower_navbar_floating_window} ${active && styles.active}`} onMouseLeave={handleHideMenu}>
-              <div className={styles.floating_window_nav}>
+            <div className="" onMouseLeave={handleHideMenu}>
+              <div className="">
                
                   <Link to="/shop" onClick={(e) => handleValue(e)}>PC Gamers</Link>
                 

@@ -5,8 +5,6 @@ import { cartActions } from "../../../../redux/cart/cartSlice";
 import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
 
-import styles from "./productDetail.module.scss";
-
 
 export const ProductDetail = () => {
 
@@ -32,14 +30,14 @@ export const ProductDetail = () => {
     <>
       {productDetail && (
         <div>
-          <div className={styles.cardContainer}>
-        <div className={styles.latest_product_card_image_container}>
+          <div className="">
+        <div className="">
               <img
                 alt={productDetail.product_name}
                 src={productDetail.product_image}
               />
             </div>
-            <div className={styles.text}>
+            <div className="">
               <div>
                 <h3>{productDetail.product_name}</h3>
               </div>
@@ -47,22 +45,22 @@ export const ProductDetail = () => {
                 <h3>${productDetail.price}</h3>
               </div>
               <p>Rate: {productDetail.rate}</p>
-              <div className={styles.stocks}>
+              <div className="">
                 {productDetail.stock > 3 ? (
-                  <span className={styles.stock}>
+                  <span className="">
                     {productDetail.stock} Available
                   </span>
                 ) : (
-                  <span className={styles.stock1}>
+                  <span className="">
                     {productDetail.stock} Available
                   </span>
                 )}
               </div>
-              {/* <div className={styles.count_wrapper}>
+              {/* <div className={count_wrapper}>
                 <button onClick={decrease} disabled={count === 0}>
                   -
                 </button>
-                <span className={styles.count} onBlur={onCountEdit}>
+                <span className={count} onBlur={onCountEdit}>
                   {count}
                 </span>
                 <button
@@ -73,7 +71,7 @@ export const ProductDetail = () => {
                 </button>
               </div> */}
               <button
-                className={styles.buttonCart}
+                className=""
                 // disabled={count === 0}
                 onClick={() => dispatch(cartActions.addProduct(productDetail))}
               >Add to Cart</button>
@@ -89,9 +87,9 @@ export const ProductDetail = () => {
       )}
   
   
-<div className={styles.related}>
+<div className="">
       <h4>Related Products</h4>
-      <div className={styles.latest_products_grid_container}>
+      <div className="">
   
           {relationsProduct.length > 0 ? (
             relationsProduct.map((product, i) => (

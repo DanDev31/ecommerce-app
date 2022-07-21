@@ -1,9 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { CartItem } from './CartItem'
-
-import styles from './cart.module.scss'
 
 
 let shippingTax = 5.00
@@ -11,27 +9,37 @@ let shippingTax = 5.00
 export const Cart = () => {
 
     const {cart} = useSelector(state => state.cart)
+    const {isLogged} = useSelector(state => state.user)
+    const navigate = useNavigate()
     let subTotal = cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
+
+    const verifyLoggedUser = () => {
+        if(isLogged){
+            navigate('/shop/cart/order')
+        }else{
+            navigate('/user/login')
+        }
+    }
  
   return (
-    <div className={styles.cart_container}>
+    <div className="">
 
         {
             cart && cart.length > 0 ?
 
             (
-                <div className={styles.cart_products_container}>
+                <div className="">
 
                     <div>
                         <h2>Your Products</h2>
-                        <div className={styles.titles_container}>
+                        <div className="">
                             <span>Product Details</span>
                             <span>Price</span>
                             <span>Quantity</span>
                             <span>Delete</span>
                             <span>Total</span>
                         </div>
-                        <div className={styles.products_container}>
+                        <div className="">
                             {
                                 cart.map((product, i) => (
 
@@ -43,7 +51,7 @@ export const Cart = () => {
                             }
                         </div>
                     </div>
-                    <div className={styles.summary_container}>
+                    <div className="">
                         <h3>Summary</h3>
                         <hr />
                         <div>
@@ -58,7 +66,7 @@ export const Cart = () => {
                             <h4>Total</h4>
                             <span>{subTotal + shippingTax}</span>
                         </div>
-                        <button>Checkout</button>
+                        <button onClick={verifyLoggedUser}>Checkout</button>
                     </div>
 
                 </div>

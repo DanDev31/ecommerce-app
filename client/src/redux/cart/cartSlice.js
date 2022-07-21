@@ -10,8 +10,6 @@ const cartSlice = createSlice({
     initialState,
     reducers:{
         addProduct(state, {payload}){
-        
-            // const cartItems = [...state.cart]
 
             let alreadyExists = false
             state.cart.forEach(item => {

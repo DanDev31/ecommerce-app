@@ -8,7 +8,6 @@ routes.get('/', async(req, res) => {
     try {
 
         if(search && !brandValue){
-            console.log("entro1")
             const searchResults = await products.findAll({
                 where:{
                     product_name: {
@@ -46,7 +45,6 @@ routes.get('/', async(req, res) => {
             
 
             if(brandValue){
-                console.log("entro3")
                 if(typeof brandValue === "string"){
 
                     const byBrand = await products.findAll({
@@ -82,8 +80,7 @@ routes.get('/', async(req, res) => {
                     copyProductsByBrand = [...copyProductsByBrand, ...byBrand]
     
                 }
-                    if(copyProductsByBrand.length > 0){
-                        console.log(copyProductsByBrand)   
+                    if(copyProductsByBrand.length > 0){  
                         res.send(copyProductsByBrand)
                     }else{
                         res.status(404).send("No results for this fitler")

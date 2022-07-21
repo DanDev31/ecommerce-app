@@ -5,15 +5,14 @@ import { SearchBar } from './search_bar/SearchBar'
 import { useSelector } from 'react-redux'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
-import styles from './navbar.module.scss'
 
 export const Navbar = () => {
 
-  const { cartLength } = useSelector(state => state.cart)
+  const { cart } = useSelector(state => state.cart)
 
   return (
-    <nav className={ styles.navbar }>
-      <div className={ styles.top_navbar }>
+    <nav className="">
+      <div className="">
         <div>
               <span>Logo</span>
           </div>
@@ -28,16 +27,16 @@ export const Navbar = () => {
                   <span>Login</span>
               </Link>
               <Link to="/shop/cart">
-                <div className={styles.cart_icon_container}>
-                  <AiOutlineShoppingCart className={styles.cart_icon}/>
+                <div className="">
+                  <AiOutlineShoppingCart className=""/>
                   {
-                    cartLength === 0 && !cartLength ?
+                    cart.length === 0 ?
                     (
                       null
                     )
                     :
                     (
-                      <span>{cartLength}</span>
+                      <span>{cart.length}</span>
                     )
                   }
                 </div>

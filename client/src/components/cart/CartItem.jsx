@@ -1,8 +1,7 @@
-
+import React from 'react'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useDispatch} from 'react-redux'
 import { cartActions } from '../../redux/cart/cartSlice'
-import styles from './cartItem.module.scss'
 
 
 export const CartItem = ({
@@ -19,29 +18,29 @@ export const CartItem = ({
 
 
   return (
-    <div className={styles.cart_product}>
-        <div className={styles.cart_product_image}>
+    <div className="">
+        <div className="">
             <img src={product_image} alt="" />
         </div>
-        <div className={styles.cart_product_info}>
+        <div className="">
             <h3>{product_name}</h3>
             <div>
                 <span>Price: ${price}</span>
             </div>
-            <div className={styles.quantity_container}>
-                <div className={styles.quantity_buttons_container}>
+            <div className="">
+                <div className="">
                     <button onClick={() => dispatch(cartActions.setSubstractQuantity(id))}>-</button>
                     <span>{quantity}</span>
                     <button onClick={() => dispatch(cartActions.setAddQuantity(id))}>+</button>
                 </div>
                 <RiDeleteBinLine 
-                className={styles.delete_product}
+                className=""
                 onClick={() => dispatch(cartActions.deleteProduct(id))}
                 />
             </div>
         </div>
         
-        <div className={styles.cart_product_total}>
+        <div className="">
             <span>{total}</span>
         </div>
     </div>

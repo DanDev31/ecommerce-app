@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { IoMdArrowDropright } from 'react-icons/io'
 
-import styles from './filterSearch.module.scss'
+
 import { fetchSearchedProduct } from '../../../../redux/products/searchBarSlice'
 
 export const FilterSearchedProducts = () => {
@@ -63,34 +63,33 @@ export const FilterSearchedProducts = () => {
     },[dispatch, searchedStorageValue, checkBoxValues]) 
 
   return (
-    <div className={styles.filter_menu_container}>
-        <div className={styles.filter_menu_item}>
-            <div className={styles.filter_menu_item_title} onClick={handleOpenMenu1}>
+    <div className="">
+        <div className="">
+            <div className="" onClick={handleOpenMenu1}>
                 <h4>Categorias</h4>
-                <IoMdArrowDropright  className={`${openMenu1 && styles.rotate}`}/>
+                <IoMdArrowDropright  className=""/>
             </div>
-            <div className={`${styles.filter_dropdown_menu} ${openMenu1 && styles.active}`}>
-            <span>Pc Gamers</span>
-            <span>Ram Memory</span>
-            <span>Hard Disks && SSD</span>
+            <div className="">
+              <span>Pc Gamers</span>
+              <span>Ram Memory</span>
+              <span>Hard Disks && SSD</span>
             </div>
         </div>
-        <div className={styles.filter_menu_item}>
-        <div className={styles.filter_menu_item_title} onClick={handleOpenMenu2}>
+        <div className="">
+        <div className="" onClick={handleOpenMenu2}>
             <h4>Marcas</h4>
-            <IoMdArrowDropright className={`${openMenu2 && styles.rotate}`}/>
+            <IoMdArrowDropright className=""/>
         </div>
-        <div className={`${styles.filter_dropdown_menu} ${openMenu2 && styles.active}`}>
+        <div className="">
             {
             filteredBrands.map((brand, i) => (
-                <div className={styles.filter_dropdown_menu_item} key={i}>
+                <div className="" key={i}>
                 <label>{brand}</label>
                 <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
                 </div>
             ))
             }
-            
-            
+
             </div>
         </div>
   </div>

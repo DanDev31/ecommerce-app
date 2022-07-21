@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import styles from "./searchProductCard.modules.scss";
 
 export const SearchProductCard = ({
   product_name,
@@ -15,8 +14,8 @@ export const SearchProductCard = ({
   const category = categories.find((e) => e.id === categoryId);
   return (
     <Link to={`/shop/${category.category_name}/${id}`}>
-      <div className={styles.latest_product_card_container}>
-        <div className={styles.latest_product_card_image_container}>
+      <div className="">
+        <div className="">
           <img src={product_image} alt="" />
         </div>
         <h3>{product_name}</h3>

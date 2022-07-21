@@ -35,6 +35,9 @@ const { users, products, carts, categories, orders, reviews } = db.models
 users.belongsToMany(products, {through: "user_products", timestamps:false})
 products.belongsToMany(users, {through: "user_products", timestamps:false})
 
+users.belongsToMany(orders, {through:"user_orders", timestamps:true})
+orders.belongsToMany(users, {through:"user_orders", timestamps:true})
+
 users.hasOne(carts)
 carts.belongsTo(users)
 
@@ -50,28 +53,15 @@ categories.hasMany(products)
 products.belongsToMany(carts, {through: "cartItems", timestamps:true})
 carts.belongsToMany(products, {through: "cartItems", timestamps:true})
 
-
-// products.belongsToMany(orders, {through: "product_order", timestamps:false})
-// orders.belongsToMany(products, {through: "product_order", timestamps:false})
+products.belongsToMany(orders, {through: "product_order", timestamps:false})
+orders.belongsToMany(products, {through: "product_order", timestamps:false})
 
 products.hasMany(reviews)
 reviews.belongsTo(products)
 
 
 const loadData = () => {
-    // test_products.map(async(product) => {
-        
-    //     await products.create({
-    //         product_name: product.product_name,
-    //         description:product.description,
-    //         product_image:product.product_image,
-    //         price:product.price,
-    //         stock:product.stock,
-    //         num_reviews:product.num_reviews,
-    //         rate:product.rate,
-    //     })
-    // })
-
+  
     test_categories.map(async(category) => {
         
         await categories.create({
