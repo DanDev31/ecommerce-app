@@ -2,8 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import { CartItem } from './CartItem'
-import { CartContainer } from '../styles/Cart'
+import { RiDeleteBinLine } from 'react-icons/ri'
+import { useDispatch} from 'react-redux'
+import { cartActions } from '../../redux/cart/cartSlice'
+import { CartContainer, CartTable } from '../styles/Cart'
 import { Container } from '../styles/Global'
+
 
 
 let shippingTax = 5.00
@@ -12,6 +16,7 @@ export const Cart = () => {
 
     const {cart} = useSelector(state => state.cart)
     const {isLogged} = useSelector(state => state.user)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     let subTotal = cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
 
@@ -37,79 +42,51 @@ export const Cart = () => {
                         <hr />
                         
                         <div>
-                            {/* {
+
+                            <CartTable>
+                                <thead className="table_headers">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Remove</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                { 
                                 cart.map((product, i) => (
-
-                                    <CartItem 
-                                        key={i}
-                                        {...product}
-                                    />
+                                    <tr key={i}>
+                                    <td>
+                                        <div className='cart_item_details'>
+                                            <div>
+                                                <img src={product.product_image} alt="" />
+                                            </div>
+                                            {product.product_name}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className='quantity_buttons'>
+                                            <button onClick={() => dispatch(cartActions.setSubstractQuantity(product.id))}>-</button>
+                                            <span>{product.quantity}</span>
+                                            <button onClick={() => dispatch(cartActions.setAddQuantity(product.id))}>+</button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    <RiDeleteBinLine 
+                                        className=""
+                                        onClick={() => dispatch(cartActions.deleteProduct(product.id))}
+                                        />
+                                    </td>
+                                    <td>
+                                        <span>{product.price} USD</span>
+                                    </td>
+                                    
+                                    </tr>
                                 ))
-                            } */}
+                                }
+                                </tbody>
+                            </CartTable>
 
-                            {/*  */}
-
-                            <table className="table">
-             <thead className="table_headers">
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Remove</th>
-                    <th>Price</th>
-                </tr>
-             </thead>
-        <tbody>
-        { 
-          cart.map((company, i) => (
-            <tr key={i}>
-              <td>
-                {company.name}
-              </td>
-              <td>
-                {company.email}
-              </td>
-              <td>
-                {company.active?'Enabled':'Disabled'}
-              </td>
-              <td>
-              {
-                  company.active ? 
-                  (<FaWindowClose className="disable_button" onClick={() => handleToggleButton(company.id)} title="Disable"/>) 
-                  : 
-                  (<MdDoneOutline className="enable_button" onClick={() => handleToggleButton(company.id)} title="Enable"/>)
-                }
-              </td>
-              <td></td>
-              <td>{company.reports}  <span className="field">
-                        <BsInfoCircle />
-                        <span className="quote">
-                          <label>Spam:  <label>{company.reportSpam}</label>
-                            </label><br/>
-                            <label>Inappropiate Lenguaje: <label>{company.reportLang}</label>
-                            </label><br/>
-                            <label>False Information: <label>{company.reportFalse}</label>
-                            </label><br/>
-                         
-                            <label>Inappropiate content:
-                          <label>{company.reportCoIn}</label>
-                            </label><br/>
-                         
-                          </span>
-                         
-                          
-                       
-                      </span>
-                      </td>
-            </tr>
-          ))
-        }
-        </tbody>
-      </table>
-
-
-
-
-                            {/*  */}
                         </div>
                     </div>
                     <div className='summary_container'>
