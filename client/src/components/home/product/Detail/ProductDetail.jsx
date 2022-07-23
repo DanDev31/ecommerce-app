@@ -4,7 +4,13 @@ import { useParams } from "react-router-dom";
 import { cartActions } from "../../../../redux/cart/cartSlice";
 import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
+import { ProductDetailStyle } from "../../../styles/ProductDetail";
+import { Container } from "../../../styles/Global";
 
+
+const inlineStyle = {
+
+}
 
 export const ProductDetail = () => {
 
@@ -27,62 +33,48 @@ export const ProductDetail = () => {
 
   
   return (
-    <>
+    <Container>
       {productDetail && (
         <div>
-          <div className="">
-        <div className="">
-              <img
-                alt={productDetail.product_name}
-                src={productDetail.product_image}
-              />
-            </div>
-            <div className="">
-              <div>
-                <h3>{productDetail.product_name}</h3>
-              </div>
-              <div>
-                <h3>${productDetail.price}</h3>
-              </div>
-              <p>Rate: {productDetail.rate}</p>
+          <ProductDetailStyle>
               <div className="">
-                {productDetail.stock > 3 ? (
-                  <span className="">
-                    {productDetail.stock} Available
-                  </span>
-                ) : (
-                  <span className="">
-                    {productDetail.stock} Available
-                  </span>
-                )}
+                <img
+                  alt={productDetail.product_name}
+                  src={productDetail.product_image}
+                />
               </div>
-              {/* <div className={count_wrapper}>
-                <button onClick={decrease} disabled={count === 0}>
-                  -
-                </button>
-                <span className={count} onBlur={onCountEdit}>
-                  {count}
-                </span>
-                <button
-                  onClick={increase}
-                  disabled={count === productDetail.stock}
-                >
-                  +
-                </button>
-              </div> */}
-              <button
-                className=""
-                // disabled={count === 0}
-                onClick={() => dispatch(cartActions.addProduct(productDetail))}
-              >Add to Cart</button>
-                    </div>
-                    <div>
-          <h4>Description</h4>
-          <p>{productDetail.description}</p>
-          <p>Reviews: {productDetail.num_reviews}</p>
-          </div>
-        </div>
+              <div>
+                  <div>
+                    <h3>{productDetail.product_name}</h3>
+                  </div>
+                  <div>
+                    <h3>${productDetail.price}</h3>
+                  </div>
+                  <p>Rate: {productDetail.rate}</p>
+                  <div className="">
+                    {productDetail.stock > 3 ? (
+                      <span className="">
+                        {productDetail.stock} Available
+                      </span>
+                    ) : (
+                      <span className="">
+                        {productDetail.stock} Available
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    className=""
+                    // disabled={count === 0}
+                    onClick={() => dispatch(cartActions.addProduct(productDetail))}
+                  >Add to Cart</button>
+              </div>
+            </ProductDetailStyle>
       
+              <div className="mb_3">
+                  <h4 className="mb_1">Description</h4>
+                  <p>{productDetail.description}</p>
+                  <p>Reviews: {productDetail.num_reviews}</p>
+              </div>
           </div>
       )}
   
@@ -101,6 +93,6 @@ export const ProductDetail = () => {
         
       </div>
       </div>
-    </>
+    </Container>
   );
 };

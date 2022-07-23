@@ -4,6 +4,7 @@ import { LowerNavbar } from './lower_navbar/LowerNavbar'
 import { SearchBar } from './search_bar/SearchBar'
 import { useSelector } from 'react-redux'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { Nav } from '../styles/Navbar'
 
 
 export const Navbar = () => {
@@ -11,22 +12,22 @@ export const Navbar = () => {
   const { cart } = useSelector(state => state.cart)
 
   return (
-    <nav className="">
-      <div className="">
-        <div>
-              <span>Logo</span>
-          </div>
+    <nav>
+      <Nav>
+          <Link to="/" className='link'>
+            Logo
+          </Link>
 
           <SearchBar/>
 
           <div>
-              <Link to="">
-                  <span>Create Account</span>
+              <Link to="" className='link'>
+                Create Account
               </Link>
-              <Link to="">
-                  <span>Login</span>
+              <Link to="" className='link'>
+                Login
               </Link>
-              <Link to="/shop/cart">
+              <Link to="/shop/cart" className='link'>
                 <div className="">
                   <AiOutlineShoppingCart className=""/>
                   {
@@ -42,7 +43,7 @@ export const Navbar = () => {
                 </div>
               </Link>
           </div>
-      </div>
+      </Nav>
 
       <LowerNavbar/>
         

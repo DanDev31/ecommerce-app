@@ -8,16 +8,20 @@ import { Provider } from 'react-redux'
 import { store, persistor } from './store/store'
 import { PersistGate } from 'redux-persist/integration/react'
 
+import { GlobalStyles } from './components/styles/Global';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={ store }>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/*' element={<App />}/>
-        </Routes>
-      </BrowserRouter>
+      <GlobalStyles>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/*' element={<App />}/>
+          </Routes>
+        </BrowserRouter>
+      </GlobalStyles>
     </PersistGate>
   </Provider>
   

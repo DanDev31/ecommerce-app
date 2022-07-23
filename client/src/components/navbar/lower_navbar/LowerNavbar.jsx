@@ -3,22 +3,24 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
-
-
 import { fetchProductsByCategory } from '../../../redux/products/productsByCategorySlice'
 import { fetchCategories } from '../../../redux/categories/categories'
 import { fetchByBrand } from '../../../redux/products/filterBrandSlice'
+import { LowerNav } from '../../styles/Navbar'
+
+
+
 
 export const LowerNavbar = () => {
 
-  const [ active, setActive ] = useState(false)
+  const [ activeMenu, setActiveMenu ] = useState(false)
 
   const handleShowMenu = () =>{
-    setActive(true)
+    setActiveMenu(true)
   }
 
   const handleHideMenu = () => {
-    setActive(false)
+    setActiveMenu(false)
   }
 
 const handleValue = ({ target }) => {
@@ -38,14 +40,14 @@ useEffect(() => {
 
 
   return (
-    <div className="">
+    <LowerNav>
       
-        <span className="" onMouseOver={handleShowMenu}>Categories
+        <span className="span_floating_window" onMouseOver={handleShowMenu}>Categories
           
           <MdOutlineKeyboardArrowDown/>
 
-            <div className="" onMouseLeave={handleHideMenu}>
-              <div className="">
+            <div className={`floating_window ${activeMenu && "active"}`} onMouseLeave={handleHideMenu}>
+              <div>
                
                   <Link to="/shop" onClick={(e) => handleValue(e)}>PC Gamers</Link>
                 
@@ -70,7 +72,7 @@ useEffect(() => {
         <span>About</span>
         <span>Contact Us</span>
         
-    </div>
+    </LowerNav>
 
   )
 }

@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Sort } from '../../filters/sort/Sort'
 import { Product } from '../product/Product'
+import { ProductsFlex } from '../../styles/Products'
+import { Container } from '../../styles/Global'
 
 
 export const ProductList = () => {
@@ -13,11 +15,11 @@ export const ProductList = () => {
 
   return (
     <section>
-        <div className="">
+        <Container>
             <h2>{category}</h2>
             <Sort />
             <h5>Total results: {productsByCategory.length}</h5>
-            <div className="">
+            <ProductsFlex>
                 {
                     productsByCategory.length > 0  ?
                     productsByCategory.map((product, i) =>(
@@ -29,8 +31,8 @@ export const ProductList = () => {
                     :
                     <p>There's no results</p>
                 }
-            </div>
-        </div>
+            </ProductsFlex>
+        </Container>
     </section>
   );
 };

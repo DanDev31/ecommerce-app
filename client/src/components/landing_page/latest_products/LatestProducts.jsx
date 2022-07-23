@@ -3,7 +3,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchLatestProducts } from '../../../redux/products/latestProductsSlice'
 import { LatestProductCard } from './LatestProductCard'
-
+import { ProductsFlex } from '../../styles/Products'
+import { Container } from '../../styles/Global'
 
 
 export const LatestProducts = () => {
@@ -17,11 +18,11 @@ export const LatestProducts = () => {
     },[dispatch])
 
   return (
-    <section className="container">
-        <div className="">
-            <h2>Latest Products</h2>
+    <section>
+        <Container>
+            <h2 className='title_margin'>Latest Products</h2>
 
-            <div className="">
+            <ProductsFlex>
                
                 {
                     latestProducts.length > 0 || !latestProducts ?
@@ -37,8 +38,8 @@ export const LatestProducts = () => {
                     <p>Loading...</p>
                 }
                 
-            </div>
-        </div>
+            </ProductsFlex>
+        </Container>
     </section>
   )
 }

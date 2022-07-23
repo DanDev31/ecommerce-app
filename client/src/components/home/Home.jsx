@@ -1,25 +1,27 @@
 import React from 'react'
 import { FilterMenu } from '../filters/filter_menu/FilterMenu'
-import { Sort } from '../filters/sort/Sort'
 import { ProductList } from './product_list/ProductList'
-
+import { HomeFlex } from '../styles/Home'
+import { Container } from '../styles/Global'
 
 export const Home = () => {
 
   return (
-    <main className="">
-        <aside className="">
-            <FilterMenu />
-        </aside>
+    <Container>
+      <HomeFlex>
+          <aside className="">
+              <FilterMenu />
+          </aside>
 
-        <section className="">
+          <section>
 
-            <div>
-              <ProductList />
-            </div>
+              <div>
+                <ProductList />
+              </div>
 
-        </section>
+          </section>
 
-    </main>
+      </HomeFlex>
+    </Container>
   )
 }

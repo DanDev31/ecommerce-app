@@ -3,8 +3,11 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchByBrand } from '../../../redux/products/filterBrandSlice'
-import { IoMdArrowDropright } from 'react-icons/io'
 import { fetchProductsByCategory } from '../../../redux/products/productsByCategorySlice'
+import { IoMdArrowDropright } from 'react-icons/io'
+import { FilterBar } from '../../styles/Filter'
+
+
 
 export const FilterMenu = () => {
 
@@ -26,16 +29,6 @@ export const FilterMenu = () => {
     }
     
   }
-
-
-  const handleOpenMenu1 = () => {
-    setOpenMenu1(!openMenu1)
-  }
-
-  const handleOpenMenu2 = () => {
-    setOpenMenu2(!openMenu2)
-  }
-
 
   const handleCheckBoxChange = (e) => {
     let checkBoxObject = {
@@ -67,39 +60,35 @@ export const FilterMenu = () => {
   },[dispatch, savedCategory, checkBoxValues]) 
 
 
-
-
   return (
-    <div className="">
-      <div className="">
-          <div className="" onClick={handleOpenMenu1}>
+    <FilterBar>
+      <div className="filter_menu_item">
+          <div onClick={() => setOpenMenu1(!openMenu1)}>
               <h4>Categorias</h4>
-              <IoMdArrowDropright  className=""/>
+              <IoMdArrowDropright  className={`${openMenu1 && "rotate"}`}/>
           </div>
-          <div className="">
+          <div className={`filter_dropdown_menu ${openMenu1 && "active"}`}>
             <span>Pc Gamers</span>
             <span>Ram Memory</span>
             <span>Hard Disks && SSD</span>
           </div>
       </div>
-      <div className="">
-        <div className="" onClick={handleOpenMenu2}>
+      <div className="filter_menu_item">
+        <div onClick={() => setOpenMenu2(!openMenu2)}>
           <h4>Marcas</h4>
-          <IoMdArrowDropright className=""/>
+          <IoMdArrowDropright  className={`${openMenu2 && "rotate"}`}/>
         </div>
-        <div className="">
-          {
-            filteredBrands.map((brand, i) => (
-              <div className="" key={i}>
-                <label>{brand}</label>
-                <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
-              </div>
-            ))
-          }
-          
-            
+        <div className={`filter_dropdown_menu ${openMenu2 && "active"}`}>
+            {
+              filteredBrands.map((brand, i) => (
+                <div className="" key={i}>
+                  <label>{brand}</label>
+                  <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
+                </div>
+              ))
+            }  
           </div>
       </div>
-    </div>
+    </FilterBar>
   )
 }
