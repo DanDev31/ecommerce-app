@@ -4,9 +4,10 @@ export const CartContainer = styled.div`
     display: flex;
     gap: 2rem;
 
-    div{
-        padding: 1rem 2rem;
+    & > div{
+        padding: 2rem;
     }
+
     .products_container{
         flex: 3;
     }
@@ -22,13 +23,22 @@ export const CartContainer = styled.div`
         flex: 1;
 
 
-        div{
+        .summary_inner_box{
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
             justify-content: center;
             flex-grow: 1;
+            padding-top: 1rem;
+
+            & > div{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
         }
+
+
     }
 `
 
@@ -36,8 +46,9 @@ export const CartTable = styled.table`
     border-collapse: collapse;
     width: 100%;
 
+
      th, td{
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
         text-align: center;
 
     .cart_item_details{
@@ -59,6 +70,7 @@ export const CartTable = styled.table`
         button{
             border: none;
             color: white;
+            cursor: pointer;
             background-color: #121e35;
             font-size: 1.2rem;
             font-weight: 700;
@@ -67,6 +79,16 @@ export const CartTable = styled.table`
 
         }
     }
+
+    .product_delete_button{
+        cursor: pointer;
+        font-size: 2rem;
+
+        &:hover{
+            color: red;
+        }
+    }
+
     
 }
 `

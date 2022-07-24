@@ -6,7 +6,7 @@ import { LatestProducts } from './latest_products/LatestProducts'
 export const LandingPage = () => {
   return (
     <div>
-        <CarouselLandingPage/>
+        <CarouselLandingPage />
         <LatestProducts />
     </div>
   )

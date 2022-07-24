@@ -4,49 +4,54 @@ import { LowerNavbar } from './lower_navbar/LowerNavbar'
 import { SearchBar } from './search_bar/SearchBar'
 import { useSelector } from 'react-redux'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
-import { Nav } from '../styles/Navbar'
+import { Nav, TopNav } from '../styles/Navbar'
 
+import logo from '../../assets/logo.png'
 
 export const Navbar = () => {
 
   const { cart } = useSelector(state => state.cart)
 
   return (
-    <nav>
+    
       <Nav>
-          <Link to="/" className='link'>
-            Logo
-          </Link>
+          <TopNav >
 
-          <SearchBar/>
+            <Link to="/" className='link'>
+              <div className='logo'>
+                <img src={logo} alt="" />
+              </div>
+            </Link>
 
-          <div>
-              <Link to="" className='link'>
-                Create Account
-              </Link>
-              <Link to="" className='link'>
-                Login
-              </Link>
-              <Link to="/shop/cart" className='link'>
-                <div className="">
-                  <AiOutlineShoppingCart className=""/>
-                  {
-                    cart.length === 0 ?
-                    (
-                      null
-                    )
-                    :
-                    (
-                      <span>{cart.length}</span>
-                    )
-                  }
-                </div>
-              </Link>
-          </div>
+            <SearchBar/>
+
+            <div className='topnav_user_box'>
+                {/* <Link to="/user/register" className='link'>
+                  Create Account
+                </Link> */}
+                <Link to="/user/login" className='link'>
+                  Login
+                </Link>
+                <Link to="/shop/cart" className='link cart_icon'>
+                    <AiOutlineShoppingCart />
+                    {
+                      cart.length === 0 ?
+                      (
+                        null
+                      )
+                      :
+                      (
+                        <span>{cart.length}</span>
+                      )
+                    }
+                </Link>
+            </div>
+            
+            </TopNav>
+
+          <LowerNavbar/>
       </Nav>
 
-      <LowerNavbar/>
-        
-    </nav>
+ 
   )
 }

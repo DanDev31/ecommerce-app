@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Sort } from '../../filters/sort/Sort'
 import { Product } from '../product/Product'
 import { ProductsFlex } from '../../styles/Products'
-import { Container } from '../../styles/Global'
+import { Container } from '../../styles/Container'
 
 
 export const ProductList = () => {
@@ -14,7 +14,6 @@ export const ProductList = () => {
   if (!productsByCategory) return <p>Loading...</p>;
 
   return (
-    <section>
         <Container>
             <h2>{category}</h2>
             <Sort />
@@ -33,6 +32,5 @@ export const ProductList = () => {
                 }
             </ProductsFlex>
         </Container>
-    </section>
   );
 };

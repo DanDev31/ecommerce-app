@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { GoSearch } from 'react-icons/go'
 import { fetchSearchedProduct } from '../../../redux/products/searchBarSlice'
-
+import { Search } from '../../styles/Navbar'
 import { useNavigate } from 'react-router-dom'
 import { fetchSearchProductCopy } from '../../../redux/products/searchProductCopy'
 
@@ -29,11 +29,9 @@ export const SearchBar = () => {
   }
 
   return (
-    <div className="">
-        <form className="" onSubmit={ handleSubmit }>
-            <input type="text" value={ search } placeholder="Search products..." onChange={ handleChange }/>
-            <button type='submit'><GoSearch/></button>
-        </form>
-    </div>
+      <Search className="" onSubmit={ handleSubmit }>
+          <input type="text" value={ search } placeholder="Search products..." onChange={ handleChange }/>
+          <button type='submit'><GoSearch/></button>
+      </Search>
   )
 }

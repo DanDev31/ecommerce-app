@@ -1,16 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
-import { CartItem } from './CartItem'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useDispatch} from 'react-redux'
 import { cartActions } from '../../redux/cart/cartSlice'
 import { CartContainer, CartTable } from '../styles/Cart'
-import { Container } from '../styles/Global'
+import { Button } from '../styles/Buttons'
+import { Container } from '../styles/Container'
 
 
 
-let shippingTax = 5.00
+let shippingTax = 5.99
 
 export const Cart = () => {
 
@@ -61,7 +61,7 @@ export const Cart = () => {
                                             <div>
                                                 <img src={product.product_image} alt="" />
                                             </div>
-                                            {product.product_name}
+                                            <p>{product.product_name}</p>
                                         </div>
                                     </td>
                                     <td>
@@ -73,12 +73,12 @@ export const Cart = () => {
                                     </td>
                                     <td>
                                     <RiDeleteBinLine 
-                                        className=""
+                                        className="product_delete_button"
                                         onClick={() => dispatch(cartActions.deleteProduct(product.id))}
                                         />
                                     </td>
                                     <td>
-                                        <span>{product.price} USD</span>
+                                        <span className='product_price'><small>USD</small>{product.price}</span>
                                     </td>
                                     
                                     </tr>
@@ -92,21 +92,21 @@ export const Cart = () => {
                     <div className='summary_container'>
                         <h3 className='mb_1'>Summary</h3>
                         <hr />
-                        <div>
-                            
-                            <div>
+                        <div className='summary_inner_box'>
+
+                            <div >
                                 <h4>Subtotal</h4>
-                                <span>{subTotal}</span>
+                                <span className='product_price'><small>USD</small>{subTotal}</span>
                             </div>
                             <div>
                                 <h5>Shipping</h5>
-                                <span>{shippingTax}</span>
+                                <span className='product_price'><small>USD</small>{shippingTax}</span>
                             </div>
                             <div>
                                 <h4>Total</h4>
-                                <span>{subTotal + shippingTax}</span>
+                                <span className='product_price'><small>USD</small>{subTotal + shippingTax}</span>
                             </div>
-                            <button onClick={verifyLoggedUser}>Checkout</button>
+                            <Button onClick={verifyLoggedUser} bgColor="#f5a131" fontSize="1.1rem">CHECKOUT</Button>
 
                         </div>
                     </div>

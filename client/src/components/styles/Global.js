@@ -1,6 +1,8 @@
-import styled from 'styled-components'
+import {createGlobalStyle} from 'styled-components'
 
-export const GlobalStyles = styled.div`
+
+
+export const GlobalStyles = createGlobalStyle`
 
     *{
         margin: 0;
@@ -28,15 +30,20 @@ export const GlobalStyles = styled.div`
     }
 
     h3{
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
 
     h4{
+        font-size: 2rem;
+    }
+
+    p, span, label, th{
         font-size: 1.8rem;
     }
 
-    p, span, label{
-        font-size: 1.2rem;
+    .anchor{
+        color: #222831;
+        text-decoration: none;
     }
 
     .mb_1{
@@ -51,13 +58,22 @@ export const GlobalStyles = styled.div`
         margin-bottom: 4rem;
     }
     
+    
     .title_margin{
         margin-bottom: 4rem;
     }
+
+    .product_price{
+        position: relative;
+        font-size: 2.3rem;
+        
+        small{
+            font-size: .7rem;
+            position: absolute;
+            left: -1.4rem;
+        }
+    }
+
+
 `
 
-export const Container = styled.div`
-    margin: 5rem auto;
-    max-width: 130rem;
-    width: 90%;
-`

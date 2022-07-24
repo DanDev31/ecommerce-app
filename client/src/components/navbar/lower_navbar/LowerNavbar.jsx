@@ -49,21 +49,21 @@ useEffect(() => {
             <div className={`floating_window ${activeMenu && "active"}`} onMouseLeave={handleHideMenu}>
               <div>
                
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>PC Gamers</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>PC Gamers</span></Link>
                 
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>Ram Memory</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Ram Memory</span></Link>
                 
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>Hard Disk & SSD</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Hard Disk & SSD</span></Link>
                
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>CPU</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>CPU</span></Link>
                 
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>GPU</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>GPU</span></Link>
                
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>MotherBoards</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>MotherBoards</span></Link>
                 
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>Power Supply</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Power Supply</span></Link>
                
-                  <Link to="/shop" onClick={(e) => handleValue(e)}>Accesories</Link>
+                  <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Accesories</span></Link>
                
               </div>
             </div>

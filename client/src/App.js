@@ -10,13 +10,10 @@ import { Cart } from "./components/cart/Cart";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import { Order } from "./components/order/Order";
-import { ThemeProvider } from "styled-components";
-import { theme } from './components/styles/ThemeProvider';
 
 
 function App() {
   return (
-    <ThemeProvider theme={ theme } >
         <div>
           <Navbar />
 
@@ -33,8 +30,9 @@ function App() {
               <Route path="/user/register" element={<Register />} />
             </Routes>
           </div>
+          
         </div>
-    </ThemeProvider>
+    
   );
 }
 

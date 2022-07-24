@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchLatestProducts } from '../../../redux/products/latestProductsSlice'
 import { LatestProductCard } from './LatestProductCard'
 import { ProductsFlex } from '../../styles/Products'
-import { Container } from '../../styles/Global'
+import { Container } from '../../styles/Container'
 
 
 export const LatestProducts = () => {

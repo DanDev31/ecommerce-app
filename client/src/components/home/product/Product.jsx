@@ -16,11 +16,11 @@ export const Product = ({
 
   return (
     <ProductStyles>
-      <Link to={`/shop/${category.category_name}/${id}`}>
+      <Link to={`/shop/${category.category_name}/${id}`} className="anchor">
         <div className="image_container">
           <img src={product_image} alt={product_name} />
         </div>
-        <h3>{product_name}</h3>
+        <h4>{product_name}</h4>
       <p>${price}</p>
       </Link>
     </ProductStyles>

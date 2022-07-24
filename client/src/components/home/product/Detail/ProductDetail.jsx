@@ -5,12 +5,8 @@ import { cartActions } from "../../../../redux/cart/cartSlice";
 import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
 import { ProductDetailStyle } from "../../../styles/ProductDetail";
-import { Container } from "../../../styles/Global";
+import { Container } from "../../../styles/Container";
 
-
-const inlineStyle = {
-
-}
 
 export const ProductDetail = () => {
 
