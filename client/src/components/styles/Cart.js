@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const CartContainer = styled.div`
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
 
     & > div{
         padding: 2rem;
@@ -13,7 +13,7 @@ export const CartContainer = styled.div`
     }
 
     .summary_container{
-        background-color: lightgray;
+        background-color: #e7e7e7;
         display: flex;
         flex-direction: column;
         height: 50%;

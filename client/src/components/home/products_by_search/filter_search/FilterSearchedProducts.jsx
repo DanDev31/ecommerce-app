@@ -2,10 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { IoMdArrowDropright } from 'react-icons/io'
-
-
 import { fetchSearchedProduct } from '../../../../redux/products/searchBarSlice'
+import { IoMdArrowDropright } from 'react-icons/io'
+import { FilterBar } from '../../../styles/Filter'
+import { fetchSearchProductCopy } from '../../../../redux/products/searchProductCopy'
+
+
 
 export const FilterSearchedProducts = () => {
 
@@ -25,15 +27,6 @@ export const FilterSearchedProducts = () => {
         filteredBrands.push(brands[i])
       }
       
-    }
-  
-  
-    const handleOpenMenu1 = () => {
-      setOpenMenu1(!openMenu1)
-    }
-  
-    const handleOpenMenu2 = () => {
-      setOpenMenu2(!openMenu2)
     }
   
   
@@ -60,38 +53,38 @@ export const FilterSearchedProducts = () => {
   
     useEffect(()=>{
         dispatch(fetchSearchedProduct({search:searchedStorageValue, queriesArray:checkBoxValues}))
+        dispatch(fetchSearchProductCopy(searchedStorageValue))
     },[dispatch, searchedStorageValue, checkBoxValues]) 
 
   return (
-    <div className="">
-        <div className="">
-            <div className="" onClick={handleOpenMenu1}>
-                <h4>Categorias</h4>
-                <IoMdArrowDropright  className=""/>
-            </div>
-            <div className="">
-              <span>Pc Gamers</span>
-              <span>Ram Memory</span>
-              <span>Hard Disks && SSD</span>
-            </div>
+    <FilterBar>
+      <div className="filter_menu_item">
+          <div onClick={() => setOpenMenu1(!openMenu1)}>
+              <h4>Categorias</h4>
+              <IoMdArrowDropright  className={`${openMenu1 && "rotate"}`}/>
+          </div>
+          <div className={`filter_dropdown_menu ${openMenu1 && "active"}`}>
+            <span>Pc Gamers</span>
+            <span>Ram Memory</span>
+            <span>Hard Disks && SSD</span>
+          </div>
+      </div>
+      <div className="filter_menu_item">
+        <div onClick={() => setOpenMenu2(!openMenu2)}>
+          <h4>Marcas</h4>
+          <IoMdArrowDropright  className={`${openMenu2 && "rotate"}`}/>
         </div>
-        <div className="">
-        <div className="" onClick={handleOpenMenu2}>
-            <h4>Marcas</h4>
-            <IoMdArrowDropright className=""/>
-        </div>
-        <div className="">
+        <div className={`filter_dropdown_menu ${openMenu2 && "active"}`}>
             {
-            filteredBrands.map((brand, i) => (
+              filteredBrands.map((brand, i) => (
                 <div className="" key={i}>
-                <label>{brand}</label>
-                <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
+                  <label>{brand}</label>
+                  <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
                 </div>
-            ))
-            }
-
-            </div>
-        </div>
-  </div>
+              ))
+            }  
+          </div>
+      </div>
+    </FilterBar>
   )
 }

@@ -17,8 +17,9 @@ export const GlobalStyles = createGlobalStyle`
 
     img{
         width: 100%;
-        max-height: 100%;
-        object-fit: cover;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom;
     }
 
     h1{
@@ -41,6 +42,10 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 1.8rem;
     }
 
+    input{
+        font-family: 'Raleway', sans-serif;
+    }
+
     .anchor{
         color: #222831;
         text-decoration: none;
@@ -57,10 +62,21 @@ export const GlobalStyles = createGlobalStyle`
     .mb_3{
         margin-bottom: 4rem;
     }
+
+    .mt_1{
+        margin-top: 2rem;
+    }
+
+    .mt_2{
+        margin-top: 3rem;
+    }
     
+    .mt_3{
+        margin-top: 4rem;
+    }
     
-    .title_margin{
-        margin-bottom: 4rem;
+    .text_align{
+        text-align: center;
     }
 
     .product_price{

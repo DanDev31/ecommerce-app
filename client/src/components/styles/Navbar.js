@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const Nav = styled.nav`
-    background-color: #1a2639;
     color: ${({ theme }) => theme.colors.white};
+    display: flex;
+    flex-direction: column;
     font-size: 2rem;
     position: sticky;
     top: 0;
@@ -23,12 +24,12 @@ export const Nav = styled.nav`
 
 export const TopNav = styled.div`
     align-items: center;
+    background-color: #1a2639;
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 3rem;
+    padding: 2rem;
 
     .topnav_user_box{
-        align-items: center;
         display: flex;
         gap: 2rem;
 
@@ -55,13 +56,15 @@ export const TopNav = styled.div`
 
 export const LowerNav = styled.div`
     align-items: center;
-    background-color: #3e4a61;
-    color: ${({ theme }) => theme.colors.white};
+    background-color: #f8fcff;
+    /* color: ${({ theme }) => theme.colors.white}; */
+    color: #102a48;
     display: flex;
     justify-content: center;
     font-weight: 500;
-    gap: 2rem;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
+    gap: 6rem;
+    
     
     .span_floating_window{
         position: relative;
@@ -72,14 +75,13 @@ export const LowerNav = styled.div`
     }
 
     .floating_window{
-        background-color: white;
-        box-shadow: 0px 2px 5px 1px rgb(73, 73, 73);
+        background-color: #f1f9ff;
         display: none;
         font-size: 1.5rem;
         position: absolute;
-        top: 3.2rem;
+        top: 4.2rem;
         left: 0;
-        width: 22rem;
+        width: 30rem;
         z-index: 100;
 
         
@@ -110,19 +112,22 @@ export const LowerNav = styled.div`
 
 export const Search = styled.form`
     display: flex;
-    align-items: center;
+    
 
     & > *{
         border: none;
         outline: none;
+        padding: 1rem;
     }
-
-    input{
-        padding: 0.5rem;
-    }
+    
     button{
-        background-color: #4586ff; 
-        padding: 0.5rem 0.8rem;
+        align-items: center;
+        background-color: #4586ff;
+        cursor: pointer;
+        display:flex;
+        justify-content: center;
+        font-size: 1.7rem;
+        padding: 0 2rem;
     }
 `
 

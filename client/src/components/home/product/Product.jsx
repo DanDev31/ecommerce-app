@@ -21,7 +21,7 @@ export const Product = ({
           <img src={product_image} alt={product_name} />
         </div>
         <h4>{product_name}</h4>
-      <p>${price}</p>
+        <p>${price}</p>
       </Link>
     </ProductStyles>
   

@@ -20,6 +20,7 @@ export const Navbar = () => {
             <Link to="/" className='link'>
               <div className='logo'>
                 <img src={logo} alt="" />
+                
               </div>
             </Link>
 

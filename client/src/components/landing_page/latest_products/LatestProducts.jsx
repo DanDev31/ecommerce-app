@@ -18,9 +18,8 @@ export const LatestProducts = () => {
     },[dispatch])
 
   return (
-    <section>
-        <Container>
-            <h2 className='title_margin'>Latest Products</h2>
+        <Container margin="10rem">
+            <h2 className='mb_3 text_align'>Latest Products</h2>
 
             <ProductsFlex>
                
@@ -40,6 +39,6 @@ export const LatestProducts = () => {
                 
             </ProductsFlex>
         </Container>
-    </section>
+  
   )
 }

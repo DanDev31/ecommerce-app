@@ -75,7 +75,7 @@ export const FilterMenu = () => {
       </div>
       <div className="filter_menu_item">
         <div onClick={() => setOpenMenu2(!openMenu2)}>
-          <h4>Marcas</h4>
+          <h4>Brands</h4>
           <IoMdArrowDropright  className={`${openMenu2 && "rotate"}`}/>
         </div>
         <div className={`filter_dropdown_menu ${openMenu2 && "active"}`}>

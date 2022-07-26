@@ -29,7 +29,7 @@ export const SearchBar = () => {
   }
 
   return (
-      <Search className="" onSubmit={ handleSubmit }>
+      <Search onSubmit={ handleSubmit }>
           <input type="text" value={ search } placeholder="Search products..." onChange={ handleChange }/>
           <button type='submit'><GoSearch/></button>
       </Search>

@@ -1,15 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Container } from "../../../styles/Container";
+import { ProductsFlex } from "../../../styles/Products";
 import { SearchProductCard } from "../search_list_card/SearchProductCard";
+
 
 export const SearchList = () => {
   const { searchedProducts } = useSelector((state) => state.searchBar);
 
   return (
-    <section>
+    <Container>
       <div className="">
         <h5>Total results: {searchedProducts.length}</h5>
-        <div className="">
+        <ProductsFlex>
           {searchedProducts.length > 0 ? (
             searchedProducts.map((product, i) => (
               <SearchProductCard key={i} {...product} />
@@ -17,8 +20,8 @@ export const SearchList = () => {
           ) : (
             <p>There's no results</p>
           )}
-        </div>
+        </ProductsFlex>
       </div>
-    </section>
+    </Container>
   );
 };

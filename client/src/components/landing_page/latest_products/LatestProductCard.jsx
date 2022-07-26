@@ -10,7 +10,7 @@ export const LatestProductCard = ({ id, product_name, product_image, price, cate
 
   return (
     <ProductStyles>
-      <Link to={`/shop/${category.category_name}/${id}`}>
+      <Link to={`/shop/${category.category_name}/${id}`} className="anchor">
         <div className="image_container">
           <img src={product_image} alt="" />
         </div>

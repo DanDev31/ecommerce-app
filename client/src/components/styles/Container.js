@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    margin: 5rem auto;
+    margin: ${(props) => props.margin }  auto;
     max-width: 130rem;
     width: 90%;
 `

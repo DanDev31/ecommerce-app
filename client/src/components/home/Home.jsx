@@ -7,7 +7,7 @@ import { Container } from '../styles/Container'
 export const Home = () => {
 
   return (
-    <Container>
+    <Container margin="6rem">
       <HomeFlex>
           
           <FilterMenu />
