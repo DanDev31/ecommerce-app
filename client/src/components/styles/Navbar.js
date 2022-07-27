@@ -51,6 +51,35 @@ export const TopNav = styled.div`
             height: 2rem;
             width: 2rem;
         }
+
+        .profile_box{
+            cursor: pointer;
+            position: relative;
+
+            .logout{
+                background-color: #f1f1f1;
+                display: none;
+                color: #1a2639;
+                position: absolute;
+                top: 3rem;
+                left: -1rem;
+                padding: 2rem 0;
+
+                p{
+                    cursor: pointer;
+                    padding: .5rem 2rem;
+                }
+                p:hover{
+                    background-color: #1a2639;
+                    color: #ffffff;
+                    
+                }
+            }
+        }
+
+        .active{
+            display: block !important;
+        }
     }
 `
 

@@ -15,11 +15,15 @@ const userSlice = createSlice({
             state.user = payload
             state.isLogged = true
         },
+        logout(state){
+            state.user = null
+            state.isLogged = false
+        },
         loginFailure(state){
             state.error = true
         }
     }
 })
 
-export const { loginSuccess, loginFailure } = userSlice.actions
+export const { loginSuccess, logout, loginFailure } = userSlice.actions
 export default userSlice.reducer

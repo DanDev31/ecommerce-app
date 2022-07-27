@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { LowerNavbar } from './lower_navbar/LowerNavbar'
 import { SearchBar } from './search_bar/SearchBar'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { Nav, TopNav } from '../styles/Navbar'
 
 import logo from '../../assets/logo.png'
+import { logout } from '../../redux/user/userSlice'
 
 export const Navbar = () => {
 
+  const [ showMenu, setShowMenu ] = useState(false)
   const { cart } = useSelector(state => state.cart)
+  const { user, isLogged } = useSelector(state => state.user)
+  const dispatch = useDispatch()
+
+
 
   return (
     
@@ -27,12 +33,25 @@ export const Navbar = () => {
             <SearchBar/>
 
             <div className='topnav_user_box'>
-                {/* <Link to="/user/register" className='link'>
-                  Create Account
-                </Link> */}
-                <Link to="/user/login" className='link'>
-                  Login
-                </Link>
+                
+                {
+                  user ? 
+                  (
+                    <div className='profile_box'>
+                      <p onClick={() => setShowMenu(!showMenu)}>{user.name}</p>
+                      <div className={`logout ${showMenu ? 'active' : ''}`}>
+                        <p onClick={() => dispatch(logout())}>Logout</p>
+                      </div>
+                    </div>
+                  )
+                  :
+                  (
+                    <Link to="/user/login" className='link'>
+                      Login
+                    </Link>
+                  )
+                
+                }
                 <Link to="/shop/cart" className='link cart_icon'>
                     <AiOutlineShoppingCart />
                     {

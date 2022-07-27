@@ -1,32 +1,63 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
+import StripeCheckout from 'react-stripe-checkout';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useDispatch} from 'react-redux'
 import { cartActions } from '../../redux/cart/cartSlice'
 import { CartContainer, CartTable } from '../styles/Cart'
 import { Button } from '../styles/Buttons'
 import { Container } from '../styles/Container'
-
+import axios from 'axios';
+import {Payment} from './Payment';
 
 
 let shippingTax = 5.99
+const stripe_key=process.env.REACT_APP_STRIPE_KEY
 
 export const Cart = () => {
 
-    const {cart} = useSelector(state => state.cart)
+    const [ stripeToken, setStripeToken ] = useState(null)
+    const [openModal, setOpenModal] = React.useState(false);
+    const {cart, total} = useSelector(state => state.cart)
     const {isLogged} = useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    let subTotal = cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
+    
 
     const verifyLoggedUser = () => {
         if(isLogged){
-            navigate('/shop/cart/order')
+            setOpenModal(true)
         }else{
             navigate('/user/login')
         }
     }
+
+   
+    const onToken = (token) => {
+        setStripeToken(token)
+    }
+
+    // useEffect(() => {
+    //     const makeStripeRequest = async() => {
+    //         try {
+    //             const res = await axios.post('http://localhost:3001/order/payment', {
+    //                     tokenId:stripeToken.id,
+    //                     amount:2000
+    //                 })
+    //                 console.log(res.data)
+    //         }
+    //         catch (error) {
+    //                 console.log(error)
+    //         }
+    //     }
+
+    //     stripeToken && makeStripeRequest()
+    // }, [stripeToken])
+
+
+
+
  
   return (
     <Container>
@@ -96,7 +127,7 @@ export const Cart = () => {
 
                             <div >
                                 <h4>Subtotal</h4>
-                                <span className='product_price'><small>USD</small>{subTotal}</span>
+                                <span className='product_price'><small>USD</small>{total}</span>
                             </div>
                             <div>
                                 <h5>Shipping</h5>
@@ -104,11 +135,15 @@ export const Cart = () => {
                             </div>
                             <div>
                                 <h4>Total</h4>
-                                <span className='product_price'><small>USD</small>{subTotal + shippingTax}</span>
+                                <span className='product_price'><small>USD</small>{total + shippingTax}</span>
                             </div>
-                            <Button onClick={verifyLoggedUser} bgColor="#f5a131" fontSize="1.1rem">CHECKOUT</Button>
-
-                        </div>
+                                <Button 
+                                    bgColor="#f5a131" 
+                                    fontSize="1.1rem"
+                                    onClick={() => verifyLoggedUser()}
+                                >CHECKOUT</Button>
+                                <Payment openModal={openModal} setOpenModal={setOpenModal}/>
+                            </div>
                     </div>
 
                 </CartContainer>
