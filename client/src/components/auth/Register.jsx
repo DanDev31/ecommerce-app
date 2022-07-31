@@ -18,6 +18,9 @@ export const Register = () => {
         email:"",
         password:""
     })
+    const [emailError, setEmailError] = useState(true)
+    const [passwordError, setPasswordError] = useState(true)
+
 
     const { name, lastName, email, password } = userRegister
     const navigate = useNavigate()
@@ -42,15 +45,26 @@ export const Register = () => {
         })
     }
 
+   
     const handleInputChange = (e) => {
+        if(e.target.name === "email"){
+            const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+            setEmailError(emailPattern.test(e.target.value))
+            
+        }
+        if(e.target.name === "password"){
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#/=._])[A-Za-z\d@$!%*?&#/=._]{8,}$/
+            setPasswordError(passwordPattern.test(e.target.value))
+        }
+
         setUserRegister(prev => ({...prev, [e.target.name]:e.target.value}))
     }
 
     const googleAuth = () => {
         window.open("http://localhost:3001/users/google", "_self")
     }
-
-
+    
+    console.log(passwordError)
   return (
     <FormContainer>
         <div>
@@ -71,10 +85,22 @@ export const Register = () => {
                 <div className='form_input'> 
                     <label htmlFor="">Email:</label>
                     <input type="email" name="email" value={email} onChange={handleInputChange}/>
+                    {
+                        !emailError && <small style={{color:"red"}}>Enter a valid email</small>
+                    }
                 </div>
                 <div className='form_input'>
                     <label htmlFor="">Password:</label>
-                    <input type="password" name="password" value={password} onChange={handleInputChange}/>  
+                    <input type="password" name="password" value={password} onChange={handleInputChange}/>{
+                        !passwordError && 
+                        (<ul style={{color:"red"}}>
+                            <li>Must have at least 8 characters</li>
+                            <li>It must includes at least 1 uppercase letter</li>
+                            <li>It must includes at least 1 lowercase letter</li>
+                            <li>It must includes at least 1 number letter</li>
+                            <li>It must includes at least 1 special character (@$!%*?&#/=._) letter</li>
+                        </ul>)
+                    }  
                 </div>
                 <Button type='submit' bgColor="#4586ff" fontSize="1.8rem">Submit</Button>
 
