@@ -1,64 +1,45 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
-import StripeCheckout from 'react-stripe-checkout';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useDispatch} from 'react-redux'
 import { cartActions } from '../../redux/cart/cartSlice'
 import { CartContainer, CartTable } from '../styles/Cart'
 import { Button } from '../styles/Buttons'
 import { Container } from '../styles/Container'
-import axios from 'axios';
-import {Payment} from './Payment';
+import { Payment } from './Payment';
+
 
 
 let shippingTax = 5.99
-const stripe_key=process.env.REACT_APP_STRIPE_KEY
 
 export const Cart = () => {
 
-    const [ stripeToken, setStripeToken ] = useState(null)
+
     const [openModal, setOpenModal] = React.useState(false);
     const {cart, total} = useSelector(state => state.cart)
     const {isLogged} = useSelector(state => state.user)
+    const { googleUser } = useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
 
     const verifyLoggedUser = () => {
-        if(isLogged){
+        if(isLogged || googleUser){
             setOpenModal(true)
         }else{
             navigate('/user/login')
         }
     }
 
-   
-    const onToken = (token) => {
-        setStripeToken(token)
+    const calculateFinalPrice = () => {
+        const parsedTotal = Number(total)
+        const shipping = Number(shippingTax)
+        const finalTotal = parsedTotal + shipping
+        
+        return finalTotal.toFixed(2)
     }
 
-    // useEffect(() => {
-    //     const makeStripeRequest = async() => {
-    //         try {
-    //             const res = await axios.post('http://localhost:3001/order/payment', {
-    //                     tokenId:stripeToken.id,
-    //                     amount:2000
-    //                 })
-    //                 console.log(res.data)
-    //         }
-    //         catch (error) {
-    //                 console.log(error)
-    //         }
-    //     }
-
-    //     stripeToken && makeStripeRequest()
-    // }, [stripeToken])
-
-
-
-
- 
   return (
     <Container>
 
@@ -135,7 +116,7 @@ export const Cart = () => {
                             </div>
                             <div>
                                 <h4>Total</h4>
-                                <span className='product_price'><small>USD</small>{total + shippingTax}</span>
+                                <span className='product_price'><small>USD</small>{calculateFinalPrice()}</span>
                             </div>
                                 <Button 
                                     bgColor="#f5a131" 

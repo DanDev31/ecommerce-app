@@ -1,4 +1,4 @@
-test_products = [
+const preLoadedProducts = [
     {
         product_name:"Ram Memory Vengeance RGB Pro gamer 8GB Corsair",
         description: "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
@@ -74,7 +74,7 @@ test_products = [
 
 ]
 
-const test_categories = [
+const preLoadedCategories = [
     {
         category_name:"PC Gamers"
     },
@@ -102,6 +102,6 @@ const test_categories = [
 ]
 
 module.exports = {
-    test_products,
-    test_categories
+    preLoadedProducts,
+    preLoadedCategories
 }

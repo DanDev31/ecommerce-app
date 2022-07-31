@@ -3,11 +3,54 @@ const { users } = require('../db')
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require('./verifyToken')
 const CryptoJS = require('crypto-js')
 const jwt = require('jsonwebtoken')
+const passport = require('passport')
+
+
+
+//Google Auth
+
+const CLIENT_URL = "http://localhost:3000/"
+
+
+router.get("/login/success", (req, res) => {
+    console.log("REQUEST:", req._passport)
+    if (req.user) {
+      res.status(200).json({
+        success: true,
+        message: "successfull",
+        user: req.user,
+        //cookies: req.cookies
+      });
+    }
+    res.status(404).send("Fail")
+  });
+
+  router.get("/login/failed", (req, res) => {
+    res.status(401).json({
+      success: false,
+      message: "failure",
+    });
+  });
+
+  router.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect(CLIENT_URL);
+  });
+
+  router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+
+  router.get(
+    "/google/callback",
+    passport.authenticate("google", {
+      successRedirect: CLIENT_URL,
+      failureRedirect: "/login/failed",
+    })
+  );
 
 
 router.post('/register', async(req, res) =>{
     const { name, lastName, email, password } = req.body
-    
+    const copyPassword = password
     try {
 
         const findUser = await users.findOne({
@@ -16,18 +59,29 @@ router.post('/register', async(req, res) =>{
             }
         })
 
-        console.log(findUser)
+        if(findUser) return res.status(500).json({message:"User Already exists, please login"})
 
-        if(findUser) return res.status(500).send('User already exists!')
-
-        const newUser = await users.create({
-            name,
-            lastName,
-            email,
-            password:CryptoJS.AES.encrypt(password, process.env.SECRET_PHRASE).toString()
+            const newUser = await users.create({
+                name,
+                lastName,
+                email,
+                password:CryptoJS.AES.encrypt(copyPassword, process.env.SECRET_PHRASE).toString()
         })
-        res.status(200).json(newUser)
-    } catch (error) {
+
+        const accessToken = jwt.sign(
+            {
+                name
+            },
+                process.env.JWT_SECRET_PHRASE,
+            {
+                expiresIn:'3d'
+            }
+            )
+
+        const { password, ...others } = newUser.dataValues
+        res.status(200).json({...others, accessToken})
+        
+    } catch (error) {       
         res.status(500).json(error)
     }
 })
@@ -41,11 +95,11 @@ router.post('/login', async(req, res) => {
             }
             
         })
-        if(!foundUser) return res.status(401).send('Wrong credentials!')
+        if(!foundUser) return res.status(401).json({message:"Email or password invalid"})
         
         const hashedPassword = CryptoJS.AES.decrypt(foundUser.password, process.env.SECRET_PHRASE).toString(CryptoJS.enc.Utf8)
 
-        if(hashedPassword !== req.body.password) return res.status(401).send('Wrong credentials!')
+        if(hashedPassword !== req.body.password) return res.status(401).json({message:"Email or password invalid"})
         
         const accessToken = jwt.sign(
         {
@@ -60,7 +114,6 @@ router.post('/login', async(req, res) => {
         
         const { password, ...others } = foundUser.dataValues
         res.status(200).send({... others, accessToken})
-
     } catch (error) {
         res.status(500).json(error)
     }
@@ -142,4 +195,7 @@ router.get('/', async(req, res) => {
         res.status(500).json(error)
     }
 })
+
+
+
 module.exports = router

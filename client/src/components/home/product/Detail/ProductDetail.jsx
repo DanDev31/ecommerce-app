@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import { cartActions } from "../../../../redux/cart/cartSlice";
 import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
-import { ProductDetailStyle } from "../../../styles/ProductDetail";
+import { ProductDetailStyle , RelatedProducts} from "../../../styles/ProductDetail";
 import { Container } from "../../../styles/Container";
+import { Button } from "../../../styles/Buttons";
 
 
 export const ProductDetail = () => {
@@ -39,7 +40,7 @@ export const ProductDetail = () => {
                   src={productDetail.product_image}
                 />
               </div>
-              <div>
+              <div className="product_detail_info">
                   <div>
                     <h3>{productDetail.product_name}</h3>
                   </div>
@@ -58,11 +59,12 @@ export const ProductDetail = () => {
                       </span>
                     )}
                   </div>
-                  <button
-                    className=""
+                  <Button
+                    bgColor="#102a48" textColor="white" fontSize="1.8rem"
+                    bshadow={true}
                     // disabled={count === 0}
                     onClick={() => dispatch(cartActions.addProduct(productDetail))}
-                  >Add to Cart</button>
+                  >Add to Cart</Button>
               </div>
             </ProductDetailStyle>
       
@@ -75,9 +77,10 @@ export const ProductDetail = () => {
       )}
   
   
-<div className="">
-      <h4>Related Products</h4>
-      <div className="">
+<div >
+      <h3 className="mb_2">Related Products</h3>
+      <hr />
+      <RelatedProducts>
   
           {relationsProduct.length > 0 ? (
             relationsProduct.map((product, i) => (
@@ -87,7 +90,7 @@ export const ProductDetail = () => {
             <p>There's no results</p>
           )}
         
-      </div>
+      </RelatedProducts>
       </div>
     </Container>
   );

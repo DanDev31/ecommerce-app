@@ -1,16 +1,28 @@
 const router = require('express').Router()
-const stripe = require('stripe')(process.env.STRIPE_KEY)    
+const stripe = require('stripe')(process.env.STRIPE_KEY)  
+const cors = require('cors')
 
 
-router.post('/payment', (req, res) => {
-    stripe.charges.create({
-        source:req.body.tokenId,
-        amount:req.body.amount,
-        currency:'usd'
-    }, (stripeError, stripeResponse) => {
-        if(stripeError) res.status(500).json(stripeError)
-        res.status(200).json(stripeResponse)
-    })
+router.use(cors())
+
+router.post('/checkout', async(req, res) => {
+    const {id, amount} = req.body
+    const parsedAmount = Number(amount) * 100
+    console.log(parsedAmount)
+    console.log(typeof parsedAmount)
+    try {
+        const paymentInfo = await stripe.paymentIntents.create({
+            amount:parsedAmount,
+            currency: "USD",
+            description: "Order",
+            payment_method: id,
+            confirm: true, 
+        })
+        console.log(paymentInfo)
+        res.status(200).json({message:'Successful payment'})
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 module.exports = router

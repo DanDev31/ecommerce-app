@@ -13,16 +13,15 @@ export const Navbar = () => {
 
   const [ showMenu, setShowMenu ] = useState(false)
   const { cart } = useSelector(state => state.cart)
-  const { user, isLogged } = useSelector(state => state.user)
+  const { user } = useSelector(state => state.user)
+  const { googleUser } = useSelector(state => state.user)
   const dispatch = useDispatch()
-
 
 
   return (
     
       <Nav>
-          <TopNav >
-
+          <TopNav>
             <Link to="/" className='link'>
               <div className='logo'>
                 <img src={logo} alt="" />
@@ -35,10 +34,10 @@ export const Navbar = () => {
             <div className='topnav_user_box'>
                 
                 {
-                  user ? 
+                  user || googleUser ? 
                   (
                     <div className='profile_box'>
-                      <p onClick={() => setShowMenu(!showMenu)}>{user.name}</p>
+                      <p onClick={() => setShowMenu(!showMenu)}>{googleUser ? googleUser.displayName : user.name}</p>
                       <div className={`logout ${showMenu ? 'active' : ''}`}>
                         <p onClick={() => dispatch(logout())}>Logout</p>
                       </div>

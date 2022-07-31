@@ -6,7 +6,7 @@ const cart = require('./models/cart')
 const order = require('./models/order')
 const review = require('./models/review')
 
-const { test_categories } = require('./data')
+const { preLoadedProducts, preLoadedCategories } = require('./data')
 
 require('dotenv').config()
 
@@ -61,8 +61,9 @@ reviews.belongsTo(products)
 
 
 const loadData = () => {
-  
-    test_categories.map(async(category) => {
+
+
+    preLoadedCategories.map(async(category) => {
         
         await categories.create({
             category_name: category.category_name

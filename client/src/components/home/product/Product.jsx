@@ -11,8 +11,9 @@ export const Product = ({
   categoryId,
 }) => {
   const { categories } = useSelector((state) => state.categories);
-
+  console.log(categories)
   const category = categories.find((e) => e.id === categoryId);
+  console.log(category)
 
   return (
     <ProductStyles>

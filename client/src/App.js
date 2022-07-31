@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LandingPage } from "./components/landing_page/LandingPage";
 import { Navbar } from './components/navbar/Navbar'
 import { ProductsBySearch } from "./components/home/products_by_search/ProductsBySearch";
@@ -10,12 +10,20 @@ import { Cart } from "./components/cart/Cart";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import { Order } from "./components/order/Order";
+import { fetchGoogleUser } from './redux/user/userSlice';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchGoogleUser())
+  },[dispatch])
+
   return (
         <div>
-          <Navbar />
+          <Navbar/>
 
           <div>
             <Routes>
