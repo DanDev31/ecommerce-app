@@ -88,6 +88,7 @@ router.post('/register', async(req, res) =>{
 
 
 router.post('/login', async(req, res) => {
+    console.log(req.body.email)
     try {
         const foundUser = await users.findOne({
             where:{
@@ -95,6 +96,7 @@ router.post('/login', async(req, res) => {
             }
             
         })
+        
         if(!foundUser) return res.status(401).json({message:"Email or password invalid"})
         
         const hashedPassword = CryptoJS.AES.decrypt(foundUser.password, process.env.SECRET_PHRASE).toString(CryptoJS.enc.Utf8)

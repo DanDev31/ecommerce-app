@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import {  useDispatch, useSelector } from 'react-redux'
+import {  useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../styles/Buttons'
 import { Form, FormContainer } from '../styles/Form'
@@ -15,10 +15,10 @@ export const Login = () => {
         email:"",
         password:""
     })
+    const [loginError, setLoginError] = useState(false)
 
     const { email, password } = userLogin
     const dispatch = useDispatch()
-    const { error } = useSelector(state => state.user)
     const navigate = useNavigate()
 
     const handleInputChange = (e) => {
@@ -29,17 +29,21 @@ export const Login = () => {
         e.preventDefault()
         try {
             const response = await axios.post('http://localhost:3001/users/login', userLogin)
+            
             if(response.data.accessToken){
                 dispatch(loginSuccess(response.data))
                 navigate(-1)
             }
         } catch (error) {
             console.log(error)
+            setLoginError(true)
+            setTimeout(() =>{
+                setLoginError(false)
+            }, 2500)
         }
         
     }
 
-  
   return (
     <FormContainer>
         <div>
@@ -47,9 +51,14 @@ export const Login = () => {
                 <img src={logo} alt="" />
             </div>
             <Form onSubmit={handleSubmit}>
-                <legend>Login</legend>
+                <legend style={{
+                    fontSize:"2rem",
+                    fontWeight:"bold",
+                    marginBottom:"3rem",
+                    textAlign:"center"
+                    }}>Login</legend>
                 {
-                    error && <p>You must provide and email and password</p>
+                    loginError && <small style={{color:"red"}}>Invalid email or password</small>
                 }
                 <div className='form_input'>
                     <label htmlFor="">Email:</label>
@@ -59,7 +68,7 @@ export const Login = () => {
                     <label htmlFor="">Password:</label>
                     <input type="password" name="password" value={password} onChange={handleInputChange}/>
                 </div>
-                <Button type='submit' bgColor="#4586ff" fontSize="1.8rem">Submit</Button>
+                <Button type='submit' bgColor="#4586ff" textColor="white" fontSize="1.8rem">Submit</Button>
 
                 <span>or</span>
                 <hr />

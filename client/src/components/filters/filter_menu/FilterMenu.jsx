@@ -6,10 +6,10 @@ import { fetchByBrand } from '../../../redux/products/filterBrandSlice'
 import { fetchProductsByCategory } from '../../../redux/products/productsByCategorySlice'
 import { IoMdArrowDropright } from 'react-icons/io'
 import { FilterBar } from '../../styles/Filter'
+import { MdOutlineArrowForwardIos } from 'react-icons/md'
 
 
-
-export const FilterMenu = () => {
+export const FilterMenu = ({active, setActive}) => {
 
   const [ openMenu1, setOpenMenu1 ] = useState(false)
   const [ openMenu2, setOpenMenu2 ] = useState(false)
@@ -61,34 +61,42 @@ export const FilterMenu = () => {
 
 
   return (
-    <FilterBar>
-      <div className="filter_menu_item">
-          <div onClick={() => setOpenMenu1(!openMenu1)}>
-              <h4>Categorias</h4>
-              <IoMdArrowDropright  className={`${openMenu1 && "rotate"}`}/>
+   
+      <FilterBar active={active}>
+        <div>
+          <div className="filter_menu_item">
+              <div onClick={() => setOpenMenu1(!openMenu1)} >
+                  <h4>Categorias</h4>
+                  <IoMdArrowDropright  className={`${openMenu1 && "rotate"}`}/>
+              </div>
+              <div className={`filter_dropdown_menu ${openMenu1 && "active"}`}>
+                <span>Pc Gamers</span>
+                <span>Ram Memory</span>
+                <span>Hard Disks && SSD</span>
+              </div>
           </div>
-          <div className={`filter_dropdown_menu ${openMenu1 && "active"}`}>
-            <span>Pc Gamers</span>
-            <span>Ram Memory</span>
-            <span>Hard Disks && SSD</span>
+          <div className="filter_menu_item">
+              <div onClick={() => setOpenMenu2(!openMenu2)}>
+                <h4>Brands</h4>
+                <IoMdArrowDropright  className={`${openMenu2 && "rotate"}`}/>
+              </div>
+            <div className={`filter_dropdown_menu ${openMenu2 && "active"}`}>
+                {
+                  filteredBrands.map((brand, i) => (
+                    <div className="filter_name_item" key={i}>
+                      <label>{brand}</label>
+                      <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
+                    </div>
+                  ))
+                }  
+              </div>
           </div>
-      </div>
-      <div className="filter_menu_item">
-        <div onClick={() => setOpenMenu2(!openMenu2)}>
-          <h4>Brands</h4>
-          <IoMdArrowDropright  className={`${openMenu2 && "rotate"}`}/>
+
         </div>
-        <div className={`filter_dropdown_menu ${openMenu2 && "active"}`}>
-            {
-              filteredBrands.map((brand, i) => (
-                <div className="" key={i}>
-                  <label>{brand}</label>
-                  <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
-                </div>
-              ))
-            }  
-          </div>
-      </div>
-    </FilterBar>
+        <div className='arrow_filter_container'>
+          <MdOutlineArrowForwardIos className={`close_filter_menu_icon ${active && 'rotate_180'}`} onClick={() => setActive(!active)}/>
+        </div>
+      </FilterBar>
+  
   )
 }

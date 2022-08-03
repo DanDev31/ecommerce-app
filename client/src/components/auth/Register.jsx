@@ -30,6 +30,7 @@ export const Register = () => {
         e.preventDefault()
         try {
             const response = await axios.post('http://localhost:3001/users/register', userRegister)
+            console.log(response.data   )
             if(response.data.accessToken){
                 dispatch(loginSuccess(response.data))
                 navigate(-2)
@@ -73,7 +74,12 @@ export const Register = () => {
             </div>
 
             <Form onSubmit={handleSubmit}>
-            <legend>Registration Form</legend>
+            <legend style={{
+                    fontSize:"2rem",
+                    fontWeight:"bold",
+                    marginBottom:"3rem",
+                    textAlign:"center"
+                    }}>Registration Form</legend>
                 <div className='form_input'>
                     <label htmlFor="">Name:</label>
                     <input type="text" name="name" value={name} onChange={handleInputChange}/>
@@ -102,13 +108,13 @@ export const Register = () => {
                         </ul>)
                     }  
                 </div>
-                <Button type='submit' bgColor="#4586ff" fontSize="1.8rem">Submit</Button>
+                <Button type='submit' bgColor="#4586ff" textColor="white" fontSize="1.8rem">Submit</Button>
 
-                <p>or</p>
+                <p style={{textAlign:"center"}}>or</p>
                 
                 <Button onClick={() => googleAuth()}>
-                    <div>
-                        <FcGoogle/>
+                    <div className='google_button'>
+                        <FcGoogle className='google_icon'/>
                         <p>Google</p>
                     </div>
                 </Button>

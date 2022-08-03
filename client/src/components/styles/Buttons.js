@@ -9,4 +9,15 @@ export const Button = styled.button`
     font-size: ${(props) => props.fontSize};
     padding: 1rem;
 
+    .google_button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+
+        .google_icon{
+            font-size: 2.5rem;
+        }
+    }
+
 `

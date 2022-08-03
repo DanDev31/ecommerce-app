@@ -8,6 +8,7 @@ export const Nav = styled.nav`
     position: sticky;
     top: 0;
     left: 0;
+    min-height: 15vh;
     width: 100%;
     z-index: 1000;
 
@@ -27,7 +28,9 @@ export const TopNav = styled.div`
     background-color: #1a2639;
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
+    gap: 1rem;
+    padding: 0 2rem;
+    flex: 2;
 
     .topnav_user_box{
         display: flex;
@@ -91,9 +94,19 @@ export const LowerNav = styled.div`
     display: flex;
     justify-content: center;
     font-weight: 500;
-    padding: 2rem 0;
-    gap: 6rem;
+    position: relative;
+    flex: 1;
     
+    .lower_nav_menu{
+        display: flex;
+        align-items: center;
+        justify-content: center;   
+        gap: 6rem;
+    }
+
+    .mobile_menu_icon{
+        display: none;
+    }
     
     .span_floating_window{
         position: relative;
@@ -111,7 +124,7 @@ export const LowerNav = styled.div`
         top: 4.2rem;
         left: 0;
         width: 30rem;
-        z-index: 100;
+        
 
         
         .link{
@@ -136,12 +149,37 @@ export const LowerNav = styled.div`
     .active{
         display: block;
     }
+
+    .lower_nav_menu.active_mobile_menu{
+        transform: translateY(0);
+        z-index: 10;
+    }
+
+    @media (max-width: 600px) {
+    .mobile_menu_icon {
+        display: block;
+    }
+
+    .lower_nav_menu{
+        background-color: white;
+        position: absolute;
+        top: 3.8rem;
+        left: 0;
+        height: 50vh;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(-200%);
+        transition: 0.5s all ease;
+        
+    }
+}
+ 
 `
 
 
 export const Search = styled.form`
     display: flex;
-    
 
     & > *{
         border: none;
@@ -149,6 +187,9 @@ export const Search = styled.form`
         padding: 1rem;
     }
     
+    input{
+        width: 100%;
+    }
     button{
         align-items: center;
         background-color: #4586ff;
