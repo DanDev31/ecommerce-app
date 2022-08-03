@@ -1,3 +1,8 @@
+.MuiBox-root{
+    width: 90% !important;
+    max-width: 50rem !important;
+    margin: 0 auto !important;
+}
 .payment_box_title{
     background-color: #102a48;
     color: white;

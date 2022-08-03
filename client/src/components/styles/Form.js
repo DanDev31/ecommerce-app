@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 
 export const FormContainer = styled.div`
-    align-items: center;
-    display: flex;
-    justify-content: center;
     padding-top: 3rem;
     height: 100%;
-    width: 100%;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 40rem;
 
     .form_logo{
         text-align: center;
@@ -25,7 +24,7 @@ export const Form = styled.form`
     gap: 1.5rem;
     padding: 2.5rem;
     margin-top: 2rem;
-    min-width: 40rem;
+    /* min-width: 40rem; */
     
     .form_input{
         display: flex;

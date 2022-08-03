@@ -10,6 +10,7 @@ export const CartContainer = styled.div`
 
     .products_container{
         flex: 3;
+        overflow-x: auto;
     }
 
     .summary_container{
@@ -38,12 +39,19 @@ export const CartContainer = styled.div`
             }
         }
 
-
     }
+
+    @media (max-width:800px){
+        &{
+            flex-direction: column;
+        }
+    }
+
 `
 
 export const CartTable = styled.table`
     border-collapse: collapse;
+    white-space: nowrap;
     width: 100%;
 
 

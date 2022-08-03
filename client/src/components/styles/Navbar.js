@@ -31,6 +31,7 @@ export const TopNav = styled.div`
     gap: 1rem;
     padding: 0 2rem;
     flex: 2;
+    z-index: 100;
 
     .topnav_user_box{
         display: flex;

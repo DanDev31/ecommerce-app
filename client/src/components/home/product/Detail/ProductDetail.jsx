@@ -34,7 +34,7 @@ export const ProductDetail = () => {
       {productDetail && (
         <div>
           <ProductDetailStyle>
-              <div className="">
+              <div className="product_detail_img">
                 <img
                   alt={productDetail.product_name}
                   src={productDetail.product_image}

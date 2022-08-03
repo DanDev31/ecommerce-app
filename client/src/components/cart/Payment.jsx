@@ -99,7 +99,6 @@ export const Payment = ({openModal, setOpenModal}) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className='modal'
       >
         <Box sx={modalStyle}>
           <p className='payment_message'>Great. You're almost done!</p>

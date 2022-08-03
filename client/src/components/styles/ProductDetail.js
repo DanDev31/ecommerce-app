@@ -5,11 +5,21 @@ export const ProductDetailStyle = styled.div`
     display: flex;
     margin-bottom: 5rem;
 
+    .product_detail_img{
+        max-width: 50rem;
+    }
     .product_detail_info{
-        align-items: flex-start;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+    }
+
+    @media (max-width:800px){
+        &{
+            align-items: stretch;
+            flex-direction: column;
+            gap: 2rem;
+        }
     }
 
 

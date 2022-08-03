@@ -53,7 +53,7 @@ export const Cart = () => {
                         <h3 className='mb_1'>Your Products</h3>
                         <hr />
                         
-                        <div>
+                        <div className='table_wrapper'>
 
                             <CartTable>
                                 <thead className="table_headers">
