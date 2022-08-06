@@ -28,8 +28,8 @@ export const ProductDetailStyle = styled.div`
 export const RelatedProducts = styled.div`
     align-items: center;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 3rem;
     margin-top: 3rem;
 
 `

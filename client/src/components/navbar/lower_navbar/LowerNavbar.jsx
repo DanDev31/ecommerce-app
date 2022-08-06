@@ -75,7 +75,7 @@ useEffect(() => {
                     
                       <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>GPU</span></Link>
                   
-                      <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>MotherBoards</span></Link>
+                      <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Motherboards</span></Link>
                     
                       <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Power Supply</span></Link>
                   

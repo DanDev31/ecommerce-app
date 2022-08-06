@@ -18,6 +18,7 @@ export const FilterMenu = ({active, setActive}) => {
   const savedCategory = localStorage.getItem('category')
   
   const { productsByBrand } = useSelector(state => state.filterByBrand)
+  if(!productsByBrand) return <p>Loading...</p>
   const brands = productsByBrand.map(product => product.brand)
 
 

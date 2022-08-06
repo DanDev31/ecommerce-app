@@ -40,13 +40,12 @@ const modalStyle = {
     
 };
 
-  const CheckOutForm = () => {
+  const CheckOutForm = ({finalTotal}) => {
 
     const stripe = useStripe()
     const elements = useElements()
     const [ loading, setLoading ] = useState(false)
     const [ paymentError, setPaymentError ] = useState(false)
-    const { total } = useSelector(state => state.cart)
 
     const handleSubmit = async(e) => {
       e.preventDefault()
@@ -62,7 +61,7 @@ const modalStyle = {
         try {
           await axios.post('http://localhost:3001/order/checkout',{
             id,
-            amount:total
+            amount:finalTotal
           })
           elements.getElement(CardElement).clear();
           
@@ -93,11 +92,9 @@ const modalStyle = {
 
 
 
-export const Payment = ({openModal, setOpenModal}) => {
+export const Payment = ({openModal, setOpenModal, finalTotal}) => {
   
   const handleClose = () => setOpenModal(false);
-  const { total } = useSelector(state => state.cart)
- 
 
   return (
     
@@ -113,11 +110,11 @@ export const Payment = ({openModal, setOpenModal}) => {
           <div className='payment_box_title'>
             <div className='payment_total_box'>
               <p>Your total is:</p>
-              <span>{ total }</span>
+              <span>{ finalTotal }</span>
             </div>
           </div>  
             <Elements stripe={stripePromise} >
-                <CheckOutForm/>
+                <CheckOutForm finalTotal={finalTotal}/>
             </Elements>
         </Box>
       </Modal>

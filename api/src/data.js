@@ -31,10 +31,10 @@ const preLoadedProducts = [
         "category":"PC Gamers"
     },
     {
-        "product_name":"GPU Nvidia Dex GeForce GTX 550 1GB",
+        "product_name":"GPU Nvidia GeForce GTX 1050 4GB",
         "brand":"Nvidia",
         "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
-        "product_image": "https://http2.mlstatic.com/D_NQ_NP_893414-MLA45731762466_042021-O.jpg",
+        "product_image": "https://http2.mlstatic.com/D_NQ_NP_839019-MCO40597341471_012020-O.jpg",
         "price": 355.99,
         "stock": 1,
         "num_reviews": 0,
@@ -53,10 +53,10 @@ const preLoadedProducts = [
         "category":"Accesories" 
     },
     {
-        "product_name":"Asus Rog Strix Z390",
+        "product_name":"Asus Rog TRX40",
         "brand":"Asus",
         "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
-        "product_image": "https://m.media-amazon.com/images/I/71qaEfDRBJL._AC_SL1000_.jpg",
+        "product_image": "https://ae01.alicdn.com/kf/Sa53e9bee7f7947dc8e6611ed9815e0ccI/new-original-for-ASUS-ROG-STRIX-TRX40-XE-GAMING-Motherboard-supports-ThreadRipper-Series-CPU.jpg_Q90.jpg_.webp",
         "price": 130.25,
         "stock": 7,
         "num_reviews": 0,
@@ -195,17 +195,72 @@ const preLoadedProducts = [
         "rate":0,
         "category":"PC Gamers"
     },
-    // {
-    //     "product_name":"PC Gamer Ryzen 7 8GB Ram",
-    //     "brand":"VSG",
-    //     "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
-    //     "product_image": "https://i0.wp.com/www.pcstorecolombia.com/wp-content/uploads/2022/02/BFC-NSE-300-WWGKP-4A-01.png?resize=300%2C300&ssl=1",
-    //     "price": 2350.25,
-    //     "stock": 1,
-    //     "num_reviews": 0,
-    //     "rate":0,
-    //     "category":"PC Gamers"
-    // },
+    {
+        "product_name":"Hard Disk Seagate 1TB",
+        "brand":"Seagate",
+        "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
+        "product_image": "https://fenixcomercial.com.co/wp-content/uploads/2020/04/st2000vx0081.png",
+        "price": 60.00,
+        "stock": 6,
+        "num_reviews": 0,
+        "rate":0,
+        "category":"Hard Disks and SSD"
+    },
+    {
+        "product_name":"SSD Kingston 512GB",
+        "brand":"Kingston",
+        "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
+        "product_image": "https://ae01.alicdn.com/kf/S40c1fa6243944243a9e22441c0c3e37fN/Kingston-disco-duro-interno-de-estado-s-lido-NV1-M-2-2280-M-2-SATA-SSD.jpg",
+        "price": 48.50,
+        "stock": 10,
+        "num_reviews": 0,
+        "rate":0,
+        "category":"Hard Disks and SSD"
+    },
+    {
+        "product_name":"Aorus B460 PRO AC",
+        "brand":"Gigabyte",
+        "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
+        "product_image": "https://static.gigabyte.com/StaticFile/Image/Global/150b48b125953b9bff4ce93aec2b9988/Product/25142/Png",
+        "price": 180.80,
+        "stock": 4,
+        "num_reviews": 0,
+        "rate":0,
+        "category":"Motherboards"
+    },
+    {
+        "product_name":"msi B450M Gaming Plus",
+        "brand":"msi",
+        "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
+        "product_image": "https://asset.msi.com/resize/image/global/product/product_4_20190506093324_5ccf8ee4cff47.png62405b38c58fe0f07fcef2367d8a9ba1/600.png",
+        "price": 200.00,
+        "stock": 4,
+        "num_reviews": 0,
+        "rate":0,
+        "category":"Motherboards"
+    },
+    {
+        "product_name":"EVGA 750GA 80 plus gold",
+        "brand":"EVGA",
+        "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
+        "product_image": "https://images.evga.com/products/gallery/png/220-GA-0750-X1_LG_1.png",
+        "price": 79.99,
+        "stock": 4,
+        "num_reviews": 0,
+        "rate":0,
+        "category":"Power Supply"
+    },
+    {
+        "product_name":"Corsair RM850 80 plus gold",
+        "brand":"Corsair",
+        "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
+        "product_image": "https://s3techno.com/wp-content/uploads/2016/03/71Gaa4b12LL._AC_SL1500_-removebg-preview.png",
+        "price": 85.65,
+        "stock": 4,
+        "num_reviews": 0,
+        "rate":0,
+        "category":"Power Supply"
+    },
 
 ]
 

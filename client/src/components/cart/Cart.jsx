@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import { RiDeleteBinLine } from 'react-icons/ri'
@@ -17,6 +17,7 @@ export const Cart = () => {
 
 
     const [openModal, setOpenModal] = React.useState(false);
+    const [finalTotal, setFinalTotal] = useState(0)
     const {cart, total} = useSelector(state => state.cart)
     const {isLogged} = useSelector(state => state.user)
     const { googleUser } = useSelector(state => state.user)
@@ -35,10 +36,13 @@ export const Cart = () => {
     const calculateFinalPrice = () => {
         const parsedTotal = Number(total)
         const shipping = Number(shippingTax)
-        const finalTotal = parsedTotal + shipping
-        
-        return finalTotal.toFixed(2)
+        const totalAmount = parsedTotal + shipping
+        return totalAmount.toFixed(2)
     }
+
+    useEffect(() => {
+        setFinalTotal(calculateFinalPrice())
+    }, [finalTotal])
 
   return (
     <Container>
@@ -123,7 +127,7 @@ export const Cart = () => {
                                     fontSize="1.1rem"
                                     onClick={() => verifyLoggedUser()}
                                 >CHECKOUT</Button>
-                                <Payment openModal={openModal} setOpenModal={setOpenModal}/>
+                                <Payment openModal={openModal} setOpenModal={setOpenModal} finalTotal={finalTotal}/>
                             </div>
                     </div>
 
