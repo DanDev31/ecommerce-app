@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const fetchByBrand = createAsyncThunk('productsByBrand/fetchByBrand', async(savedCategory)=>{
-   
     try {
         const response = await axios.get(`http://localhost:3001/products/?category=${savedCategory}`)
         return response.data

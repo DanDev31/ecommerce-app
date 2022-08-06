@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FilterBar = styled.div`
     display: flex;
-    padding: 2rem;
+    padding: 0 2rem;
     justify-content: space-between;
     gap: 2rem;
     position: relative;
@@ -64,9 +64,10 @@ export const FilterBar = styled.div`
             background-color: white;
             box-shadow: 4px 5px 5px -5px #b4b4b4;
             position: fixed;
-            top: 127px;
-            left: 30px;
+            top: 200px;
+            left: 20px;
             height: 100%;
+            padding-top: 2rem;
             transform: ${({active}) => active ? "translateX(0%)" : "translateX(-100%)"};
             transition: 0.5s all ease;
         }

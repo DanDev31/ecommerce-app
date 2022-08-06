@@ -36,6 +36,7 @@ export const TopNav = styled.div`
     .topnav_user_box{
         display: flex;
         gap: 2rem;
+        
 
         .cart_icon{
             position: relative;
@@ -85,6 +86,13 @@ export const TopNav = styled.div`
             display: block !important;
         }
     }
+
+    @media (max-width:800px){
+        &{
+            flex-direction: column;
+            gap: 2rem;
+        }
+    }
 `
 
 export const LowerNav = styled.div`
@@ -122,11 +130,9 @@ export const LowerNav = styled.div`
         display: none;
         font-size: 1.5rem;
         position: absolute;
-        top: 4.2rem;
+        top: 3.25rem;
         left: 0;
         width: 30rem;
-        
-
         
         .link{
             color: ${({ theme }) => theme.colors.black};
@@ -156,7 +162,10 @@ export const LowerNav = styled.div`
         z-index: 10;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
+        &{
+            padding: 1rem 0;
+        }
     .mobile_menu_icon {
         display: block;
     }
@@ -166,14 +175,26 @@ export const LowerNav = styled.div`
         position: absolute;
         top: 3.8rem;
         left: 0;
-        height: 50vh;
+        height: 90vh;
         width: 100%;
         flex-direction: column;
         align-items: center;
         transform: translateY(-200%);
-        transition: 0.5s all ease;
-        
+        transition: 0.5s all ease;   
     }
+
+    .span_floating_window{
+        text-align: center;
+        transition: 0.5s all ease; 
+    }
+
+    .floating_window{
+        background-color: #f5f5f5;
+        margin-top: 1rem;
+        position: unset;
+        transition: 0.5s all ease; 
+    }
+
 }
  
 `
@@ -200,5 +221,8 @@ export const Search = styled.form`
         font-size: 1.7rem;
         padding: 0 2rem;
     }
+
+    
+
 `
 

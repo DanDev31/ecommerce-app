@@ -133,10 +133,10 @@ export const Cart = () => {
             :
 
             (   
-                <div>
-                    <p>Your cart is empty.</p>
-                    <Link to='/shop'>
-                        Go back to store
+                <div style={{marginTop:"4rem"}}>
+                    <p style={{marginBottom:"2rem"}}>Your cart is empty.</p>
+                    <Link to='/shop' >
+                        <p>Go back to store</p>
                     </Link>
                 </div>
             )

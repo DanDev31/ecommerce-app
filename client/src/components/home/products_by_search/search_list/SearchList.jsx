@@ -7,21 +7,22 @@ import { SearchProductCard } from "../search_list_card/SearchProductCard";
 
 export const SearchList = () => {
   const { searchedProducts } = useSelector((state) => state.searchBar);
+  const searchedStorageValue = sessionStorage.getItem('searchValue')
 
   return (
     <Container>
-      <div className="">
-        <h5>Total results: {searchedProducts.length}</h5>
+        <h2>Results for: {searchedStorageValue}</h2>
+        <p style={{marginTop:"2rem"}}>Total results: {searchedProducts ? searchedProducts.length : 0}</p>
         <ProductsFlex>
           {searchedProducts.length > 0 ? (
             searchedProducts.map((product, i) => (
               <SearchProductCard key={i} {...product} />
             ))
           ) : (
-            <p>There's no results</p>
+            <p style={{marginTop:"6rem"}}>There's no results</p>
           )}
         </ProductsFlex>
-      </div>
+      
     </Container>
   );
 };

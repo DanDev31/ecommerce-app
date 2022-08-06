@@ -29,7 +29,7 @@ export const Navbar = () => {
               </div>
             </Link>
 
-            <SearchBar/>
+            <SearchBar />
 
             <div className='topnav_user_box'>
                 

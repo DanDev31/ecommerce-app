@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { fetchProductsByCategory } from '../../../redux/products/productsByCategorySlice'
 import { fetchCategories } from '../../../redux/categories/categories'
 import { fetchByBrand } from '../../../redux/products/filterBrandSlice'
@@ -16,15 +15,20 @@ export const LowerNavbar = () => {
 
   const [ activeMenu, setActiveMenu ] = useState(false)
   const [ activeMobileMenu, setActiveMobileMenu ] = useState(false)
+  const dropdownRef = useRef()
 
-  const handleShowMenu = () =>{
-    setActiveMenu(true)
-  }
-
-  const handleHideMenu = () => {
-    setActiveMenu(false)
-  }
-
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if(e.path[0] !== dropdownRef.current){
+        setActiveMenu(false)
+      }
+    }
+      document.body.addEventListener('click', closeDropdown)
+    return () => {
+      document.body.removeEventListener('click', closeDropdown)
+    }
+  },[])
+  
 const handleValue = ({ target }) => {
   localStorage.setItem('category', target.innerText)
 }
@@ -56,18 +60,16 @@ useEffect(() => {
             />
         } 
           <div className={`lower_nav_menu ${activeMobileMenu && "active_mobile_menu"}`}>
-            <span className="span_floating_window" onMouseOver={handleShowMenu}>Categories
-              
-              <MdOutlineKeyboardArrowDown/>
-
-                <div className={`floating_window ${activeMenu && "active"}`} onMouseLeave={handleHideMenu}>
+            <span  ref={dropdownRef} className="span_floating_window" onClick={() => setActiveMenu(!activeMenu)}>Categories
+                
+                <div className={`floating_window ${activeMenu && "active"}`}>
                   <div>
                   
                       <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>PC Gamers</span></Link>
                     
                       <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Ram Memory</span></Link>
                     
-                      <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Hard Disk & SSD</span></Link>
+                      <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>Hard Disks and SSD</span></Link>
                   
                       <Link to="/shop" onClick={(e) => handleValue(e)} className='link'><span>CPU</span></Link>
                     

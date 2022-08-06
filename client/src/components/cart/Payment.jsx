@@ -45,6 +45,7 @@ const modalStyle = {
     const stripe = useStripe()
     const elements = useElements()
     const [ loading, setLoading ] = useState(false)
+    const [ paymentError, setPaymentError ] = useState(false)
     const { total } = useSelector(state => state.cart)
 
     const handleSubmit = async(e) => {
@@ -54,6 +55,7 @@ const modalStyle = {
         card:elements.getElement(CardElement)
       })
       setLoading(true)
+      
       if(!error){
         const { id } = paymentMethod;
 
@@ -68,11 +70,17 @@ const modalStyle = {
           console.log(err)
         }
         setLoading(false)
+      }else{
+        setPaymentError(true)
+        setLoading(false)
       } 
     }
     return (
       <Form onSubmit={handleSubmit}>
           <CardElement options = {{hidePostalCode: true, style: style}}/>
+          {
+            paymentError && <span style={{color:"red", fontSize:"1.4rem"}}>You must provide all card information</span>
+          }
           <Button disabled={!stripe} bgColor="#f5a131" fontSize="1.6rem">{
             loading ? 
             <CircularProgress />
@@ -98,7 +106,7 @@ export const Payment = ({openModal, setOpenModal}) => {
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-describedby="modal-modal-description"  
       >
         <Box sx={modalStyle}>
           <p className='payment_message'>Great. You're almost done!</p>

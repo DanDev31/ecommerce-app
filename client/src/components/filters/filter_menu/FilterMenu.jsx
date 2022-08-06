@@ -11,16 +11,16 @@ import { MdOutlineArrowForwardIos } from 'react-icons/md'
 
 export const FilterMenu = ({active, setActive}) => {
 
-  const [ openMenu1, setOpenMenu1 ] = useState(false)
-  const [ openMenu2, setOpenMenu2 ] = useState(false)
+
+  const [ openMenu, setOpenMenu ] = useState(false)
   const [ checkBoxValues, setCheckBoxValues ] = useState([])
   const dispatch = useDispatch()
   const savedCategory = localStorage.getItem('category')
-
-  const { productsByBrand } = useSelector(state => state.fitlerByBrand)
+  
+  const { productsByBrand } = useSelector(state => state.filterByBrand)
   const brands = productsByBrand.map(product => product.brand)
 
- 
+
   let filteredBrands = []
   for (let i = 0; i < brands.length; i++) {
     
@@ -65,22 +65,11 @@ export const FilterMenu = ({active, setActive}) => {
       <FilterBar active={active}>
         <div>
           <div className="filter_menu_item">
-              <div onClick={() => setOpenMenu1(!openMenu1)} >
-                  <h4>Categorias</h4>
-                  <IoMdArrowDropright  className={`${openMenu1 && "rotate"}`}/>
-              </div>
-              <div className={`filter_dropdown_menu ${openMenu1 && "active"}`}>
-                <span>Pc Gamers</span>
-                <span>Ram Memory</span>
-                <span>Hard Disks && SSD</span>
-              </div>
-          </div>
-          <div className="filter_menu_item">
-              <div onClick={() => setOpenMenu2(!openMenu2)}>
+              <div onClick={() => setOpenMenu(!openMenu)}>
                 <h4>Brands</h4>
-                <IoMdArrowDropright  className={`${openMenu2 && "rotate"}`}/>
+                <IoMdArrowDropright  className={`${openMenu && "rotate"}`}/>
               </div>
-            <div className={`filter_dropdown_menu ${openMenu2 && "active"}`}>
+            <div className={`filter_dropdown_menu ${openMenu && "active"}`}>
                 {
                   filteredBrands.map((brand, i) => (
                     <div className="filter_name_item" key={i}>

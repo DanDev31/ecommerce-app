@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const ProductDetailStyle = styled.div`
     align-items: center;
     display: flex;
+    gap: 5rem;
     margin-bottom: 5rem;
 
     .product_detail_img{
@@ -21,7 +22,6 @@ export const ProductDetailStyle = styled.div`
             gap: 2rem;
         }
     }
-
 
 `
 

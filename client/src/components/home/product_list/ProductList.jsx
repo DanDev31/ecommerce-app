@@ -8,16 +8,16 @@ import { Container } from '../../styles/Container'
 
 export const ProductList = () => {
   
-  const { productsByCategory } = useSelector(state => state.productsByCategory)
-  const category = localStorage.getItem('category')
+const { productsByCategory } = useSelector(state => state.productsByCategory)
+const category = localStorage.getItem('category')
 
   if (!productsByCategory) return <p>Loading...</p>;
 
   return (
         <Container>
-            <h2>{category}</h2>
+            <h2 className='mb_2'>{category}</h2>
             <Sort />
-            <h5>Total results: {productsByCategory.length}</h5>
+            <p style={{marginTop:"1rem"}}>Total results: {productsByCategory.length}</p>
             <ProductsFlex>
                 {
                     productsByCategory.length > 0  ?

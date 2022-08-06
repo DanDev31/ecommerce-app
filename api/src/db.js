@@ -62,13 +62,57 @@ reviews.belongsTo(products)
 
 const loadData = () => {
 
-
     preLoadedCategories.map(async(category) => {
-        
         await categories.create({
             category_name: category.category_name
         })
     })
+    
+   
+    preLoadedProducts.forEach(async(product) => {
+        const { 
+            product_name,
+            brand,
+            description,
+            product_image,
+            price,
+            stock,
+            category
+         } = product
+
+         
+         const foundProduct = await products.findOne({
+            where:{
+                product_name 
+            }
+         })
+
+         const foundCategory = await categories.findOne({
+            where:{
+                category_name: category 
+            }
+         })
+
+
+         const categoryId = foundCategory.id
+
+         if(!foundProduct){
+            await products.create({
+                product_name,
+                brand,
+                description,
+                product_image,
+                price,
+                stock,
+                categoryId
+            })
+         } else {
+            res.json("Product already exists.")
+         }
+
+     })
+
+
 }
 
 

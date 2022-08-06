@@ -41,7 +41,7 @@ export const store = configureStore({
         searchBar:searchBarSlice,
         searchProductCopy: searchProductCopy,
         categories:categoriesSlice,
-        fitlerByBrand:filterBrandSlice,
+        filterByBrand:filterBrandSlice,
         cart:cartSlice,
         user:persistedReducer
     },

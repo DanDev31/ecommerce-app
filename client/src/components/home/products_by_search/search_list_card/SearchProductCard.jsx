@@ -18,12 +18,16 @@ export const SearchProductCard = ({
   
   return (
     <ProductStyles>
-      <Link to={`/shop/${category.category_name}/${id}`} className="anchor">
-          <div >
-            <img src={product_image} alt="" />
+      <Link to={`/shop/${category ? category.category_name : null}/${id}`} className="anchor">
+          <div className="product_container">
+            <div className="product_img_container">
+              <img src={product_image} alt="" />
+            </div>
+          <div>
+            <h4>{product_name}</h4>
+            <p>${price}</p>
           </div>
-          <h4>{product_name}</h4>
-          <p>${price}</p>
+          </div>
       </Link>
     </ProductStyles>
   );

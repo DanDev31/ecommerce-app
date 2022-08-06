@@ -87,7 +87,7 @@ export const ProductDetail = () => {
               <Product key={i} {...product} />
             ))
           ) : (
-            <p>There's no results</p>
+            <p></p>
           )}
         
       </RelatedProducts>

@@ -30,7 +30,6 @@ export const Register = () => {
         e.preventDefault()
         try {
             const response = await axios.post('http://localhost:3001/users/register', userRegister)
-            console.log(response.data   )
             if(response.data.accessToken){
                 dispatch(loginSuccess(response.data))
                 navigate(-2)
@@ -65,7 +64,7 @@ export const Register = () => {
         window.open("http://localhost:3001/users/google", "_self")
     }
     
-    console.log(passwordError)
+
   return (
     <FormContainer>
         <div>
