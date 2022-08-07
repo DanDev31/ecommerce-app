@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { CircularProgress } from '@mui/material';
@@ -13,8 +12,10 @@ import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios'
 import {Button} from '../styles/Buttons'
 import { Form } from '../styles/Form';
+import Swal from 'sweetalert2'
 
 import './payment.css'
+import { useNavigate } from 'react-router-dom';
 
 const stripe_key=process.env.REACT_APP_STRIPE_KEY
 const stripePromise = loadStripe(stripe_key);
@@ -40,12 +41,13 @@ const modalStyle = {
     
 };
 
-  const CheckOutForm = ({finalTotal}) => {
+  const CheckOutForm = ({finalTotal, setOpenModal}) => {
 
     const stripe = useStripe()
     const elements = useElements()
     const [ loading, setLoading ] = useState(false)
     const [ paymentError, setPaymentError ] = useState(false)
+    const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
       e.preventDefault()
@@ -69,6 +71,14 @@ const modalStyle = {
           console.log(err)
         }
         setLoading(false)
+        setOpenModal(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment complete',
+          timer: 2000
+        })
+        // localStorage.setItem("cartItems", JSON.stringify([]))
+        // navigate("/")
       }else{
         setPaymentError(true)
         setLoading(false)
@@ -114,7 +124,7 @@ export const Payment = ({openModal, setOpenModal, finalTotal}) => {
             </div>
           </div>  
             <Elements stripe={stripePromise} >
-                <CheckOutForm finalTotal={finalTotal}/>
+                <CheckOutForm finalTotal={finalTotal} setOpenModal={setOpenModal}/>
             </Elements>
         </Box>
       </Modal>

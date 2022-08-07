@@ -7,6 +7,7 @@ export const LatestProductCard = ({ id, product_name, product_image, price, cate
 
   const { categories } = useSelector((state) => state.categories);
   const category = categories.find((e) => e.id === categoryId);
+  if(!categories) return <p>Loading...</p>
 
   return (
     <ProductStyles>

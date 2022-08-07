@@ -1,11 +1,10 @@
 const routes = require('express').Router()
 const { Op } = require("sequelize");
 const { products, categories } = require('../db')
+const randomArray = require('../helpers/randomArray')
 
 routes.get('/', async(req, res) => {
     const { category, search, brandValue } = req.query
-    
-    console.log({ category, search, brandValue })
     try {
 
         if(search){
@@ -69,10 +68,12 @@ routes.get('/', async(req, res) => {
 
 routes.get('/latestproducts', async(req,res) => {
     try {
-        let latestProducts = await products.findAll({})
-        if(!latestProducts) res.status(404).send("Data not found!")
+        let allProducts = await products.findAll({})
+        if(!allProducts) res.status(404).send("Data not found!")
 
-        res.status(200).send(latestProducts)
+        let randomArrayResult = randomArray(allProducts)
+
+        res.status(200).send(randomArrayResult)
     } catch (error) {
         console.log("Fail searching data!")
     }

@@ -19,6 +19,7 @@ export const FilterBar = styled.div`
             align-items: center;
             display: flex;
             justify-content: space-between;
+            gap: 2rem;
         }
 
         div:first-child{

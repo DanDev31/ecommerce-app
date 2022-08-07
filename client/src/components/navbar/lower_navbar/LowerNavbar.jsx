@@ -16,6 +16,9 @@ export const LowerNavbar = () => {
   const [ activeMenu, setActiveMenu ] = useState(false)
   const [ activeMobileMenu, setActiveMobileMenu ] = useState(false)
   const dropdownRef = useRef()
+  
+  const savedCategory = localStorage.getItem('category')
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const closeDropdown = (e) => {
@@ -28,21 +31,19 @@ export const LowerNavbar = () => {
       document.body.removeEventListener('click', closeDropdown)
     }
   },[])
+
   
+  useEffect(() => {
+    dispatch(fetchCategories())
+    dispatch(fetchByBrand(savedCategory))
+    dispatch(fetchProductsByCategory({savedCategory}))
+  },[dispatch, savedCategory])
+
+
 const handleValue = ({ target }) => {
   localStorage.setItem('category', target.innerText)
 }
 
-
-const savedCategory = localStorage.getItem('category')
-const dispatch = useDispatch()
-
-
-useEffect(() => {
-  dispatch(fetchCategories())
-  dispatch(fetchByBrand(savedCategory))
-  dispatch(fetchProductsByCategory({savedCategory}))
-},[dispatch, savedCategory])
 
 
   return (

@@ -5,7 +5,7 @@ export const ProductsFlex = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     grid-auto-rows: 1fr;
     place-items:center;
-    gap: 4rem;
+    gap: 6rem;
     
 `
 

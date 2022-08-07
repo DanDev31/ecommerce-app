@@ -15,9 +15,14 @@ export const FilterSearchedProducts = ({active, setActive}) => {
     const [ openMenu, setOpenMenu ] = useState(false)
     const [ checkBoxValues, setCheckBoxValues ] = useState([])
     const dispatch = useDispatch()
+    const searchedStorageValue = sessionStorage.getItem('searchValue')
+
+    useEffect(()=>{
+      dispatch(fetchSearchedProduct({search:searchedStorageValue, queriesArray:checkBoxValues}))
+      dispatch(fetchSearchProductCopy(searchedStorageValue))
+  },[dispatch, searchedStorageValue, checkBoxValues]) 
     
     const { searchProductsCopy } = useSelector(state => state.searchProductCopy)
-    const searchedStorageValue = sessionStorage.getItem('searchValue')
     const brands = searchProductsCopy.map(product => product.brand) 
    
     let filteredBrands = []
@@ -51,10 +56,7 @@ export const FilterSearchedProducts = ({active, setActive}) => {
   
     }
   
-    useEffect(()=>{
-        dispatch(fetchSearchedProduct({search:searchedStorageValue, queriesArray:checkBoxValues}))
-        dispatch(fetchSearchProductCopy(searchedStorageValue))
-    },[dispatch, searchedStorageValue, checkBoxValues]) 
+    
 
   return (
     <FilterBar active={active}>

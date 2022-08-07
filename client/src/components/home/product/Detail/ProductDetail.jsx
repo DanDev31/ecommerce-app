@@ -14,14 +14,14 @@ export const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchProductDetail(id));
+  }, [dispatch, id]);
+
   const { productDetail } = useSelector((state) => state.productDetail);
   const { productsByCategory } = useSelector(
     (state) => state.productsByCategory
   );
-
-  useEffect(() => {
-    dispatch(fetchProductDetail(id));
-  }, [dispatch, id]);
 
 
   let relationsProduct = productsByCategory.filter(

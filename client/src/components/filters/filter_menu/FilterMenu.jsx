@@ -16,6 +16,14 @@ export const FilterMenu = ({active, setActive}) => {
   const [ checkBoxValues, setCheckBoxValues ] = useState([])
   const dispatch = useDispatch()
   const savedCategory = localStorage.getItem('category')
+
+
+  useEffect(()=>{
+    
+      dispatch(fetchProductsByCategory({savedCategory, queriesArray:checkBoxValues}))
+      dispatch(fetchByBrand(savedCategory))
+
+  },[dispatch, savedCategory, checkBoxValues]) 
   
   const { productsByBrand } = useSelector(state => state.filterByBrand)
   if(!productsByBrand) return <p>Loading...</p>
@@ -52,13 +60,6 @@ export const FilterMenu = ({active, setActive}) => {
 
   }
 
-
-  useEffect(()=>{
-    
-      dispatch(fetchProductsByCategory({savedCategory, queriesArray:checkBoxValues}))
-      dispatch(fetchByBrand(savedCategory))
- 
-  },[dispatch, savedCategory, checkBoxValues]) 
 
 
   return (

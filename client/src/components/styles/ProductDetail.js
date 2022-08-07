@@ -22,7 +22,6 @@ export const ProductDetailStyle = styled.div`
             gap: 2rem;
         }
     }
-
 `
 
 export const RelatedProducts = styled.div`
