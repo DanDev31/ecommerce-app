@@ -85,9 +85,7 @@ const handleValue = ({ target }) => {
                 </div>
 
             </span>
-            <span>About</span>
-            <span>Contact Us</span>
-
+            <Link to="/about" style={{textDecoration:"none", color:"#222831"}}><span>About</span></Link>
           </div>
           
       </LowerNav>

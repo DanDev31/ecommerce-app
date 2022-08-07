@@ -1,0 +1,66 @@
+.about_hero{
+    background: url('https://www.muycomputer.com/wp-content/uploads/2018/09/PC-gaming.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 65vh;
+    position: relative;
+    margin-bottom: 8rem;
+}
+
+.about_hero h2{
+    color: aliceblue;
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    font-size: 8rem;
+
+}
+
+.about_text h3{
+    margin-bottom: 2rem;
+}
+
+.about_text p{
+    line-height: 1.8;
+}
+
+.about_information{
+    margin-top: 12rem;
+}
+
+.about_information_box{
+    display: flex;
+    gap: 5rem;
+}
+
+.about_information_box_image{
+    flex: 2;
+}
+
+.about_information_box_text{
+    flex: 3;
+}
+
+.about_information_box_text h3{
+    font-size: 4rem;
+    margin-bottom: 3rem;
+    border-bottom: 3px solid black;
+    padding-bottom: 1rem;
+}
+
+.about_information_box_text ul li{
+    list-style: none;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width:800px){
+    .about_information_box{
+        flex-direction: column;
+    }
+    .about_hero h2{
+        text-align: center;
+        font-size: 7rem;
+    }
+}
