@@ -16,6 +16,8 @@ import Swal from 'sweetalert2'
 
 import './payment.css'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../redux/cart/cartSlice';
 
 const stripe_key=process.env.REACT_APP_STRIPE_KEY
 const stripePromise = loadStripe(stripe_key);
@@ -47,6 +49,7 @@ const modalStyle = {
     const elements = useElements()
     const [ loading, setLoading ] = useState(false)
     const [ paymentError, setPaymentError ] = useState(false)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
@@ -77,12 +80,12 @@ const modalStyle = {
           title: 'Payment complete',
           timer: 2000
         })
-        // localStorage.setItem("cartItems", JSON.stringify([]))
-        // navigate("/")
+        dispatch(cartActions.clearCart())
       }else{
         setPaymentError(true)
         setLoading(false)
       } 
+      navigate("/")
     }
     return (
       <Form onSubmit={handleSubmit}>

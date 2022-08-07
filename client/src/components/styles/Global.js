@@ -51,7 +51,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .mb_1{
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .mb_2{

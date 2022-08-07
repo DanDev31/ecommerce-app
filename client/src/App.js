@@ -12,6 +12,7 @@ import { Register } from "./components/auth/Register";
 import { Order } from "./components/order/Order";
 import { fetchGoogleUser } from './redux/user/userSlice';
 import { useDispatch } from 'react-redux';
+import { Footer } from './components/footer/Footer';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
               <Route path="/user/register" element={<Register />} />
             </Routes>
           </div>
-          
+          <Footer />
         </div>
     
   );

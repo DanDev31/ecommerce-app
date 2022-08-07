@@ -63,6 +63,9 @@ const cartSlice = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cart))
             localStorage.setItem("cartTotal", state.total)
         
+        },
+        clearCart(){
+            localStorage.setItem("cartItems", JSON.stringify([]))
         }
     }
 })
