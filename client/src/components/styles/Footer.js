@@ -58,4 +58,11 @@ export const FooterContainer =   styled.footer`
         padding-top: 3rem;
         
     }
+
+    @media (max-width:800px){
+        .footer_info_container{
+            /* justify-content: center; */
+            gap: 5rem;
+        }
+    }
 `

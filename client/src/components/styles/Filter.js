@@ -6,6 +6,7 @@ export const FilterBar = styled.div`
     justify-content: space-between;
     gap: 2rem;
     position: relative;
+    z-index: 1000;
 
 
     .filter_menu_item{
@@ -43,10 +44,14 @@ export const FilterBar = styled.div`
     }
     
     .close_filter_menu_icon{
-        font-size: 1.5rem;
+        font-size: 2.5rem;
+        background-color: #ffffff;
+        border-radius: 0 20px 20px 0;
         display: none;
         position: absolute;
-
+        left: 1.5rem;
+        overflow: hidden;
+        z-index: -1;
     }
 
     .active{
@@ -58,6 +63,7 @@ export const FilterBar = styled.div`
     }
     .rotate_180{
         transform: rotate(180deg);
+        border-radius: 20px 0 0 20px;
     }
 
     @media (max-width:600px){
@@ -66,7 +72,7 @@ export const FilterBar = styled.div`
             box-shadow: 4px 5px 5px -5px #b4b4b4;
             position: fixed;
             top: 200px;
-            left: 20px;
+            left: 0;
             height: 100%;
             padding-top: 2rem;
             transform: ${({active}) => active ? "translateX(0%)" : "translateX(-100%)"};

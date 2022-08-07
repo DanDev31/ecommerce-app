@@ -85,7 +85,7 @@ const modalStyle = {
         setPaymentError(true)
         setLoading(false)
       } 
-      navigate("/")
+        navigate("/")
     }
     return (
       <Form onSubmit={handleSubmit}>
