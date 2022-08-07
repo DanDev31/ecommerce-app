@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    cart: JSON.parse(localStorage.getItem("cartItems") || "[]")
+    cart: JSON.parse(localStorage.getItem("cartItems") || "[]"),
+    total: localStorage.getItem("cartTotal") || 0
 }
 
 const cartSlice = createSlice({
@@ -10,31 +11,33 @@ const cartSlice = createSlice({
     initialState,
     reducers:{
         addProduct(state, {payload}){
-        
-            // const cartItems = [...state.cart]
 
             let alreadyExists = false
             state.cart.forEach(item => {
                 if(item.id === payload.id){
                     alreadyExists = true
                     item.quantity++
+                    state.total = state.cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
                 }
                 
             });
             if(!alreadyExists){
                 state.cart.push({...payload, quantity:1})
+                state.total = state.cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
             }
 
             localStorage.setItem("cartItems", JSON.stringify(state.cart))
+            localStorage.setItem("cartTotal", state.total)
 
-            
         },
         setAddQuantity(state, {payload}){
             const cartItems = [...state.cart]
             const product = cartItems.find(item => item.id === payload)
             if(product){
                 product.quantity += 1
+                state.total = state.cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
                 localStorage.setItem('cartItems', JSON.stringify(cartItems))
+                localStorage.setItem("cartTotal", state.total)
             }
             
 
@@ -43,16 +46,26 @@ const cartSlice = createSlice({
             const cartItems = [...state.cart]
             const product = cartItems.find(item => item.id === payload)
             if(product){
-                product.quantity -= 1
-                localStorage.setItem('cartItems', JSON.stringify(cartItems))
+                if(product.quantity > 1){
+
+                    product.quantity -= 1
+                    state.total = state.cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems))
+                    localStorage.setItem("cartTotal", state.total)
+                }
             }
             
 
         },
         deleteProduct(state, {payload}){
             state.cart = state.cart.filter(product => product.id !== payload)
+            state.total = state.cart.reduce((acum, current) => acum + (current.price * current.quantity), 0)
             localStorage.setItem('cartItems', JSON.stringify(state.cart))
+            localStorage.setItem("cartTotal", state.total)
         
+        },
+        clearCart(){
+            localStorage.setItem("cartItems", JSON.stringify([]))
         }
     }
 })

@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import styles from "./searchProductCard.modules.scss";
+import { ProductStyles } from "../../../styles/Products";
+
+
 
 export const SearchProductCard = ({
   product_name,
@@ -13,15 +15,20 @@ export const SearchProductCard = ({
   const { categories } = useSelector((state) => state.categories);
 
   const category = categories.find((e) => e.id === categoryId);
+  
   return (
-    <Link to={`/shop/${category.category_name}/${id}`}>
-      <div className={styles.latest_product_card_container}>
-        <div className={styles.latest_product_card_image_container}>
-          <img src={product_image} alt="" />
-        </div>
-        <h3>{product_name}</h3>
-        <p>${price}</p>
-      </div>
-    </Link>
+    <ProductStyles>
+      <Link to={`/shop/${category ? category.category_name : null}/${id}`} className="anchor">
+          <div className="product_container">
+            <div className="product_img_container">
+              <img src={product_image} alt="" />
+            </div>
+          <div>
+            <h4>{product_name}</h4>
+            <p>${price}</p>
+          </div>
+          </div>
+      </Link>
+    </ProductStyles>
   );
 };

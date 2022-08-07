@@ -1,14 +1,13 @@
 const routes = require('express').Router()
 const { Op } = require("sequelize");
 const { products, categories } = require('../db')
+const randomArray = require('../helpers/randomArray')
 
 routes.get('/', async(req, res) => {
     const { category, search, brandValue } = req.query
-    
     try {
 
-        if(search && !brandValue){
-            console.log("entro1")
+        if(search){
             const searchResults = await products.findAll({
                 where:{
                     product_name: {
@@ -17,16 +16,22 @@ routes.get('/', async(req, res) => {
                 }
             })
 
-            if(searchResults.length > 0){   
-                res.send(searchResults)
+            if(searchResults.length > 0){  
+                
+                if(brandValue){
+                    const filteredResults = searchResults.filter(item => brandValue.includes(item.brand))
+                    res.status(200).send(filteredResults)
+                }
+                 res.send(searchResults)
+
             }else{
-                res.status(404).send("No results for this search")
+                res.send([])
             }
 
         }
 
 
-        if(category && !brandValue) {
+        if(category) {
             const foundedCategories = await categories.findAll({
                 where:{
                     category_name: category
@@ -40,58 +45,17 @@ routes.get('/', async(req, res) => {
                     categoryId:category_id
                 }
             })
-                res.send(productsByCategory)
-            }
 
             
-
             if(brandValue){
-                console.log("entro3")
-                if(typeof brandValue === "string"){
-
-                    const byBrand = await products.findAll({
-                        where:{
-                            brand:{
-                                [Op.iLike]: `%${brandValue}%`
-                            }
-                        }
-                    })
-
-                    if(byBrand.length > 0){   
-                        res.send(byBrand)
-                    }else{
-                        res.status(404).send("No results for this fitler")
-                    }
-                }
-
-                if(Array.isArray(brandValue)){
-
-                    let copyProductsByBrand = []
-    
-                   for (let i = 0; i < brandValue.length; i++) {
-                    
-                    const byBrand = await products.findAll({
-                        where:{
-                            brand:{
-                                [Op.iLike]: `%${brandValue[i]}%`
-                            }
-                        }
-                    })
-    
-    
-                    copyProductsByBrand = [...copyProductsByBrand, ...byBrand]
-    
-                }
-                    if(copyProductsByBrand.length > 0){
-                        console.log(copyProductsByBrand)   
-                        res.send(copyProductsByBrand)
-                    }else{
-                        res.status(404).send("No results for this fitler")
-                    }
-                    
-                }
-
+                const filterByCategory = productsByCategory.filter(item => brandValue === item.brand)
+                res.status(200).send(filterByCategory)
             }
+                res.status(200).send(productsByCategory)
+ 
+            }
+
+          
 
         
     } catch (error) {
@@ -104,10 +68,12 @@ routes.get('/', async(req, res) => {
 
 routes.get('/latestproducts', async(req,res) => {
     try {
-        let latestProducts = await products.findAll({})
-        if(!latestProducts) res.status(404).send("Data not found!")
+        let allProducts = await products.findAll({})
+        if(!allProducts) res.status(404).send("Data not found!")
 
-        res.status(200).send(latestProducts)
+        let randomArrayResult = randomArray(allProducts)
+
+        res.status(200).send(randomArrayResult)
     } catch (error) {
         console.log("Fail searching data!")
     }
@@ -147,6 +113,7 @@ routes.post('/newproduct', async(req, res) => {
         //////////To load bulk of products, Remove when app is done!!!!/////////////////
 
          const bulkProducts = req.body
+         
          
          bulkProducts.forEach(async(product) => {
             const { 

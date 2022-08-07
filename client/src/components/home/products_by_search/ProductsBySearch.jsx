@@ -1,18 +1,20 @@
-import React from 'react'
-import { FilterMenu } from '../../filters/filter_menu/FilterMenu'
-import { Sort } from '../../filters/sort/Sort'
+import React, { useState } from 'react'
 import { SearchList } from './search_list/SearchList'
 
-import styles from './productsBySearch.module.scss'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchSearchedProduct } from '../../../redux/products/searchBarSlice'
 import { FilterSearchedProducts } from './filter_search/FilterSearchedProducts'
+import { HomeFlex } from '../../styles/Home'
+import { Container } from '../../styles/Container'
+
+
 
 export const ProductsBySearch = () => {
 
+  const [active, setActive] = useState(false)
   const searchedStorageValue = sessionStorage.getItem('searchValue')
-
+  const { searchedProducts } = useSelector((state) => state.searchBar);
   const dispatch = useDispatch()
 
   useEffect(() =>{
@@ -20,20 +22,19 @@ export const ProductsBySearch = () => {
   },[dispatch])
     
   return (
-    <main className={styles.home_container}>
-        <aside className={styles.home_filter_sidebar}>
-            <FilterSearchedProducts />
-        </aside>
-
-        <section className={styles.home_products_section}>
-            <h2>Results for: {searchedStorageValue}</h2>
-
-            <div>
+        <Container margin="6rem">
+          <HomeFlex>
+            {
+              searchedProducts.length !== 0 ? 
+              (
+                <FilterSearchedProducts active={active} setActive={setActive}/>
+              )
+              :
+              null
+            }
               <SearchList />
-            </div>
 
-        </section>
-
-    </main>
+          </HomeFlex>
+        </Container>
   )
 }

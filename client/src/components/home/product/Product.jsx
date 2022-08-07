@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import styles from "./product.module.scss";
-
+import { ProductStyles } from "../../styles/Products"; 
+import { CircularProgress } from '@mui/material'; 
 
 export const Product = ({
   product_name,
@@ -11,19 +11,43 @@ export const Product = ({
   id,
   categoryId,
 }) => {
-  const { categories } = useSelector((state) => state.categories);
 
+  const [ loading, setLoading ] = useState(false)
+  const { categories } = useSelector(state => state.categories);
   const category = categories.find((e) => e.id === categoryId);
+  
+  useEffect(() => {
+    if(category){
+      setLoading(true)
+    }
+    
+  },[loading])
 
   return (
-    <div className={styles.latest_product_card_container}>
-      <Link to={`/shop/${category.category_name}/${id}`}>
-        <div className={styles.latest_product_card_image_container}>
-          <img src={product_image} alt={product_name} />
-        </div>
-        <h3>{product_name}</h3>
-      </Link>
-      <p>${price}</p>
-    </div>
+    <>
+        {
+          loading ? 
+          (
+            <ProductStyles>
+            <Link to={`/shop/${category && category.category_name}/${id}`} className="anchor">
+              <div className="product_container">
+                <div className="product_img_container">
+                  <img src={product_image} alt={product_name} />
+                </div>
+                <div>
+                  <h4>{product_name}</h4>
+                  <p>${price}</p>
+                </div>
+              </div>
+            </Link>
+            </ProductStyles>
+          )
+          :
+          (
+            <CircularProgress />
+          )
+        }
+    </>
+  
   );
 };

@@ -1,28 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FilterMenu } from '../filters/filter_menu/FilterMenu'
-import { Sort } from '../filters/sort/Sort'
 import { ProductList } from './product_list/ProductList'
-
-import styles from './home.module.scss'
+import { HomeFlex } from '../styles/Home'
+import { Container } from '../styles/Container'
 
 export const Home = () => {
 
+  const [active, setActive] = useState(false)
  
-  
   return (
-    <main className={styles.home_container}>
-        <aside className={styles.home_filter_sidebar}>
-            <FilterMenu />
-        </aside>
-
-        <section className={styles.home_products_section}>
-
-            <div>
-              <ProductList />
-            </div>
-
-        </section>
-
-    </main>
+    <Container margin="6rem">
+      <HomeFlex>
+          
+          <FilterMenu active={active} setActive={setActive}/>
+          <ProductList />
+      
+      </HomeFlex>
+    </Container>
   )
 }

@@ -3,7 +3,6 @@ import axios from 'axios'
 
 export const fetchSearchedProduct = createAsyncThunk('searchedProducts/fetchSearchedProduct',
     async({search, queriesArray})=>{
-            
         try {
             if(queriesArray === undefined || queriesArray.length === 0){
                 const response = await axios.get(`http://localhost:3001/products/?search=${search}`)
@@ -12,11 +11,9 @@ export const fetchSearchedProduct = createAsyncThunk('searchedProducts/fetchSear
                 if(queriesArray.length > 0){
                     let hasFalseValue = queriesArray.every(element => element.isCheck === true)
                     if(hasFalseValue) {
-        
                         const response = await axios.get(`http://localhost:3001/products/?search=${search}&${
                             queriesArray.map(brand => `brandValue=${brand.brandValue}`).join("&")
                         }`)
-                        console.log(response.data)
                         return response.data  
                     } else{
                         let onlyTrueValues = queriesArray.filter(element => element.isCheck === true)

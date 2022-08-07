@@ -1,0 +1,30 @@
+.MuiBox-root{
+    width: 90% !important;
+    max-width: 50rem !important;
+    margin: 0 auto !important;
+}
+.payment_box_title{
+    background-color: #102a48;
+    color: white;
+    padding: 1rem;
+}
+
+.payment_message{
+    margin-bottom: 2rem;
+}
+
+.payment_box_title ~ p{
+    margin-bottom: 1rem;
+}
+
+.payment_total_box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payment_total_box span{
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+

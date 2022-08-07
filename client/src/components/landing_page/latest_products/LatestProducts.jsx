@@ -1,27 +1,20 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchLatestProducts } from '../../../redux/products/latestProductsSlice'
+import { useSelector } from 'react-redux'
 import { LatestProductCard } from './LatestProductCard'
+import { ProductsFlex } from '../../styles/Products'
+import { Container } from '../../styles/Container'
 
-import styles from './latest_products.module.scss'
 
 export const LatestProducts = () => {
 
     const {latestProducts} = useSelector(state => state.latestProducts)
-    const dispatch = useDispatch()
-
-
-    useEffect(()=>{
-        dispatch(fetchLatestProducts())
-    },[dispatch])
+    
 
   return (
-    <section className="container">
-        <div className={ styles.latest_products_container }>
-            <h2>Latest Products</h2>
+        <Container margin="10rem">
+            <h2 className='mb_3 text_align'>Latest Products</h2>
 
-            <div className={styles.latest_products_grid_container}>
+            <ProductsFlex>
                
                 {
                     latestProducts.length > 0 || !latestProducts ?
@@ -37,8 +30,8 @@ export const LatestProducts = () => {
                     <p>Loading...</p>
                 }
                 
-            </div>
-        </div>
-    </section>
+            </ProductsFlex>
+        </Container>
+  
   )
 }

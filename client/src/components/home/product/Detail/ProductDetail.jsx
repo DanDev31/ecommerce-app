@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import { cartActions } from "../../../../redux/cart/cartSlice";
 import { fetchProductDetail } from "../../../../redux/products/productDetail";
 import { Product } from "../Product";
-
-import styles from "./productDetail.module.scss";
+import { ProductDetailStyle , RelatedProducts} from "../../../styles/ProductDetail";
+import { Container } from "../../../styles/Container";
+import { Button } from "../../../styles/Buttons";
 
 
 export const ProductDetail = () => {
@@ -13,14 +14,14 @@ export const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchProductDetail(id));
+  }, [dispatch, id]);
+
   const { productDetail } = useSelector((state) => state.productDetail);
   const { productsByCategory } = useSelector(
     (state) => state.productsByCategory
   );
-
-  useEffect(() => {
-    dispatch(fetchProductDetail(id));
-  }, [dispatch, id]);
 
 
   let relationsProduct = productsByCategory.filter(
@@ -29,80 +30,68 @@ export const ProductDetail = () => {
 
   
   return (
-    <>
+    <Container>
       {productDetail && (
         <div>
-          <div className={styles.cardContainer}>
-        <div className={styles.latest_product_card_image_container}>
-              <img
-                alt={productDetail.product_name}
-                src={productDetail.product_image}
-              />
-            </div>
-            <div className={styles.text}>
-              <div>
-                <h3>{productDetail.product_name}</h3>
+          <ProductDetailStyle>
+              <div className="product_detail_img">
+                <img
+                  alt={productDetail.product_name}
+                  src={productDetail.product_image}
+                />
               </div>
-              <div>
-                <h3>${productDetail.price}</h3>
+              <div className="product_detail_info">
+                  <div>
+                    <h3>{productDetail.product_name}</h3>
+                  </div>
+                  <div>
+                    <h3>${productDetail.price}</h3>
+                  </div>
+                  <p>Rate: {productDetail.rate}</p>
+                  <div className="">
+                    {productDetail.stock > 3 ? (
+                      <span className="">
+                        {productDetail.stock} Available
+                      </span>
+                    ) : (
+                      <span className="">
+                        {productDetail.stock} Available
+                      </span>
+                    )}
+                  </div>
+                  <Button
+                    bgColor="#102a48" textColor="white" fontSize="1.8rem"
+                    bshadow={true}
+                    // disabled={count === 0}
+                    onClick={() => dispatch(cartActions.addProduct(productDetail))}
+                  >Add to Cart</Button>
               </div>
-              <p>Rate: {productDetail.rate}</p>
-              <div className={styles.stocks}>
-                {productDetail.stock > 3 ? (
-                  <span className={styles.stock}>
-                    {productDetail.stock} Available
-                  </span>
-                ) : (
-                  <span className={styles.stock1}>
-                    {productDetail.stock} Available
-                  </span>
-                )}
-              </div>
-              {/* <div className={styles.count_wrapper}>
-                <button onClick={decrease} disabled={count === 0}>
-                  -
-                </button>
-                <span className={styles.count} onBlur={onCountEdit}>
-                  {count}
-                </span>
-                <button
-                  onClick={increase}
-                  disabled={count === productDetail.stock}
-                >
-                  +
-                </button>
-              </div> */}
-              <button
-                className={styles.buttonCart}
-                // disabled={count === 0}
-                onClick={() => dispatch(cartActions.addProduct(productDetail))}
-              >Add to Cart</button>
-                    </div>
-                    <div>
-          <h4>Description</h4>
-          <p>{productDetail.description}</p>
-          <p>Reviews: {productDetail.num_reviews}</p>
-          </div>
-        </div>
+            </ProductDetailStyle>
       
+              <div className="mb_3">
+                  <h4 className="mb_1">Description</h4>
+                  <p>{productDetail.description}</p>
+                  <p>Reviews: {productDetail.num_reviews}</p>
+              </div>
           </div>
       )}
   
   
-<div className={styles.related}>
-      <h4>Related Products</h4>
-      <div className={styles.latest_products_grid_container}>
+<div >
+      <h3 className="mb_2">Related Products</h3>
+      <hr />
+      <RelatedProducts>
   
           {relationsProduct.length > 0 ? (
             relationsProduct.map((product, i) => (
               <Product key={i} {...product} />
             ))
           ) : (
-            <p>There's no results</p>
+            <p></p>
           )}
         
+      </RelatedProducts>
       </div>
-      </div>
-    </>
+    </Container>
   );
 };

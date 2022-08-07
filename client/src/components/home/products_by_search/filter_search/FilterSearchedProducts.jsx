@@ -2,20 +2,27 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { IoMdArrowDropright } from 'react-icons/io'
-
-import styles from './filterSearch.module.scss'
 import { fetchSearchedProduct } from '../../../../redux/products/searchBarSlice'
+import { IoMdArrowDropright } from 'react-icons/io'
+import { MdOutlineArrowForwardIos } from 'react-icons/md'
+import { FilterBar } from '../../../styles/Filter'
+import { fetchSearchProductCopy } from '../../../../redux/products/searchProductCopy'
 
-export const FilterSearchedProducts = () => {
 
-    const [ openMenu1, setOpenMenu1 ] = useState(false)
-    const [ openMenu2, setOpenMenu2 ] = useState(false)
+
+export const FilterSearchedProducts = ({active, setActive}) => {
+
+    const [ openMenu, setOpenMenu ] = useState(false)
     const [ checkBoxValues, setCheckBoxValues ] = useState([])
     const dispatch = useDispatch()
+    const searchedStorageValue = sessionStorage.getItem('searchValue')
+
+    useEffect(()=>{
+      dispatch(fetchSearchedProduct({search:searchedStorageValue, queriesArray:checkBoxValues}))
+      dispatch(fetchSearchProductCopy(searchedStorageValue))
+  },[dispatch, searchedStorageValue, checkBoxValues]) 
     
     const { searchProductsCopy } = useSelector(state => state.searchProductCopy)
-    const searchedStorageValue = sessionStorage.getItem('searchValue')
     const brands = searchProductsCopy.map(product => product.brand) 
    
     let filteredBrands = []
@@ -25,15 +32,6 @@ export const FilterSearchedProducts = () => {
         filteredBrands.push(brands[i])
       }
       
-    }
-  
-  
-    const handleOpenMenu1 = () => {
-      setOpenMenu1(!openMenu1)
-    }
-  
-    const handleOpenMenu2 = () => {
-      setOpenMenu2(!openMenu2)
     }
   
   
@@ -58,41 +56,32 @@ export const FilterSearchedProducts = () => {
   
     }
   
-    useEffect(()=>{
-        dispatch(fetchSearchedProduct({search:searchedStorageValue, queriesArray:checkBoxValues}))
-    },[dispatch, searchedStorageValue, checkBoxValues]) 
+    
 
   return (
-    <div className={styles.filter_menu_container}>
-        <div className={styles.filter_menu_item}>
-            <div className={styles.filter_menu_item_title} onClick={handleOpenMenu1}>
-                <h4>Categorias</h4>
-                <IoMdArrowDropright  className={`${openMenu1 && styles.rotate}`}/>
-            </div>
-            <div className={`${styles.filter_dropdown_menu} ${openMenu1 && styles.active}`}>
-            <span>Pc Gamers</span>
-            <span>Ram Memory</span>
-            <span>Hard Disks && SSD</span>
-            </div>
+    <FilterBar active={active}>
+        <div>
+          <div className="filter_menu_item">
+              <div onClick={() => setOpenMenu(!openMenu)}>
+                <h4>Brands</h4>
+                <IoMdArrowDropright  className={`${openMenu && "rotate"}`}/>
+              </div>
+            <div className={`filter_dropdown_menu ${openMenu && "active"}`}>
+                {
+                  filteredBrands.map((brand, i) => (
+                    <div className="filter_name_item" key={i}>
+                      <label>{brand}</label>
+                      <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
+                    </div>
+                  ))
+                }  
+              </div>
+          </div>
+
         </div>
-        <div className={styles.filter_menu_item}>
-        <div className={styles.filter_menu_item_title} onClick={handleOpenMenu2}>
-            <h4>Marcas</h4>
-            <IoMdArrowDropright className={`${openMenu2 && styles.rotate}`}/>
+        <div className='arrow_filter_container'>
+          <MdOutlineArrowForwardIos className={`close_filter_menu_icon ${active && 'rotate_180'}`} onClick={() => setActive(!active)}/>
         </div>
-        <div className={`${styles.filter_dropdown_menu} ${openMenu2 && styles.active}`}>
-            {
-            filteredBrands.map((brand, i) => (
-                <div className={styles.filter_dropdown_menu_item} key={i}>
-                <label>{brand}</label>
-                <input type="checkbox" value={`${brand}`} onChange={handleCheckBoxChange}/>
-                </div>
-            ))
-            }
-            
-            
-            </div>
-        </div>
-  </div>
+      </FilterBar>
   )
 }
