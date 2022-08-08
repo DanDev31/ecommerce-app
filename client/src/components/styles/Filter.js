@@ -6,7 +6,7 @@ export const FilterBar = styled.div`
     justify-content: space-between;
     gap: 2rem;
     position: relative;
-    z-index: 1000;
+    z-index: 100;
 
 
     .filter_menu_item{
@@ -76,7 +76,7 @@ export const FilterBar = styled.div`
             background-color: white;
             box-shadow: 4px 5px 5px -5px #b4b4b4;
             position: fixed;
-            top: 200px;
+            top: 220px;
             left: 0;
             height: 100%;
             padding-top: 2rem;

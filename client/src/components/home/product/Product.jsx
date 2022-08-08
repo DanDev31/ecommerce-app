@@ -12,10 +12,13 @@ export const Product = ({
   categoryId,
 }) => {
 
+
+
   const [ loading, setLoading ] = useState(false)
   const { categories } = useSelector(state => state.categories);
   const category = categories.find((e) => e.id === categoryId);
-  
+
+
   useEffect(() => {
     if(category){
       setLoading(true)
@@ -29,7 +32,7 @@ export const Product = ({
           loading ? 
           (
             <ProductStyles>
-            <Link to={`/shop/${category && category.category_name}/${id}`} className="anchor">
+            <Link to={`/shop/${category ? category.category_name : null}/${id}`} className="anchor">
               <div className="product_container">
                 <div className="product_img_container">
                   <img src={product_image} alt={product_name} />

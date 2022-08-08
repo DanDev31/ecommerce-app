@@ -91,6 +91,7 @@ export const TopNav = styled.div`
         &{
             flex-direction: column;
             gap: 2rem;
+            padding: 1rem 0;
         }
     }
 `
@@ -180,7 +181,8 @@ export const LowerNav = styled.div`
         flex-direction: column;
         align-items: center;
         transform: translateY(-200%);
-        transition: 0.5s all ease;   
+        transition: 0.5s all ease;
+        z-index: 1000;
     }
 
     .span_floating_window{

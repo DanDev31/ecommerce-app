@@ -12,9 +12,10 @@ export const SearchProductCard = ({
   id,
   categoryId,
 }) => {
-  const { categories } = useSelector((state) => state.categories);
 
+  const { categories } = useSelector((state) => state.categories);
   const category = categories.find((e) => e.id === categoryId);
+
   
   return (
     <ProductStyles>
