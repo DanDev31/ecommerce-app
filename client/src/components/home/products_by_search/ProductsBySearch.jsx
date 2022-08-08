@@ -22,7 +22,7 @@ export const ProductsBySearch = () => {
   },[dispatch])
     
   return (
-        <Container margin="6rem">
+        <Container>
           <HomeFlex>
             {
               searchedProducts.length !== 0 ? 

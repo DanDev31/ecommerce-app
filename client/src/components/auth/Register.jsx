@@ -91,14 +91,14 @@ export const Register = () => {
                     <label htmlFor="">Email:</label>
                     <input type="email" name="email" value={email} onChange={handleInputChange}/>
                     {
-                        !emailError && <small style={{color:"red"}}>Enter a valid email</small>
+                        !emailError && <small style={{color:"red", fontSize:"1.4rem"}}>Enter a valid email</small>
                     }
                 </div>
                 <div className='form_input'>
                     <label htmlFor="">Password:</label>
                     <input type="password" name="password" value={password} onChange={handleInputChange}/>{
                         !passwordError && 
-                        (<ul style={{color:"red"}}>
+                        (<ul style={{color:"red", fontSize:"1.4rem"}}>
                             <li>Must have at least 8 characters</li>
                             <li>It must includes at least 1 uppercase letter</li>
                             <li>It must includes at least 1 lowercase letter</li>

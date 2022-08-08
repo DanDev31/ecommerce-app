@@ -9,7 +9,7 @@ export const Home = () => {
   const [active, setActive] = useState(false)
  
   return (
-    <Container margin="6rem">
+    <Container>
       <HomeFlex>
           
           <FilterMenu active={active} setActive={setActive}/>

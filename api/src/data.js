@@ -42,7 +42,7 @@ const preLoadedProducts = [
         "category":"GPU"
     },
     {
-        "product_name":"RGB Redragon CPU Coolder",
+        "product_name":"RGB Redragon CPU Cooler",
         "brand":"Redragon",
         "description": "Mauris tincidunt est faucibus augue vestibulum sollicitudin. Morbi scelerisque dignissim tincidunt. Maecenas vestibulum urna nulla, a viverra neque vestibulum ac. Donec quis eleifend nisl. Morbi ullamcorper convallis purus. Proin congue tempor sapien, vel molestie mi scelerisque at.",
         "product_image": "https://cdnx.jumpseller.com/tienda-gamer-medellin/image/17282946/resize/640/640?1651871828",

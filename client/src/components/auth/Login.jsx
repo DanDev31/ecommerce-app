@@ -58,7 +58,7 @@ export const Login = () => {
                     textAlign:"center"
                     }}>Login</legend>
                 {
-                    loginError && <small style={{color:"red"}}>Invalid email or password</small>
+                    loginError && <small style={{color:"red", fontSize:"1.4rem"}}>Invalid email or password</small>
                 }
                 <div className='form_input'>
                     <label htmlFor="">Email:</label>

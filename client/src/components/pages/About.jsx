@@ -4,7 +4,7 @@ import './about.css'
 
 export const About = () => {
   return (
-    <Container margin="8rem">
+    <Container>
         <div className='about_hero'>
             <h2>About</h2>
         </div>

@@ -11,7 +11,7 @@ export const LatestProducts = () => {
     
 
   return (
-        <Container margin="10rem">
+        <Container>
             <h2 className='mb_3 text_align'>Latest Products</h2>
 
             <ProductsFlex>
