@@ -14,7 +14,7 @@ const category = localStorage.getItem('category')
   if (!productsByCategory) return <p>Loading...</p>;
 
   return (
-        <Container>
+        <Container margin="120px">
             <h2 className='mb_2'>{category}</h2>
             <Sort />
             <p style={{marginTop:"1rem"}}>Total results: {productsByCategory.length}</p>

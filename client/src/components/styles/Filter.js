@@ -28,6 +28,11 @@ export const FilterBar = styled.div`
             align-items: center;
             justify-content: space-between;
         }
+
+        .filter_menu_item_arrow{
+            cursor: pointer;
+            font-size: 1.6rem;
+        }
     }
 
     .filter_dropdown_menu{

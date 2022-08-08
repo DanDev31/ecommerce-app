@@ -13,6 +13,7 @@ import { Order } from "./components/order/Order";
 import { fetchGoogleUser } from './redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Footer } from './components/footer/Footer';
+import { About } from './components/pages/About';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <div>
             <Routes>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<About />} />
               <Route path="/shop" element={<Home />} />
               <Route path="/shop/:id_cat/:id" element={<ProductDetail/>}/>
               <Route path="/shop/searched_products" element={<ProductsBySearch />} />

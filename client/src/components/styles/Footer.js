@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FooterContainer =   styled.footer`
     background-color: #3c3c3c;
     color: white;
-    padding: 3rem 0;
+    padding: 2rem 0;
 
     .footer_info_container{
         display: flex;

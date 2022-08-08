@@ -64,7 +64,7 @@ export const FilterSearchedProducts = ({active, setActive}) => {
           <div className="filter_menu_item">
               <div onClick={() => setOpenMenu(!openMenu)}>
                 <h4>Brands</h4>
-                <IoMdArrowDropright  className={`${openMenu && "rotate"}`}/>
+                <IoMdArrowDropright  className={`filter_menu_item_arrow ${openMenu && "rotate"}`}/>
               </div>
             <div className={`filter_dropdown_menu ${openMenu && "active"}`}>
                 {

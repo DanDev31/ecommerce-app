@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport')
 
 
-
 //Google Auth
 
 const CLIENT_URL = "http://localhost:3000/"
