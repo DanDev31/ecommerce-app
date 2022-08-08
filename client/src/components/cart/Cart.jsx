@@ -45,7 +45,7 @@ export const Cart = () => {
     }, [finalTotal])
 
   return (
-    <Container style={{height:"60vh"}}>
+    <Container>
 
         {
             cart && cart.length > 0 ?

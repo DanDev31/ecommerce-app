@@ -8,8 +8,6 @@ router.use(cors())
 router.post('/checkout', async(req, res) => {
     const {id, amount} = req.body
     const parsedAmount = Number(amount) * 100
-    console.log(parsedAmount)
-    console.log(typeof parsedAmount)
     try {
         const paymentInfo = await stripe.paymentIntents.create({
             amount:parsedAmount,

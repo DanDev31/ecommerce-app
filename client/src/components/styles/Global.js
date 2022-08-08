@@ -13,7 +13,9 @@ export const GlobalStyles = createGlobalStyle`
     html{
         font-family: 'Raleway', sans-serif;
         font-size: 62.5%;
+        position: relative;
     }
+
 
     img{
         width: 100%;

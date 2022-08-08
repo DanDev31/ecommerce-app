@@ -8,8 +8,7 @@ import { Container } from '../../styles/Container'
 export const LatestProducts = () => {
 
     const {latestProducts} = useSelector(state => state.latestProducts)
-    
-
+   
   return (
         <Container>
             <h2 className='mb_3 text_align'>Latest Products</h2>
