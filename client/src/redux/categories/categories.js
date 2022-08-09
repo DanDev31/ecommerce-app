@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchCategories = createAsyncThunk('categories/fetchCategories',
     async()=>{
         try {
-            const response = await axios.get('http://localhost:3001/categories')
+            const response = await axios.get('/categories')
             return response.data
         } catch (error) {
             console.log('Fail fetching data')

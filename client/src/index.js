@@ -9,6 +9,9 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { theme } from './components/styles/ThemeProvider';
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from './components/styles/Global';
+dotenv.config();
+
+axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

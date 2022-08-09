@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchSearchProductCopy = createAsyncThunk('searchProductsCopy/fetchSearchProductCopy', 
     async(search) =>{
         try {
-            const response = await axios.get(`http://localhost:3001/products/?search=${search}`)
+            const response = await axios.get(`/products/?search=${search}`)
             return response.data
         } catch (error) {
             console.log('Fail fetching data')

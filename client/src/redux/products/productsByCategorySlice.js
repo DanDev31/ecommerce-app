@@ -5,14 +5,14 @@ export const fetchProductsByCategory = createAsyncThunk('productsByCategory/fetc
     async({savedCategory, queriesArray})=>{
         try {
             if(queriesArray === undefined || queriesArray.length === 0){
-                const response = await axios.get(`http://localhost:3001/products/?category=${savedCategory}`)
+                const response = await axios.get(`/products/?category=${savedCategory}`)
                 return response.data
             }else{
                 if(queriesArray.length > 0){
                     let hasFalseValue = queriesArray.every(element => element.isCheck === true)
                     if(hasFalseValue) {
         
-                        const response = await axios.get(`http://localhost:3001/products/?category=${savedCategory}&${
+                        const response = await axios.get(`/products/?category=${savedCategory}&${
                             queriesArray.map(brand => `brandValue=${brand.brandValue}`).join("&")
                         }`)
         
@@ -21,12 +21,12 @@ export const fetchProductsByCategory = createAsyncThunk('productsByCategory/fetc
                         let onlyTrueValues = queriesArray.filter(element => element.isCheck === true)
                         if(onlyTrueValues.length > 0){
         
-                            const response = await axios.get(`http://localhost:3001/products/?category=${savedCategory}&${
+                            const response = await axios.get(`/products/?category=${savedCategory}&${
                                 onlyTrueValues.map(brand => `brandValue=${brand.brandValue}`).join("&")
                             }`)
                             return response.data 
                         }else{
-                            const response = await axios.get(`http://localhost:3001/products/?category=${savedCategory}`)
+                            const response = await axios.get(`/products/?category=${savedCategory}`)
                             return response.data
                         }
         

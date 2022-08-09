@@ -16,7 +16,7 @@ export const Order = () => {
     useEffect(() => {
         const makeStripeRequest = async() => {
             try {
-                const res = await axios.post('http://localhost:3001/order/payment', {
+                const res = await axios.post('/order/payment', {
                         tokenId:stripeToken.id,
                         amount:2000
                     })

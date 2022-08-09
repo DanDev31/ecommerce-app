@@ -28,7 +28,7 @@ export const Login = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:3001/users/login', userLogin)
+            const response = await axios.post('/users/login', userLogin)
             
             if(response.data.accessToken){
                 dispatch(loginSuccess(response.data))

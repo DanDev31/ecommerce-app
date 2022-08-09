@@ -29,7 +29,7 @@ export const Register = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:3001/users/register', userRegister)
+            const response = await axios.post('/users/register', userRegister)
             if(response.data.accessToken){
                 dispatch(loginSuccess(response.data))
                 navigate(-2)
@@ -61,7 +61,7 @@ export const Register = () => {
     }
 
     const googleAuth = () => {
-        window.open("http://localhost:3001/users/google", "_self")
+        window.open("/users/google", "_self")
     }
     
 

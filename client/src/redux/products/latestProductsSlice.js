@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchLatestProducts = createAsyncThunk('latestProducts/fetchLatestProducts',
     async()=>{
         try {
-            const response = await axios.get('http://localhost:3001/products/latestproducts')
+            const response = await axios.get('/products/latestproducts')
             return response.data
         } catch (error) {
             console.log('Fail fetching data')

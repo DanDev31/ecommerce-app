@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const fetchByBrand = createAsyncThunk('productsByBrand/fetchByBrand', async(savedCategory)=>{
     try {
-        const response = await axios.get(`http://localhost:3001/products/?category=${savedCategory}`)
+        const response = await axios.get(`/products/?category=${savedCategory}`)
         return response.data
     } catch (error) {
         console.log(error)

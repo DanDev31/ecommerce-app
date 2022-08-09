@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchGoogleUser = createAsyncThunk('googleUser/fetchGoogleUser',
     async() => {
         try {
-            const { data } = await axios.get('http://localhost:3001/users/login/success',{
+            const { data } = await axios.get('/users/login/success',{
               method:"GET",
               withCredentials:true,
             })
@@ -34,7 +34,7 @@ const userSlice = createSlice({
         logout(state){
 
             if(state.googleUser){
-                window.open("http://localhost:3001/users/logout", "_self")
+                window.open("/users/logout", "_self")
             }else{
                 state.user = null
                 state.isLogged = false  
