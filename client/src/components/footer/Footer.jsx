@@ -15,7 +15,7 @@ export const Footer = () => {
             <div className='footer_newsletter'>
                 <h4 className='mb_1'>Subscribe to our Newsletter</h4>
                 <form>
-                    <input type="text" />
+                    <input type="email" placeholder='Your email...'/>
                     <Button bgColor="#f5a131" fontSize="1.4rem">Submit</Button>
                 </form>
                 <div className='social_media'>
