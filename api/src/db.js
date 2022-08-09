@@ -48,7 +48,7 @@ let db =
         ssl: true,
       })
     : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@localhost:${DB_HOST}/api_ecommerce`,
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/api_ecommerce`,
         { logging: false, native: false }
       );
 
