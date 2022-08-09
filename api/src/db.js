@@ -107,7 +107,7 @@ const loadData = () => {
                 categoryId
             })
          } else {
-            res.json("Product already exists.")
+            console.log("Product already exists.")
          }
 
      })
