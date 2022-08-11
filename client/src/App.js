@@ -10,18 +10,18 @@ import { Cart } from "./components/cart/Cart";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import { Order } from "./components/order/Order";
-import { fetchGoogleUser } from './redux/user/userSlice';
-import { useDispatch } from 'react-redux';
+// import { fetchGoogleUser } from './redux/user/userSlice';
+// import { useDispatch } from 'react-redux';
 import { Footer } from './components/footer/Footer';
 import { About } from './components/pages/About';
 
 
 function App() {
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchGoogleUser())
-  },[dispatch])
+  // const dispatch = useDispatch()
+  // useEffect(() => {
+  //   dispatch(fetchGoogleUser())
+  // },[dispatch])
 
   return (
         <div >

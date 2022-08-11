@@ -60,9 +60,9 @@ export const Register = () => {
         setUserRegister(prev => ({...prev, [e.target.name]:e.target.value}))
     }
 
-    const googleAuth = () => {
-        window.open("https://ecommerce-app-liart-theta.vercel.app", "_self")
-    }
+    // const googleAuth = () => {
+    //     window.open("https://ecommerce-app-liart-theta.vercel.app", "_self")
+    // }
     
 
   return (
@@ -111,12 +111,12 @@ export const Register = () => {
 
                 <p style={{textAlign:"center"}}>or</p>
                 
-                <Button onClick={() => googleAuth()}>
+                {/* <Button onClick={() => googleAuth()}>
                     <div className='google_button'>
                         <FcGoogle className='google_icon'/>
                         <p>Google</p>
                     </div>
-                </Button>
+                </Button> */}
 
                 <div>
                     <Link to='/user/login' className='anchor form_link'>Have an account already?</Link>
