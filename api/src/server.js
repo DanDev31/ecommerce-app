@@ -10,11 +10,7 @@ const cookieSession = require("cookie-session");
 server.use(
     cookieSession({ name: "session", keys: ["Dan"], maxAge: 24 * 60 * 60 * 100 })
   )
-server.use(cors({
-    origin: "http://ecommerce-app-liart-theta.vercel.app",
-    methods:"GET,POST,PUT,DELETE",
-    credentials:true
-}))
+server.use(cors())
 server.use(morgan('dev'));
 server.use(express.json())
 server.use(passport.initialize());
