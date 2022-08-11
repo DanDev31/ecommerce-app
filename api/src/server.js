@@ -11,7 +11,7 @@ server.use(
     cookieSession({ name: "session", keys: ["Dan"], maxAge: 24 * 60 * 60 * 100 })
   )
 server.use(cors({
-    origin: "http://localhost:3000",
+    origin: "http://ecommerce-app-dandev31.vercel.app/",
     methods:"GET,POST,PUT,DELETE",
     credentials:true
 }))
