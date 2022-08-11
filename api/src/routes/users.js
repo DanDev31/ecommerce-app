@@ -8,7 +8,7 @@ const passport = require('passport')
 
 //Google Auth
 
-const CLIENT_URL = "https://ecommerce-app-liart-theta.vercel.app/"
+const CLIENT_URL = "https://ecommerce-app-liart-theta.vercel.app"
 
 
 router.get("/login/success", (req, res) => {
@@ -88,7 +88,6 @@ router.post('/register', async(req, res) =>{
 
 
 router.post('/login', async(req, res) => {
-    console.log(req.body.email)
     try {
         const foundUser = await users.findOne({
             where:{
