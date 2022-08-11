@@ -61,7 +61,7 @@ export const Register = () => {
     }
 
     const googleAuth = () => {
-        window.open("http://ec2-34-235-31-124.compute-1.amazonaws.com/users/google", "_self")
+        window.open("https://ecommerce-app-liart-theta.vercel.app", "_self")
     }
     
 

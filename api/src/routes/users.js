@@ -8,7 +8,7 @@ const passport = require('passport')
 
 //Google Auth
 
-const CLIENT_URL = "http://localhost:3000/"
+const CLIENT_URL = "https://ecommerce-app-liart-theta.vercel.app/"
 
 
 router.get("/login/success", (req, res) => {
@@ -50,6 +50,7 @@ router.get("/login/success", (req, res) => {
 router.post('/register', async(req, res) =>{
     const { name, lastName, email, password } = req.body
     const copyPassword = password
+    console.log("entro")
     try {
 
         const findUser = await users.findOne({
