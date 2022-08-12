@@ -65,6 +65,7 @@ const modalStyle = {
         const { id } = paymentMethod;
 
         try {
+
           await axios.post('/order/checkout',{
             id,
             amount:finalTotal
@@ -76,7 +77,6 @@ const modalStyle = {
             timer: 2000
           })
           dispatch(cartActions.clearCart())
-          console.log(data)
         } catch (err) {
           console.log(err)
           Swal.fire({
