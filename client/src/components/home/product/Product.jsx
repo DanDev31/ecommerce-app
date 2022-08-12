@@ -14,24 +14,28 @@ export const Product = ({
 
 
 
-  const [ loading, setLoading ] = useState(false)
+  const [ loading, setLoading ] = useState(true)
   const { categories } = useSelector(state => state.categories);
   const category = categories.find((e) => e.id === categoryId);
 
 
   useEffect(() => {
     if(category){
-      setLoading(true)
+      setLoading(false)
     }
     
   },[loading])
 
   return (
-    <>
+  
+    <ProductStyles>
         {
           loading ? 
           (
-            <ProductStyles>
+            <CircularProgress />
+          )
+          :
+          (  
             <Link to={`/shop/${category ? category.category_name : null}/${id}`} className="anchor">
               <div className="product_container">
                 <div className="product_img_container">
@@ -43,14 +47,10 @@ export const Product = ({
                 </div>
               </div>
             </Link>
-            </ProductStyles>
           )
-          :
-          (
-            <CircularProgress />
-          )
-        }
-    </>
+          }
+  
+      </ProductStyles>
   
   );
 };

@@ -176,7 +176,7 @@ export const LowerNav = styled.div`
         position: absolute;
         top: 3.8rem;
         left: 0;
-        height: 90vh;
+        height: 80vh;
         width: 100%;
         flex-direction: column;
         align-items: center;

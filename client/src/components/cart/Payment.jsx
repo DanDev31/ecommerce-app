@@ -36,6 +36,7 @@ const modalStyle = {
   let style = {
         
     base: {
+        border: "1px solid gray",
         color: 'black',
         fontFamily: 'Raleway,sans-serif',
         fontSize: '1.4rem'
@@ -64,23 +65,28 @@ const modalStyle = {
         const { id } = paymentMethod;
 
         try {
-          await axios.post('http://localhost:3001/order/checkout',{
+          const {data} = await axios.post('http://localhost:3001/order/checkout',{
             id,
             amount:finalTotal
           })
           elements.getElement(CardElement).clear();
-          
+          Swal.fire({
+            icon: 'success',
+            title: 'Payment complete',
+            timer: 2000
+          })
+          dispatch(cartActions.clearCart())
+          console.log(data)
         } catch (err) {
           console.log(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'Something went wrong!',
+            text: 'Try again please',
+          })
         }
         setLoading(false)
         setOpenModal(false)
-        Swal.fire({
-          icon: 'success',
-          title: 'Payment complete',
-          timer: 2000
-        })
-        dispatch(cartActions.clearCart())
       }else{
         setPaymentError(true)
         setLoading(false)
@@ -88,8 +94,28 @@ const modalStyle = {
         navigate("/")
     }
     return (
-      <Form onSubmit={handleSubmit}>
-          <CardElement options = {{hidePostalCode: true, style: style}}/>
+      <Form onSubmit={handleSubmit} className="payment_form">
+          <div className='payment_form_item'>
+            <label>Name:</label>
+            <input type="text" required/>
+          </div>
+          <div className='payment_form_item'>
+            <label>Adress:</label>
+            <input type="text" required/>
+          </div>
+          <div className='payment_form_tow_columns'>
+            <div className='payment_form_item'>
+              <label>City:</label>
+              <input type="text" required/>
+            </div>
+            <div className='payment_form_item'>
+              <label>Country:</label>
+              <input type="text" required/>
+            </div>
+          </div>
+          <div className='card_element_wrapper'>
+            <CardElement options = {{hidePostalCode: true, style: style}}/>
+          </div>
           {
             paymentError && <span style={{color:"red", fontSize:"1.4rem"}}>You must provide all card information</span>
           }
