@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { LowerNavbar } from './lower_navbar/LowerNavbar'
 import { SearchBar } from './search_bar/SearchBar'
@@ -16,6 +16,20 @@ export const Navbar = () => {
   const { user } = useSelector(state => state.user)
   const { googleUser } = useSelector(state => state.user)
   const dispatch = useDispatch()
+
+  const nodeRef = useRef()
+
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if(e.path[0] !== nodeRef.current){
+        setShowMenu(false)
+      }
+    }
+      document.body.addEventListener('click', closeDropdown)
+    return () => {
+      document.body.removeEventListener('click', closeDropdown)
+    }
+  },[])
 
 
   return (
@@ -37,7 +51,7 @@ export const Navbar = () => {
                   user || googleUser ? 
                   (
                     <div className='profile_box'>
-                      <p onClick={() => setShowMenu(!showMenu)}>{googleUser ? googleUser.displayName : user.name}</p>
+                      <p ref={nodeRef} onClick={() => setShowMenu(!showMenu)}>{googleUser ? googleUser.displayName : user.name}</p>
                       <div className={`logout ${showMenu ? 'active' : ''}`}>
                         <p onClick={() => dispatch(logout())}>Logout</p>
                       </div>

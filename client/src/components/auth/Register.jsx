@@ -20,7 +20,7 @@ export const Register = () => {
     })
     const [emailError, setEmailError] = useState(true)
     const [passwordError, setPasswordError] = useState(true)
-
+    const [registerError, setRegisterError] = useState(false)
 
     const { name, lastName, email, password } = userRegister
     const navigate = useNavigate()
@@ -35,6 +35,7 @@ export const Register = () => {
                 navigate(-2)
             }
         } catch (error) {
+            setRegisterError(true)
             console.log(error)
         }
         setUserRegister({
@@ -79,6 +80,9 @@ export const Register = () => {
                     marginBottom:"3rem",
                     textAlign:"center"
                     }}>Registration Form</legend>
+                    {
+                        registerError && <p style={{color:"red", fontSize:"1.4rem"}}>User already exists, please Login!</p>
+                    }
                 <div className='form_input'>
                     <label htmlFor="">Name:</label>
                     <input type="text" name="name" value={name} onChange={handleInputChange}/>

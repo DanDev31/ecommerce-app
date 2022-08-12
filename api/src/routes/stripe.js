@@ -8,6 +8,7 @@ router.use(cors())
 router.post('/checkout', async(req, res) => {
     const {id, amount} = req.body
     const parsedAmount = Number(amount) * 100
+    console.log(id, amount)
     try {
         const paymentInfo = await stripe.paymentIntents.create({
             amount:parsedAmount,
@@ -16,8 +17,17 @@ router.post('/checkout', async(req, res) => {
             payment_method: id,
             confirm: true, 
         })
-        console.log(paymentInfo)
-        res.status(200).json({message:'Successful payment'})
+      
+        let date = new Date(paymentInfo.created * 1000)
+
+        const dateOfPayment = {
+            day:date.getDay(),
+            hour:date.getHours(),
+            minutes:date.getMinutes(),
+            seconds:date.getSeconds()
+        }
+        
+        res.status(200).json({...dateOfPayment, message:'Successful payment'})
     } catch (error) {
         res.status(500).send(error)
     }

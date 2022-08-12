@@ -3,6 +3,27 @@
     max-width: 50rem !important;
     margin: 0 auto !important;
 }
+.payment_form{
+    width: 100%;
+}
+.payment_form_item{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.payment_form_item label{
+    color: #707070;
+}
+.payment_form_item input, .card_element_wrapper{
+    border: 1px solid gray;
+    border-radius: 2px;
+    padding: .8rem;
+    outline: none;
+}
+.payment_form_tow_columns{
+    display: flex;
+    justify-content: space-between;
+}
 .payment_box_title{
     background-color: #102a48;
     color: white;
@@ -28,3 +49,9 @@
     font-weight: 700;
 }
 
+@media (max-width:800px){
+    .payment_form_tow_columns{
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

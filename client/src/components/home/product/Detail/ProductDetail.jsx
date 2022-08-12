@@ -7,6 +7,7 @@ import { Product } from "../Product";
 import { ProductDetailStyle , RelatedProducts} from "../../../styles/ProductDetail";
 import { Container } from "../../../styles/Container";
 import { Button } from "../../../styles/Buttons";
+import Rating from '@mui/material/Rating';
 
 
 export const ProductDetail = () => {
@@ -47,7 +48,7 @@ export const ProductDetail = () => {
                   <div>
                     <h3>${productDetail.price}</h3>
                   </div>
-                  <p>Rate: {productDetail.rate}</p>
+                  <p>Rate: {<Rating/>}</p>
                   <div className="">
                     {productDetail.stock > 3 ? (
                       <span className="">

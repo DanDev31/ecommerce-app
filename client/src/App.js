@@ -9,12 +9,16 @@ import {ProductDetail} from "./components/home/product/Detail/ProductDetail";
 import { Cart } from "./components/cart/Cart";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
+<<<<<<< HEAD
 import { Order } from "./components/order/Order";
 // import { fetchGoogleUser } from './redux/user/userSlice';
 // import { useDispatch } from 'react-redux';
+=======
+import { fetchGoogleUser } from './redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+>>>>>>> 27700e3857185096cea0fc6fee35b63c6f54a4db
 import { Footer } from './components/footer/Footer';
 import { About } from './components/pages/About';
-
 
 function App() {
 
@@ -35,7 +39,6 @@ function App() {
               <Route path="/shop/:id_cat/:id" element={<ProductDetail/>}/>
               <Route path="/shop/searched_products" element={<ProductsBySearch />} />
               <Route path="/shop/cart" element={<Cart />} />
-              <Route path="/shop/cart/order" element={<Order />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/user/login" element={<Login />} />
               <Route path="/user/register" element={<Register />} />
