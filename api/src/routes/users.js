@@ -3,48 +3,6 @@ const { users } = require('../db')
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require('./verifyToken')
 const CryptoJS = require('crypto-js')
 const jwt = require('jsonwebtoken')
-const passport = require('passport')
-
-
-//Google Auth
-
-// const CLIENT_URL = "https://ecommerce-app-liart-theta.vercel.app"
-
-
-// router.get("/login/success", (req, res) => {
-//     console.log("REQUEST:", req._passport)
-//     if (req.user) {
-//       res.status(200).json({
-//         success: true,
-//         message: "successfull",
-//         user: req.user,
-//         //cookies: req.cookies
-//       });
-//     }
-//     res.status(404).send("Fail")
-//   });
-
-//   router.get("/login/failed", (req, res) => {
-//     res.status(401).json({
-//       success: false,
-//       message: "failure",
-//     });
-//   });
-
-//   router.get("/logout", (req, res) => {
-//     req.logout();
-//     res.redirect(CLIENT_URL);
-//   });
-
-//   router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
-
-//   router.get(
-//     "/google/callback",
-//     passport.authenticate("google", {
-//       successRedirect: CLIENT_URL,
-//       failureRedirect: "/login/failed",
-//     })
-//   );
 
 
 router.post('/register', async(req, res) =>{
