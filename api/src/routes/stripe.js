@@ -18,16 +18,16 @@ router.post('/checkout', async(req, res) => {
             confirm: true, 
         })
       
-        let date = new Date(paymentInfo.created * 1000)
+        // let date = new Date(paymentInfo.created * 1000)
 
-        const dateOfPayment = {
-            day:date.getDay(),
-            hour:date.getHours(),
-            minutes:date.getMinutes(),
-            seconds:date.getSeconds()
-        }
+        // const dateOfPayment = {
+        //     day:date.getDay(),
+        //     hour:date.getHours(),
+        //     minutes:date.getMinutes(),
+        //     seconds:date.getSeconds()
+        // }
         
-        res.status(200).json({...dateOfPayment, message:'Successful payment'})
+        res.status(200).json({message:'Successful payment'})
     } catch (error) {
         res.status(500).send(error)
     }
