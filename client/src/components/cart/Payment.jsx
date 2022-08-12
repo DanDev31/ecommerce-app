@@ -65,11 +65,7 @@ const modalStyle = {
         const { id } = paymentMethod;
 
         try {
-<<<<<<< HEAD
           await axios.post('/order/checkout',{
-=======
-          const {data} = await axios.post('http://localhost:3001/order/checkout',{
->>>>>>> 27700e3857185096cea0fc6fee35b63c6f54a4db
             id,
             amount:finalTotal
           })
