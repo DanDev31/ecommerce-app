@@ -2,13 +2,11 @@ const router = require('express').Router()
 const stripe = require('stripe')(process.env.STRIPE_KEY)  
 const cors = require('cors')
 
-
 router.use(cors())
 
 router.post('/checkout', async(req, res) => {
     const {id, amount} = req.body
     const parsedAmount = Number(amount) * 100
-    console.log(id, amount)
     try {
         const paymentInfo = await stripe.paymentIntents.create({
             amount:parsedAmount,
