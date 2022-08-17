@@ -13,13 +13,15 @@ import { Register } from "./components/auth/Register";
 // import { useDispatch } from 'react-redux';
 import { Footer } from './components/footer/Footer';
 import { About } from './components/pages/About';
+import { fetchCategories } from './redux/categories/categories';
 
 function App() {
 
   // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch(fetchGoogleUser())
-  // },[dispatch])
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  },[dispatch])
 
   return (
         <div >

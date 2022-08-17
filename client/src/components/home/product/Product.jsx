@@ -13,24 +13,14 @@ export const Product = ({
 }) => {
 
 
-
-  const [ loading, setLoading ] = useState(true)
   const { categories } = useSelector(state => state.categories);
   const category = categories.find((e) => e.id === categoryId);
-
-
-  useEffect(() => {
-    if(category){
-      setLoading(false)
-    }
-    
-  },[loading])
 
   return (
   
     <ProductStyles>
         {
-          loading ? 
+          !categories || categories.length === 0 ? 
           (
             <CircularProgress />
           )

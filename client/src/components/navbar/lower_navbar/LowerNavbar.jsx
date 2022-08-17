@@ -22,7 +22,6 @@ export const LowerNavbar = () => {
 
   
   useEffect(() => {
-    dispatch(fetchCategories())
     dispatch(fetchByBrand(savedCategory))
     dispatch(fetchProductsByCategory({savedCategory}))
 

@@ -6,20 +6,14 @@ import { CircularProgress } from '@mui/material';
 
 export const LatestProductCard = ({ id, product_name, product_image, price, categoryId }) => {
 
-  const [loading, setLoading] = useState(true)
   const { categories } = useSelector((state) => state.categories);
   const category = categories.find((e) => e.id === categoryId);
  
-  useEffect(() => {
-    if(categories){
-      setLoading(false)
-    }
-  }, [categories])
-
+ 
   return (
     <ProductStyles>
       {
-        loading ? <CircularProgress />
+        !categories || categories.length === 0  ? <CircularProgress />
         :
         (
           <>
