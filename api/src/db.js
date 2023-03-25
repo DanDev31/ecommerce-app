@@ -129,6 +129,8 @@ const loadData = () => {
       },
     });
 
+    if (!foundCategory) return;
+
     const categoryId = foundCategory.id;
 
     if (!foundProduct) {
