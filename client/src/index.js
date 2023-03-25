@@ -9,9 +9,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { theme } from "./components/styles/ThemeProvider";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
-import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
