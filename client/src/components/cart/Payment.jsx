@@ -9,15 +9,16 @@ import {
         useElements, 
         } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
-import axios from 'axios'
 import {Button} from '../styles/Buttons'
 import { Form } from '../styles/Form';
 import Swal from 'sweetalert2'
 
-import './payment.css'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../redux/cart/cartSlice';
+import { axiosInstance } from '../../axios';
+
+import './payment.css'
 
 const stripe_key=process.env.REACT_APP_STRIPE_KEY
 const stripePromise = loadStripe(stripe_key);
@@ -66,7 +67,7 @@ const modalStyle = {
 
         try {
 
-          await axios.post('/order/checkout',{
+          await axiosInstance.post('/order/checkout',{
             id,
             amount:finalTotal
           })

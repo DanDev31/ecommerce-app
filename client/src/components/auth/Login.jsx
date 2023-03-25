@@ -4,10 +4,10 @@ import {  useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../styles/Buttons'
 import { Form, FormContainer } from '../styles/Form'
-import axios from "axios"
 
 import logo from '../../assets/logo.png'
 import { loginSuccess } from '../../redux/user/userSlice'
+import { axiosInstance } from '../../axios'
 
 export const Login = () => {
 
@@ -28,7 +28,7 @@ export const Login = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('/users/login', userLogin)
+            const response = await axiosInstance.post('/users/login', userLogin)
     
             if(response.data.accessToken){
                 dispatch(loginSuccess(response.data))

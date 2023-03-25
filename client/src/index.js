@@ -1,36 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter,Routes,Route,} from "react-router-dom"
-import { Provider } from 'react-redux'
-import { store, persistor } from './store/store'
-import { PersistGate } from 'redux-persist/integration/react'
-import { theme } from './components/styles/ThemeProvider';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store, persistor } from "./store/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { theme } from "./components/styles/ThemeProvider";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from './components/styles/Global';
-import axios from 'axios'
+import { GlobalStyles } from "./components/styles/Global";
+import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001'
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={ store }>
+  <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-    <ThemeProvider theme={ theme } >
-        <GlobalStyles/>
-          <BrowserRouter>
-            <Routes>
-              <Route path='/*' element={<App />}/>
-            </Routes>
-          </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/*" element={<App />} />
+          </Routes>
+        </BrowserRouter>
       </ThemeProvider>
     </PersistGate>
   </Provider>
-  
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -3,12 +3,10 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../styles/Buttons'
 import { Form, FormContainer } from '../styles/Form'
-import { FcGoogle } from 'react-icons/fc'
-import axios from "axios"
-
 import logo from '../../assets/logo.png'    
 import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../../redux/user/userSlice'
+import { axiosInstance } from '../../axios'
 
 export const Register = () => {
 
@@ -29,7 +27,7 @@ export const Register = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('/users/register', userRegister)
+            const response = await axiosInstance.post('/users/register', userRegister)
             if(response.data.accessToken){
                 dispatch(loginSuccess(response.data))
                 navigate(-2)
@@ -60,10 +58,6 @@ export const Register = () => {
 
         setUserRegister(prev => ({...prev, [e.target.name]:e.target.value}))
     }
-
-    // const googleAuth = () => {
-    //     window.open("https://ecommerce-app-liart-theta.vercel.app", "_self")
-    // }
     
 
   return (
@@ -114,13 +108,6 @@ export const Register = () => {
                 <Button type='submit' bgColor="#4586ff" textColor="white" fontSize="1.8rem">Submit</Button>
 
                 <p style={{textAlign:"center"}}>or</p>
-                
-                {/* <Button onClick={() => googleAuth()}>
-                    <div className='google_button'>
-                        <FcGoogle className='google_icon'/>
-                        <p>Google</p>
-                    </div>
-                </Button> */}
 
                 <div>
                     <Link to='/user/login' className='anchor form_link'>Have an account already?</Link>

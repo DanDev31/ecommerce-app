@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useForm } from '../../../hooks/useForm'
-import axios from 'axios'
+import { axiosInstance } from '../../../axios'
 
 export const AddNewProduct = () => {
 
@@ -25,7 +25,7 @@ export const AddNewProduct = () => {
 
   const createNewProduct = async() => {
     try {
-      await axios.post('/products/newproduct', {
+      await axiosInstance.post('/products/newproduct', {
         ...formValues,
         category:selectCategory
       })
