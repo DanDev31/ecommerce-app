@@ -20,7 +20,7 @@ export const Product = ({
   
     <ProductStyles>
         {
-          !categories || categories.length === 0 ? 
+          !category || categories.length === 0 ? 
           (
             <CircularProgress />
           )

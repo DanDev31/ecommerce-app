@@ -13,7 +13,7 @@ export const LatestProductCard = ({ id, product_name, product_image, price, cate
   return (
     <ProductStyles>
       {
-        !categories || categories.length === 0  ? <CircularProgress />
+        !category || categories.length === 0  ? <CircularProgress />
         :
         (
           <>
